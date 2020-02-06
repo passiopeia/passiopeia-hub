@@ -9,13 +9,16 @@ python:
   - nightly
 
 before_install:
-  - python -m venv venv
+  - python3 -m venv venv
 
 install:
   - source venv/bin/activate
+  - python --version
   - pip install -r requirements.txt
   - pip install -r test-requirements.txt
 
 script:
+  - source venv/bin/activate
+  - python --version
   - coverage run manage.py test
   - coverage report --omit 'venv/**/*' -m --fail-under=80
