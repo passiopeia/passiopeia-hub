@@ -1,5 +1,7 @@
 os: linux
 
+dist: bionic
+
 language: python
 
 python:
@@ -8,17 +10,12 @@ python:
   - 3.8
   - nightly
 
-before_install:
-  - python3 -m venv venv
-
 install:
-  - source venv/bin/activate
-  - python --version
   - pip install -r requirements.txt
   - pip install -r test-requirements.txt
 
 script:
-  - source venv/bin/activate
-  - python --version
   - coverage run manage.py test
   - coverage report --omit 'venv/**/*' -m --fail-under=80
+
+cache: pip
