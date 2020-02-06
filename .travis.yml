@@ -1,0 +1,21 @@
+os: linux
+
+language: python
+
+python:
+  - 3.6
+  - 3.7
+  - 3.8
+  - nightly
+
+before_install:
+  - python -m venv venv
+
+install:
+  - source venv/bin/activate
+  - pip install -r requirements.txt
+  - pip install -r test-requirements.txt
+
+script:
+  - coverage run manage.py test
+  - coverage report --omit 'venv/**/*' -m --fail-under=80
