@@ -24,7 +24,8 @@ class PreflightcheckCommandTest(TestCase):
     def test_command_output_positive(self):
         out = StringIO()
         call_command(preflightcheck.Command(), stdout=out)
-        self.assertTrue(out.getvalue().strip().endswith('PASSED'))
+        output = out.getvalue().strip()
+        self.assertRegex(output, r'(PASSED).{0,10}$')
 
     def test_secret_key_test_negative(self):
         self.assertFalse(preflightcheck.Command().check_django_secret())
