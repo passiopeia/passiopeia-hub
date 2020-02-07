@@ -15,6 +15,6 @@ install:
 
 script:
   - coverage run manage.py test
-  - coverage report --omit 'venv/**/*','*/virtualenv/**/*' -m --fail-under=80
+  - coverage report --omit 'manage.py','venv/**/*','*/virtualenv/**/*' -m --fail-under=80
 
 cache: pip
