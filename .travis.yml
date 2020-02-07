@@ -14,7 +14,8 @@ install:
   - pip install -r test-requirements.txt
 
 script:
-  - coverage run manage.py test
-  - coverage report --omit 'venv/**/*','*/virtualenv/**/*' -m --fail-under=80
+  - coverage run --rcfile=.coveragerc.ini manage.py test
+  - coverage report --rcfile=.coveragerc.ini
+  - flake8 --statistics --config=.flake8.ini .
 
 cache: pip
