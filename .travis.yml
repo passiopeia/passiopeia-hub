@@ -16,5 +16,6 @@ install:
 script:
   - coverage run manage.py test
   - coverage report --omit 'manage.py','venv/**/*','*/virtualenv/**/*' -m --fail-under=80
+  - flake8 --statistics --config=.flake8.ini .
 
 cache: pip
