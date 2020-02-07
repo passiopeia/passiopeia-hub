@@ -1,3 +1,4 @@
+from contextlib import redirect_stdout
 from io import StringIO
 from django.core.management import call_command, CommandError
 from django.test import TestCase, override_settings
@@ -28,24 +29,30 @@ class PreflightcheckCommandTest(TestCase):
         self.assertRegex(output, r'(PASSED).{0,10}$')
 
     def test_secret_key_test_negative(self):
-        self.assertFalse(preflightcheck.Command().check_django_secret())
+        with redirect_stdout(StringIO()):
+            self.assertFalse(preflightcheck.Command().check_django_secret())
 
     @override_settings(SECRET_KEY='AK33gas(3AKK3"&KJAhjkgdöj3öjK&NK:JAG3t!JlköegjsÖ§LEKvÖLKSIOGJ$Ö')
     def test_secret_key_test_positive(self):
-        self.assertTrue(preflightcheck.Command().check_django_secret())
+        with redirect_stdout(StringIO()):
+            self.assertTrue(preflightcheck.Command().check_django_secret())
 
     @override_settings(DEBUG=True)
     def test_debug_test_negative(self):
-        self.assertFalse(preflightcheck.Command().check_debug())
+        with redirect_stdout(StringIO()):
+            self.assertFalse(preflightcheck.Command().check_debug())
 
     @override_settings(DEBUG=False)
     def test_debug_test_positive(self):
-        self.assertTrue(preflightcheck.Command().check_debug())
+        with redirect_stdout(StringIO()):
+            self.assertTrue(preflightcheck.Command().check_debug())
 
     @override_settings(ALLOWED_HOSTS=[])
     def test_allowed_hosts_test_negative(self):
-        self.assertFalse(preflightcheck.Command().check_allowed_hosts())
+        with redirect_stdout(StringIO()):
+            self.assertFalse(preflightcheck.Command().check_allowed_hosts())
 
     @override_settings(ALLOWED_HOSTS=['127.0.0.1'])
     def test_allowed_hosts_test_positive(self):
-        self.assertTrue(preflightcheck.Command().check_allowed_hosts())
+        with redirect_stdout(StringIO()):
+            self.assertTrue(preflightcheck.Command().check_allowed_hosts())
