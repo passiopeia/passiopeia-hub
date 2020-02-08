@@ -17,7 +17,7 @@ class PreflightcheckCommandTest(TestCase):
             call_command, preflightcheck.Command(), stdout=out
         )
 
-    @override_settings(
+    @override_settings(  # nosec
         SECRET_KEY='AK33gas(3AKK3"&KJAhjkgdöj3öjK&NK:JAG3t!JlköegjsÖ§LEKvÖLKSIOGJ$Ö',
         DEBUG=False,
         ALLOWED_HOSTS=['127.0.0.1', '192.168.1.1', '10.0.0.1']
@@ -32,7 +32,7 @@ class PreflightcheckCommandTest(TestCase):
         with redirect_stdout(StringIO()):
             self.assertFalse(preflightcheck.Command().check_django_secret())
 
-    @override_settings(SECRET_KEY='AK33gas(3AKK3"&KJAhjkgdöj3öjK&NK:JAG3t!JlköegjsÖ§LEKvÖLKSIOGJ$Ö')
+    @override_settings(SECRET_KEY='AK33gas(3AKK3"&KJAhjkgdöj3öjK&NK:JAG3t!JlköegjsÖ§LEKvÖLKSIOGJ$Ö')  # nosec
     def test_secret_key_test_positive(self):
         with redirect_stdout(StringIO()):
             self.assertTrue(preflightcheck.Command().check_django_secret())
