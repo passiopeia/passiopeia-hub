@@ -17,6 +17,7 @@ script:
   - coverage run --rcfile=.coveragerc.ini manage.py test
   - coverage report --rcfile=.coveragerc.ini
   - flake8 --statistics --config=.flake8.ini .
+  - pylint --rcfile=.pylint.ini hub hub_app
   - bandit -r ./
 
 cache: pip
