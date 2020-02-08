@@ -1,0 +1,9 @@
+{% load static %}
+{% load i18n %}
+
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'ha:home' %}">
+        <img src="{% static 'hub_app/theme/logo-30x30.png' %}" width="30" height="30" class="d-inline-block align-top" alt="Passiopeia Hub">
+        {% trans 'Passiopeia Hub' %}
+    </a>
+</nav>
