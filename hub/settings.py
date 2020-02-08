@@ -45,6 +45,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'csp.middleware.CSPMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -120,3 +121,18 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, '_compiled_static_files')
+
+
+# CSP
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = CSP_DEFAULT_SRC
+CSP_IMG_SRC = CSP_DEFAULT_SRC
+CSP_OBJECT_SRC = CSP_DEFAULT_SRC
+CSP_MEDIA_SRC = CSP_DEFAULT_SRC
+CSP_FRAME_SRC = CSP_DEFAULT_SRC
+CSP_FONT_SRC = CSP_DEFAULT_SRC
+CSP_CONNECT_SRC = CSP_DEFAULT_SRC
+CSP_STYLE_SRC = CSP_DEFAULT_SRC
+CSP_FORM_ACTION = CSP_DEFAULT_SRC
+CSP_MANIFEST_SRC = CSP_DEFAULT_SRC
+CSP_WORKER_SRC = CSP_DEFAULT_SRC
