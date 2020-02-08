@@ -18,7 +18,7 @@ install:
   - npm install -g bower
 
 before_script:
-  - cd hub_app/static/hub_app/managed && bower install
+  - (cd hub_app/static/hub_app/managed && bower install)
   - ./manage.py collectstatic --no-input
 
 script:
