@@ -1,6 +1,7 @@
 """
 Tests for the URL configuration of the Home Page.
 """
+from django.conf import settings
 from django.test import TestCase
 
 from hub_app.views.home import HomeView
@@ -17,7 +18,7 @@ class HomeViewUrlsRedirectTest(TestCase):
         """
         response = self.client.get('/', follow=False)
         self.assertEqual(302, response.status_code)
-        self.assertEqual('/en/hub/', response.url)
+        self.assertEqual('/{:s}/hub/'.format(settings.LANGUAGE_CODE), response.url)
 
     def test_404_from_direct_call(self):
         """
@@ -32,7 +33,7 @@ class HomeViewUrlsRedirectTest(TestCase):
         """
         response = self.client.get('/en/', follow=False)
         self.assertEqual(302, response.status_code)
-        self.assertEqual('/en/hub/', response.url)
+        self.assertEqual('/{:s}/hub/'.format(settings.LANGUAGE_CODE), response.url)
 
 
 class HomeViewSmokeTest(TestCase):

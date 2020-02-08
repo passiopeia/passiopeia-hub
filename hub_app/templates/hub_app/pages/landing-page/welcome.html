@@ -1,0 +1,9 @@
+{% extends 'hub_app/base/default-page.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Welcome!' %} | {{ block.super }}{% endblock %}
+
+{% block app %}
+    <h1>{% trans 'Welcome!' %}</h1>
+{% endblock %}

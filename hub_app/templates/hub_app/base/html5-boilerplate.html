@@ -1,0 +1,13 @@
+{% load i18n %}
+{% load hub_app_lang %}
+
+<!DOCTYPE html>
+<html lang="{% current_language %}" xml:lang="{% current_language %}">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% trans 'Passiopeia Hub' %}{% endblock %}</title>
+</head>
+<body>
+    {% block body %}{% endblock %}
+</body>
+</html>
