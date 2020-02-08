@@ -3,6 +3,8 @@ Tests for the URL configuration of the Home Page.
 """
 from django.test import TestCase
 
+from hub_app.views.home import HomeView
+
 
 class HomeViewUrlsRedirectTest(TestCase):
     """
@@ -42,6 +44,11 @@ class HomeViewSmokeTest(TestCase):
         """
         This is literally only a smoke test. If the page comes up with a status 200, everything is considered fine in
         this case. There should be a lot of more precise tests for the page's contents and functions.
+
+        At least it checks that the HomeView was triggered
         """
         response = self.client.get('/', follow=True)
         self.assertEqual(200, response.status_code)
+        context_data = getattr(response, 'context_data', None)
+        self.assertIsInstance(context_data, dict)
+        self.assertIsInstance(context_data.get('view', None), HomeView)
