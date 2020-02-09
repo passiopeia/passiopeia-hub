@@ -29,4 +29,7 @@ script:
   - pylint --rcfile=.pylint.ini hub hub_app
   - bandit -r ./
 
-cache: pip
+cache:
+  pip: true
+  npm: true
+  yarn: true
