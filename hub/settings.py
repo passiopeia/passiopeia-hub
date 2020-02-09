@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from django.utils.translation import gettext_lazy as _
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -44,6 +46,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'csp.middleware.CSPMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -106,13 +109,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
 LANGUAGE_CODE = 'en'
+LANGUAGES = (
+    ('en', _('English')),
+    ('de', _('German')),
+)
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
@@ -136,3 +141,17 @@ CSP_STYLE_SRC = CSP_DEFAULT_SRC
 CSP_FORM_ACTION = CSP_DEFAULT_SRC
 CSP_MANIFEST_SRC = CSP_DEFAULT_SRC
 CSP_WORKER_SRC = CSP_DEFAULT_SRC
+
+
+# Language Cookie settings
+LANGUAGE_COOKIE_NAME = 'passiopeia_hub_language'
+LANGUAGE_COOKIE_AGE = None
+
+
+# CSRF Cookie settings
+CSRF_COOKIE_NAME = 'passiopeia_hub_csrf'
+CSRF_COOKIE_AGE = None
+
+
+# Session Cookie Settings
+SESSION_COOKIE_NAME = 'passiopeia_hub_session'
