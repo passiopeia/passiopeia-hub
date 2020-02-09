@@ -16,6 +16,7 @@ install:
   - pip install -r requirements.txt
   - pip install -r test-requirements.txt
   - npm install -g yarn
+  - apt-get install geckodriver
 
 before_script:
   - (cd hub_app/static/hub_app/managed && yarn install)
