@@ -4,6 +4,10 @@ dist: bionic
 
 language: python
 
+env:
+  global:
+    - CC_TEST_REPORTER_ID='995d0862dab949510bbbb7a103a1ff4dcac6a44c7ea2c2639743fe2ba9f2194a'
+
 python:
   - 3.6
   - 3.7
@@ -35,7 +39,7 @@ script:
 
 after_script:
   - coverage xml --rcfile=.coveragerc.ini
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT -t coverage.py
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 after_success:
   - coveralls --rcfile=.coveragerc.ini
