@@ -31,7 +31,7 @@ script:
   - bandit -r ./
 
 after_success:
-  - coveralls
+  - coveralls --rcfile=.coveragerc.ini
 
 cache:
   pip: true
