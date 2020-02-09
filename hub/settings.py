@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from django.utils.translation import gettext_lazy as _
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -110,8 +109,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en'
 LANGUAGES = (
-    ('en', _('English')),
-    ('de', _('German')),
+    ('en', 'English'),
+    ('de', 'Deutsch'),
 )
 
 TIME_ZONE = 'UTC'

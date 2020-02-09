@@ -1,7 +1,6 @@
 """
 Tests for the URL configuration of the Home Page.
 """
-from django.conf import settings
 from django.test import TestCase
 
 from hub_app.views.home import HomeView
@@ -18,22 +17,14 @@ class HomeViewUrlsRedirectTest(TestCase):
         """
         response = self.client.get('/', follow=False)
         self.assertEqual(302, response.status_code)
-        self.assertEqual('/{:s}/hub/'.format(settings.LANGUAGE_CODE), response.url)
+        self.assertEqual('/hub/', response.url)
 
-    def test_404_from_direct_call(self):
+    def test_200_from_direct_call(self):
         """
         Test if the URL to home is build up correctly in case of a non-i18n request
         """
         response = self.client.get('/hub/', follow=False)
-        self.assertEqual(404, response.status_code)
-
-    def test_redirect_from_i18n_call(self):
-        """
-        Test if the URL to home is build up correctly in case of a non-i18n request
-        """
-        response = self.client.get('/en/', follow=False)
-        self.assertEqual(302, response.status_code)
-        self.assertEqual('/{:s}/hub/'.format(settings.LANGUAGE_CODE), response.url)
+        self.assertEqual(200, response.status_code)
 
 
 class HomeViewSmokeTest(TestCase):
