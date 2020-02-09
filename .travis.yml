@@ -17,6 +17,7 @@ install:
   - npm install -g yarn
   - pip install -r requirements.txt
   - pip install -r test-requirements.txt
+  - pip install coveralls
 
 before_script:
   - (cd hub_app/static/hub_app/managed && yarn install)
@@ -28,6 +29,9 @@ script:
   - flake8 --statistics --config=.flake8.ini .
   - pylint --rcfile=.pylint.ini hub hub_app
   - bandit -r ./
+
+after_success:
+  - coveralls --rcfile=.coveragerc.ini
 
 cache:
   pip: true
