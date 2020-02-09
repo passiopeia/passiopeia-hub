@@ -1,6 +1,7 @@
 """
 Template Tags for language handling
 """
+from uuid import uuid4
 
 from django import template
 from django.template import RequestContext
@@ -27,5 +28,6 @@ def do_language_selector(context: RequestContext) -> dict:
     Just fills the context for the template
     """
     return {
-        'rqc': context
+        'rqc': context,
+        'instance': str(uuid4())
     }

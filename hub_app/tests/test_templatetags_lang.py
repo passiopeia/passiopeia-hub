@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from django.conf import settings
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.template import RequestContext
-from django.test import SimpleTestCase, override_settings, TestCase, RequestFactory
+from django.test import SimpleTestCase, override_settings, TestCase, RequestFactory, tag
 
 from hub_app.templatetags.hub_app_lang import do_current_language, do_language_selector
 from hub_app.tests.helper import firefox_webdriver_factory
@@ -16,7 +16,8 @@ def _evaluate_document_language(document_content: str, expected_value: str) -> b
     Check the body for the correct set language
     """
     soup = BeautifulSoup(document_content, 'html.parser').find('html')
-    return soup['lang'] == expected_value
+    page_lang = soup['lang']
+    return page_lang == expected_value
 
 
 class CurrentLanguageTagTest(SimpleTestCase):
@@ -58,8 +59,16 @@ class LanguageSelectorTagTest(TestCase):
         """
         factory = RequestFactory()
         test_rqc = RequestContext(factory.get('/'))
-        self.assertIsInstance(do_language_selector(test_rqc).get('rqc'), RequestContext)
-        self.assertEqual(test_rqc, do_language_selector(test_rqc).get('rqc'))
+        with self.subTest(msg='Basic Context Setup'):
+            self.assertIsInstance(do_language_selector(test_rqc).get('rqc'), RequestContext)
+            self.assertEqual(test_rqc, do_language_selector(test_rqc).get('rqc'))
+            self.assertIsInstance(do_language_selector(test_rqc).get('instance'), str)
+        found = []
+        for i in range(100):
+            with self.subTest(msg='Uniqueness of Instance ID in Run {}'.format(i + 1)):
+                instance_uuid = do_language_selector(test_rqc).get('instance')
+                self.assertNotIn(instance_uuid, found)
+                found.append(instance_uuid)
 
     def test_language_selection_by_http_header(self):
         """
@@ -110,32 +119,71 @@ class LanguageSelectorTagTest(TestCase):
                 self.assertTrue(_evaluate_document_language(response.content.decode('utf-8'), expected_value))
 
 
+@tag('slow', 'gui')
 class LanguageSelectorTagUsageTest(StaticLiveServerTestCase):
     """
     Test using the language selector on the home page
     """
 
-    def test_language_change_on_page(self):
-        changes = (
-            # accept, to, expectation
-            ('en', (
-                ('en', 'en'),
-                ('de', 'de'),
-            )),
-            ('de', (
-                ('en', 'en'),
-                ('de', 'de'),
-            )),
-            ('', (
-                ('en', 'en'),
-                ('de', 'de'),
-            ))
-        )
-        for accept_header, test_cases in changes:
-            with self.subTest(msg='Accept-Language-Header for WebDriver is "{}"'.format(accept_header)):
-                for test_case in test_cases:
-                    to_be_selected, expected = test_case
-                    with self.subTest(msg='Selecting "{}", expecting "{}"'.format(to_be_selected, expected)):
-                        with firefox_webdriver_factory(accept_language=accept_header) as wd:
-                            pass
+    changes = (
+        # accept, first, select, expectation
+        ('en', 'en', (
+            ('en', 'en'),
+            ('de', 'de'),
+        )),
+        ('de', 'de', (
+            ('en', 'en'),
+            ('de', 'de'),
+        )),
+        ('', 'en', (
+            ('en', 'en'),
+            ('de', 'de'),
+        )),
+        ('xx', 'en', (
+            ('en', 'en'),
+            ('de', 'de'),
+        ))
+    )
 
+    def test_language_change_on_page(self):
+        """
+        Test a complete workflow through the form
+        """
+        for accept_header, first_lang, test_cases in self.changes:
+            for test_case in test_cases:
+                to_be_selected, expected = test_case
+                with self.subTest(msg='Calling with "{}", expecting "{}" first, selecting "{}", expecting "{}"'.format(
+                        accept_header, first_lang, to_be_selected, expected
+                )):
+                    with firefox_webdriver_factory(accept_language=accept_header) as webdriver:
+                        webdriver.get('{}/'.format(self.live_server_url))
+                        self.assertTrue(_evaluate_document_language(webdriver.page_source, first_lang))
+                        language_selector_forms = webdriver.find_elements_by_xpath(
+                            '//form[starts-with(@id, "language_selector_")]'
+                        )
+                        self.assertGreaterEqual(len(language_selector_forms), 1)
+                        form = language_selector_forms[0]
+                        # Open the Language Dropdown
+                        drop_downs = form.find_elements_by_css_selector('button.dropdown-toggle')
+                        self.assertEqual(1, len(drop_downs))
+                        drop_downs[0].click()
+                        # Check, if there are buttons for every language in the settings
+                        buttons = form.find_elements_by_css_selector(
+                            'div.dropdown-menu > button[type="submit"]'
+                        )
+                        self.assertEqual(len(settings.LANGUAGES), len(buttons))
+                        # Check, if the correct element is selected
+                        active_buttons = form.find_elements_by_css_selector(
+                            'div.dropdown-menu > button[type="submit"].active'
+                        )
+                        self.assertEqual(1, len(active_buttons))
+                        active_button = active_buttons[0]
+                        self.assertEqual(first_lang, active_button.get_attribute('value'))
+                        # Click the button for the next language
+                        click_buttons = form.find_elements_by_css_selector(
+                            'div.dropdown-menu > button[type="submit"][value="{}"]'.format(to_be_selected)
+                        )
+                        self.assertEqual(1, len(click_buttons))
+                        click_buttons[0].click()
+                        # Now, check if the page shows the expected lang
+                        self.assertTrue(_evaluate_document_language(webdriver.page_source, expected))
