@@ -6,7 +6,7 @@ language: python
 
 env:
   global:
-    - CC_TEST_REPORTER_ID='995d0862dab949510bbbb7a103a1ff4dcac6a44c7ea2c2639743fe2ba9f2194a'
+    secure: dHYDe6DsS6eJLyNCPsVFPDWaR0eYAEzWsrIHqTPtRXcpr+ZXuFaCNud0qOuHVzeNggSmxH/q66BiWCV3Bc33udq1xpncclHC/FGpd8DpfbLnCf1B5Z6xCgBMOQkEu9+RS7Fk6fFPt+pNnBgnAghr8yyu1Jfii84WY0KLCxkxxE4j5BYMaye0Ky6dFCQwXWB//cqirvH00EdoO+lyW4SdJJb0edzBmUd/Mv+MFnShd3/NJgLOUtHn9RJhjMp9rvMKUDA7JKW+co3Xhv5qbe9unIydseum5EcBqiq9/SpPM+EMPGdvZN0SFxzmB/cjf7jlz189iQ6itwAwci6joljzrJ8KFiWzAc/Bh4KoYWJFhSfMGFlUKZGzc6KncIox4Q+jzN+u9gP1H2QPglUuxeqlZbz4mDSlkQMl+JnjlocpLWzANPzXu53fyxF1bSQt5vtjjwu6TMEI4H18lya5NtAu3oEWI12j9B+f/vcsvf4i0CFxWcq8jt/mHExRfIDzsND6kH9KcqzNOFFmqnqdHv1toEf2rKqnhT1yKaa5SBjMSrbyZspNMqI/GwYDWHPWzcCWUW/EMjnriSLc/5+dpzXkzHvJc7AbgaBMyNqGlVXaFQKdl8dUSb6eO1vMbzUBoriSi1fNm5ld1wAXeps1TgPFmPFv5puF33RANTZOt/0uB40=
 
 python:
   - 3.6
@@ -39,10 +39,8 @@ script:
 
 after_script:
   - coverage xml --rcfile=.coveragerc.ini
-  - if [[ "$TRAVIS_PYTHON_VERSION" == "3.8" ]]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
-
-after_success:
   - coveralls --rcfile=.coveragerc.ini
+  - if [[ "$TRAVIS_PYTHON_VERSION" == "3.8" ]]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
 
 cache:
   pip: true
