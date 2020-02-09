@@ -12,14 +12,11 @@ python:
 node_js:
   - 12
 
-before_install:
-  - sudo apt-get update
-
 install:
+  - npm install -g geckodriver
+  - npm install -g yarn
   - pip install -r requirements.txt
   - pip install -r test-requirements.txt
-  - npm install -g yarn
-  - sudo apt-get install -y geckodriver
 
 before_script:
   - (cd hub_app/static/hub_app/managed && yarn install)
