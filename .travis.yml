@@ -22,6 +22,9 @@ install:
 before_script:
   - (cd hub_app/static/hub_app/managed && yarn install)
   - ./manage.py collectstatic --no-input
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
 script:
   - coverage run --rcfile=.coveragerc.ini manage.py test --settings=hub.ci_settings
@@ -29,6 +32,9 @@ script:
   - flake8 --statistics --config=.flake8.ini .
   - pylint --rcfile=.pylint.ini hub hub_app
   - bandit -r ./
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 after_success:
   - coveralls --rcfile=.coveragerc.ini
