@@ -19,7 +19,7 @@ from django.urls import path, include, reverse_lazy
 from django.views.generic import RedirectView
 
 
-urlpatterns = [
+urlpatterns = [  # pylint: disable=invalid-name
     path('admin/', admin.site.urls),
     path('client-configuration/i18n/', include('django.conf.urls.i18n')),
     path('hub/', include(('hub_app.urls', 'hub_app'), namespace='ha')),

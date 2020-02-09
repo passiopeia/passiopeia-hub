@@ -23,6 +23,9 @@ def do_current_language() -> str:
 
 @register.inclusion_tag('hub_app/inclusion/language-selector.html', name='language_selector', takes_context=True)
 def do_language_selector(context: RequestContext) -> dict:
+    """
+    Just fills the context for the template
+    """
     return {
         'rqc': context
     }
