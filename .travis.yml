@@ -39,10 +39,8 @@ script:
 
 after_script:
   - coverage xml --rcfile=.coveragerc.ini
-  - if [[ "$TRAVIS_PYTHON_VERSION" == "3.8" ]]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
-
-after_success:
   - coveralls --rcfile=.coveragerc.ini
+  - if [[ "$TRAVIS_PYTHON_VERSION" == "3.8" ]]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
 
 cache:
   pip: true
