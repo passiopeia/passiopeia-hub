@@ -22,7 +22,7 @@ before_script:
   - ./manage.py collectstatic --no-input
 
 script:
-  - coverage run --rcfile=.coveragerc.ini manage.py test
+  - coverage run --rcfile=.coveragerc.ini manage.py test --settings=hub.ci_settings
   - coverage report --rcfile=.coveragerc.ini
   - flake8 --statistics --config=.flake8.ini .
   - pylint --rcfile=.pylint.ini hub hub_app

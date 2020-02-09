@@ -154,3 +154,7 @@ CSRF_COOKIE_AGE = None
 
 # Session Cookie Settings
 SESSION_COOKIE_NAME = 'passiopeia_hub_session'
+
+
+# Settings for the test subsystem
+HEADLESS_TEST_MODE = True

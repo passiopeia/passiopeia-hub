@@ -3,10 +3,20 @@ Tests for the Template Tag Lib 'hub_app_lang'
 """
 from bs4 import BeautifulSoup
 from django.conf import settings
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.template import RequestContext
 from django.test import SimpleTestCase, override_settings, TestCase, RequestFactory
 
 from hub_app.templatetags.hub_app_lang import do_current_language, do_language_selector
+from hub_app.tests.helper import firefox_webdriver_factory
+
+
+def _evaluate_document_language(document_content: str, expected_value: str) -> bool:
+    """
+    Check the body for the correct set language
+    """
+    soup = BeautifulSoup(document_content, 'html.parser').find('html')
+    return soup['lang'] == expected_value
 
 
 class CurrentLanguageTagTest(SimpleTestCase):
@@ -42,14 +52,6 @@ class LanguageSelectorTagTest(TestCase):
         ('not_a_lang', 'en')
     )
 
-    @staticmethod
-    def _evaluate_document_language(document_content: str, expected_value: str) -> bool:
-        """
-        Check the body for the correct set language
-        """
-        soup = BeautifulSoup(document_content, 'html.parser').find('html')
-        return soup['lang'] == expected_value
-
     def test_context(self):
         """
         Test if the context is set
@@ -66,7 +68,7 @@ class LanguageSelectorTagTest(TestCase):
         for header_value, expected_value in self.language_codes_to_be_tested:
             with self.subTest(msg='Setting Header to "{}", expecting "{}"'.format(header_value, expected_value)):
                 response = self.client.get('/', HTTP_ACCEPT_LANGUAGE=header_value, follow=True)
-                self.assertTrue(self._evaluate_document_language(response.content.decode('utf-8'), expected_value))
+                self.assertTrue(_evaluate_document_language(response.content.decode('utf-8'), expected_value))
 
     def test_language_selection_by_cookie(self):
         """
@@ -76,7 +78,7 @@ class LanguageSelectorTagTest(TestCase):
             with self.subTest(msg='Setting Cookie to "{}", expecting "{}"'.format(cookie_value, expected_value)):
                 self.client.cookies.load({settings.LANGUAGE_COOKIE_NAME: cookie_value})
                 response = self.client.get('/', follow=True)
-                self.assertTrue(self._evaluate_document_language(response.content.decode('utf-8'), expected_value))
+                self.assertTrue(_evaluate_document_language(response.content.decode('utf-8'), expected_value))
 
     def test_colliding_language_selection_by_cookie_and_http_header(self):
         """
@@ -105,4 +107,35 @@ class LanguageSelectorTagTest(TestCase):
             )):
                 self.client.cookies.load({settings.LANGUAGE_COOKIE_NAME: cookie_value})
                 response = self.client.get('/', HTTP_ACCEPT_LANGUAGE=header_value, follow=True)
-                self.assertTrue(self._evaluate_document_language(response.content.decode('utf-8'), expected_value))
+                self.assertTrue(_evaluate_document_language(response.content.decode('utf-8'), expected_value))
+
+
+class LanguageSelectorTagUsageTest(StaticLiveServerTestCase):
+    """
+    Test using the language selector on the home page
+    """
+
+    def test_language_change_on_page(self):
+        changes = (
+            # accept, to, expectation
+            ('en', (
+                ('en', 'en'),
+                ('de', 'de'),
+            )),
+            ('de', (
+                ('en', 'en'),
+                ('de', 'de'),
+            )),
+            ('', (
+                ('en', 'en'),
+                ('de', 'de'),
+            ))
+        )
+        for accept_header, test_cases in changes:
+            with self.subTest(msg='Accept-Language-Header for WebDriver is "{}"'.format(accept_header)):
+                for test_case in test_cases:
+                    to_be_selected, expected = test_case
+                    with self.subTest(msg='Selecting "{}", expecting "{}"'.format(to_be_selected, expected)):
+                        with firefox_webdriver_factory(accept_language=accept_header) as wd:
+                            pass
+
