@@ -34,6 +34,7 @@ script:
   - bandit -r ./
 
 after_script:
+  - coverage xml --rcfile=.coveragerc.ini
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT -t coverage.py
 
 after_success:
