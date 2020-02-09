@@ -1,0 +1,8 @@
+{% extends 'hub_app/base/html5-boilerplate.html' %}
+
+{% block body %}
+    {% include 'hub_app/navigation/main-navbar.html' %}
+    <div class="container-fluid">
+        {% block app %}{% endblock %}
+    </div>
+{% endblock %}

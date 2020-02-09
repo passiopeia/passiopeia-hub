@@ -9,15 +9,27 @@ python:
   - 3.7
   - 3.8
 
+node_js:
+  - 12
+
 install:
+  - npm install -g geckodriver
+  - npm install -g yarn
   - pip install -r requirements.txt
   - pip install -r test-requirements.txt
 
+before_script:
+  - (cd hub_app/static/hub_app/managed && yarn install)
+  - ./manage.py collectstatic --no-input
+
 script:
-  - coverage run --rcfile=.coveragerc.ini manage.py test
+  - coverage run --rcfile=.coveragerc.ini manage.py test --settings=hub.ci_settings
   - coverage report --rcfile=.coveragerc.ini
   - flake8 --statistics --config=.flake8.ini .
   - pylint --rcfile=.pylint.ini hub hub_app
   - bandit -r ./
 
-cache: pip
+cache:
+  pip: true
+  npm: true
+  yarn: true

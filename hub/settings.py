@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -44,7 +45,9 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'csp.middleware.CSPMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -104,14 +107,16 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
+LANGUAGES = (
+    ('en', 'English'),
+    ('de', 'Deutsch'),
+)
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
@@ -119,3 +124,37 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, '_compiled_static_files')
+
+
+# CSP
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_SCRIPT_SRC = CSP_DEFAULT_SRC
+CSP_IMG_SRC = CSP_DEFAULT_SRC
+CSP_OBJECT_SRC = CSP_DEFAULT_SRC
+CSP_MEDIA_SRC = CSP_DEFAULT_SRC
+CSP_FRAME_SRC = CSP_DEFAULT_SRC
+CSP_FONT_SRC = CSP_DEFAULT_SRC
+CSP_CONNECT_SRC = CSP_DEFAULT_SRC
+CSP_STYLE_SRC = CSP_DEFAULT_SRC
+CSP_FORM_ACTION = CSP_DEFAULT_SRC
+CSP_MANIFEST_SRC = CSP_DEFAULT_SRC
+CSP_WORKER_SRC = CSP_DEFAULT_SRC
+
+
+# Language Cookie settings
+LANGUAGE_COOKIE_NAME = 'passiopeia_hub_language'
+LANGUAGE_COOKIE_AGE = None
+
+
+# CSRF Cookie settings
+CSRF_COOKIE_NAME = 'passiopeia_hub_csrf'
+CSRF_COOKIE_AGE = None
+
+
+# Session Cookie Settings
+SESSION_COOKIE_NAME = 'passiopeia_hub_session'
+
+
+# Settings for the test subsystem
+HEADLESS_TEST_MODE = True

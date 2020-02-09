@@ -13,9 +13,15 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import url
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include, reverse_lazy
+from django.views.generic import RedirectView
+
 
 urlpatterns = [  # pylint: disable=invalid-name
     path('admin/', admin.site.urls),
+    path('client-configuration/i18n/', include('django.conf.urls.i18n')),
+    path('hub/', include(('hub_app.urls', 'hub_app'), namespace='ha')),
+    url('^$', RedirectView.as_view(url=reverse_lazy('ha:home'), permanent=False), name='index'),
 ]

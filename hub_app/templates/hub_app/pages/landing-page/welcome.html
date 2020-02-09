@@ -1,0 +1,16 @@
+{% extends 'hub_app/base/default-page.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Welcome!' %} | {{ block.super }}{% endblock %}
+
+{% block app %}
+    <div class="jumbotron jumbotron-fluid text-dark">
+        <div class="container">
+            <h1 class="display-4">{% trans 'Simple Credential Management & Synchronization' %}</h1>
+            <p class="lead">{% trans 'Synchronize across devices and browsers. Fully encrypted. Only you have the keys.' %}</p>
+            <hr class="my-4">
+            <p>Passiopeia Hub | Passiopeia Addon | Passiopeia CLI</p>
+        </div>
+    </div>
+{% endblock %}
