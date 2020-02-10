@@ -1,9 +1,11 @@
 version: "2"
 
-return-statements:
-  config:
-    threshold: 10
+checks:
 
-method-complexity:
-  config:
-    threshold: 10
+  return-statements:
+    config:
+      threshold: 10
+
+  method-complexity:
+    config:
+      threshold: 10
