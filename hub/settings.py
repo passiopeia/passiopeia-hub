@@ -104,6 +104,13 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# User Model and Auth Backend
+AUTH_USER_MODEL = 'hub_app.HubUser'
+AUTHENTICATION_BACKENDS = (
+    'hub_app.authlib.backend.TotpAuthenticationBackend',
+)
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
