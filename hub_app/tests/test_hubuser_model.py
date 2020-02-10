@@ -17,7 +17,7 @@ class SetTotpSecretConstraints(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         cls.user = HubUser.objects.create(
-            username='mr_test',
+            username='mr_test_1',
         )
 
     def test_totp_secret_too_short(self):
@@ -62,7 +62,7 @@ class SetAndGetTotpSecretTest(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         cls.user = HubUser.objects.create(
-            username='mr_test',
+            username='mr_test_2',
         )
 
     def test_getter_setter(self):
@@ -136,7 +136,7 @@ class HubUserModelToStringMethodTest(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         cls.user = HubUser.objects.create(
-            username='mr_test',
+            username='mr_test_3',
         )
 
     def test_str_method(self):
@@ -144,6 +144,6 @@ class HubUserModelToStringMethodTest(TestCase):
         Simple str smoke test
         """
         self.assertEqual(
-            'mr_test',
+            'mr_test_3',
             str(self.user)
         )

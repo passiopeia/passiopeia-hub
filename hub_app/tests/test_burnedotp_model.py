@@ -14,7 +14,7 @@ class BurnedOtpModelToStringMethodTest(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
         cls.user = HubUser.objects.create(
-            username='mr_test',
+            username='mr_test_otp',
         )
         cls.otp = BurnedOtp.objects.create(
             user=cls.user,
@@ -26,6 +26,6 @@ class BurnedOtpModelToStringMethodTest(TestCase):
         Simple str smoke test
         """
         self.assertEqual(
-            '123456 (mr_test)',
+            '123456 (mr_test_otp)',
             str(self.otp)
         )
