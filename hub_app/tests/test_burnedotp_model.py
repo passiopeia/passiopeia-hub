@@ -16,7 +16,7 @@ class BurnedOtpModelToStringMethodTest(TestCase):
         cls.user = HubUser.objects.create(
             username='mr_test_otp',
         )
-        cls.otp = BurnedOtp.objects.create(
+        cls.otp = BurnedOtp.objects.create(  # nosec
             user=cls.user,
             token='123456'
         )
