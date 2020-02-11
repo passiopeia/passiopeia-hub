@@ -70,12 +70,6 @@ class CreateSuperUserFromCommandLineTest(TestCase):
              'test6', '1234123499', 'SUPERSECRETSUPERSUPERSECRETSUPERSUPERSECRETSUPERSUPERSECRETSUPER'),
             ('Password too common',
              'test7', 'testtest', 'SUPERSECRETSUPERSUPERSECRETSUPERSUPERSECRETSUPERSUPERSECRETSUPER'),
-            ('None Username',
-             None, 'W3ryG0oDPA5sWOrd', 'SUPERSECRETSUPERSUPERSECRETSUPERSUPERSECRETSUPERSUPERSECRETSUPER'),
-            ('None Password',
-             'test8', None, 'SUPERSECRETSUPERSUPERSECRETSUPERSUPERSECRETSUPERSUPERSECRETSUPER'),
-            ('None Secret',
-             'test9', 'W3ryG0oDPA5sWOrd', None),
         )
         for test_case, username, password, secret in test_items:
             with self.subTest(msg='Testing case "{}"'.format(test_case)), StringIO() as out:
