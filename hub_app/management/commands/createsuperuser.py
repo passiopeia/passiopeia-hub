@@ -22,7 +22,7 @@ def get_input():  # pragma: no cover
     """
     Get Input Abstraction
     """
-    return input()
+    return input()  # nosec
 
 
 def get_masked_input(prompt: str):  # pragma: no cover

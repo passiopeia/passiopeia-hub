@@ -88,7 +88,7 @@ class CreateSuperUserFromCommandLineTest(TestCase):
                     secret=secret,
                     stdout=out
                 )
-                self.assertEquals(1, HubUser.objects.count())
+                self.assertEqual(1, HubUser.objects.count())
 
     def test_duplicate(self):
         """
