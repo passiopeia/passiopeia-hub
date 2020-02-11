@@ -18,6 +18,20 @@ from django.utils.translation import gettext_lazy as _
 from hub_app.models import HubUser
 
 
+def get_input():  # pragma: no cover
+    """
+    Get Input Abstraction
+    """
+    return input()
+
+
+def get_masked_input(prompt: str):  # pragma: no cover
+    """
+    Get Password Abstraction
+    """
+    return getpass(prompt=prompt)
+
+
 class Command(BaseCommand):
     """
     Create a 'hub_app' superuser
@@ -60,10 +74,10 @@ class Command(BaseCommand):
         :raises CommandError: When something is wrong with the input
         """
         if masked:
-            data = getpass(prompt='{}: '.format(field))
+            data = get_masked_input(prompt='{}: '.format(field))
         else:
             self.stdout.write('{}: '.format(field), ending='')
-            data = input()
+            data = get_input()
         if data is None:
             raise CommandError(_('"%(field)s" is required') % {'field': field})
         data = data.strip()
