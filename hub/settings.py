@@ -14,6 +14,8 @@ import os
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.contrib import messages
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -54,6 +56,13 @@ MIDDLEWARE = [
 ]
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-secondary',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 
 ROOT_URLCONF = 'hub.urls'
 
