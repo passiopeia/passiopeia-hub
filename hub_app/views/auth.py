@@ -47,7 +47,7 @@ class LoginView(View):
         """
         if request.user.is_authenticated:
             logout(request)
-            return redirect(reverse_lazy('ha:auth:logout'), permanent=False)
+            return redirect(reverse_lazy('ha:auth:login'), permanent=False)
         return super(LoginView, self).dispatch(request, *args, **kwargs)
 
     def _show_form(self, request: HttpRequest, form: UsernamePasswordOtpForm = UsernamePasswordOtpForm()):

@@ -60,6 +60,17 @@ class LoginBaseTest(TestCase):
         self.assertEqual('/hub/', response.url)
         self._check_message(response.url, 'Logout successful.')
 
+    def test_login_twice(self):
+        """
+        Try to login if already logged in
+        """
+        self.assertTrue(self.client.login(
+            username=self.username, password=self.password, one_time_pw=get_otp(self.otp_secret)
+        ))
+        response = self.client.get('/hub/auth/login')
+        self.assertEqual(302, response.status_code)
+        self.assertEquals('/hub/auth/login', response.url)
+
     def test_login_failed(self):
         """
         Tests for the bad cases
