@@ -186,7 +186,7 @@ class AuthenticationBlankNoneTest(TestCase):
             ('', '', ''),
         )
         for username, password, token in test_items:
-            with self.subTest(msg='Testing with user "{}", password "{}" and token "{}'.format(
+            with self.subTest(msg='Testing with user "{}", password "{}" and OTP "{}"'.format(
                     username, password, token
             )):
                 self.assertIsNone(
