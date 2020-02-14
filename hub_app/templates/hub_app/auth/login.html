@@ -4,6 +4,8 @@
 
 {% block title %}{% trans 'Login' %} | {{ block.super }}{% endblock %}
 
+{% block auth-title %}{% trans 'Login' %}{% endblock %}
+
 {% block auth %}
     <form method="post" action="{% url 'ha:auth:login' %}" data-ui-relevance="main-login">
         {% csrf_token %}
@@ -41,7 +43,7 @@
             {{ form.password }}
         </div>
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-6">
                 {% if form.otp.errors %}
                     <div class="alert alert-danger" role="alert">
                         {% for e in form.otp.errors %}
@@ -53,14 +55,13 @@
                 <div class="form-group">
                     <label for="{{ form.otp.id_for_label }}">{{ form.otp.label }}{{ form.label_suffix }}</label>
                     {{ form.otp }}
-                    <small id="otpHelp" class="form-text text-muted">{% trans 'Use your OTP device to create a one time password.' %}</small>
+                    <small id="otpHelp" class="form-text text-muted">{% trans 'Use your OTP device to create an one time password.' %}</small>
                 </div>
             </div>
-            <div class="col-lg-4 pt-3 text-lg-right">
-                <a class="card-link mt-4 d-inline-block" href="{% url 'ha:auth:reset-password' %}">{% trans 'Forgot Password?' %}</a>
+            <div class="col-lg-6 pt-3 text-lg-right">
+                <a class="card-link mt-4 d-inline-block" href="{% url 'ha:auth:forgot-credentials' %}">{% trans 'Forgot Credentials?' %}</a>
             </div>
         </div>
-        <hr>
-        <button type="submit" class="btn btn-primary">{% trans 'Login' %}</button>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">{% trans 'Login' %}</button>
     </form>
 {% endblock %}

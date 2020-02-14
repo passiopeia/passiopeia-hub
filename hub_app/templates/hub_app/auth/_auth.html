@@ -6,7 +6,7 @@
 
 {% block app %}
     <div class="card w-50 mt-4 ml-auto mr-auto bg-dark">
-        <h5 class="card-header"><i class="fa fa-lock"></i> {% trans 'Passiopeia Hub Login' %}</h5>
+        <h5 class="card-header"><i class="fa fa-lock mr-2"></i> {% block auth-title %}{% trans 'User Authentication' %}{% endblock %}</h5>
         <div class="card-body bg-light text-dark">
             {% block auth %}{% endblock %}
         </div>
