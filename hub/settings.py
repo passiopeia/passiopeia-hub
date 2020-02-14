@@ -15,6 +15,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 from django.contrib import messages
+from django.urls import reverse_lazy
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -207,3 +208,9 @@ MAX_UPLOAD_SIZE = 5242880
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
+
+
+# Login Settings
+LOGIN_URL = reverse_lazy('ha:auth:login')
+LOGIN_REDIRECT_URL = reverse_lazy('ha:home')
+LOGOUT_REDIRECT_URL = reverse_lazy('ha:home')

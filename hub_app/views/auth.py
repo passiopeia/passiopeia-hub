@@ -1,6 +1,7 @@
 """
 Views for authentication
 """
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate, login
 from django.http import HttpRequest, HttpResponse
@@ -25,7 +26,7 @@ class LogoutView(View):
     def _logout(request):
         logout(request)
         messages.add_message(request, messages.SUCCESS, _('Logout successful.'))
-        return redirect(reverse_lazy('ha:home'))
+        return redirect(settings.LOGOUT_REDIRECT_URL)
 
     def get(self, request: HttpRequest) -> HttpResponse:
         """
@@ -90,7 +91,7 @@ class LoginView(View):
         })
         next_url = get_next(request)
         if next_url is None:
-            next_url = reverse_lazy('ha:home')
+            next_url = settings.LOGIN_REDIRECT_URL
         return redirect(next_url, permanent=False)
 
 
