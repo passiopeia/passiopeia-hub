@@ -21,7 +21,7 @@ class UsernamePasswordOtpForm(Form):
             ASCIIUsernameValidator(),
         ]
     )
-    username.widget.attrs.update({
+    username.widget.attrs.update({  # pylint: disable=no-member
         'aria-describedby': 'usernameHelp',
         'pattern': r'[\w.@+-]{3,150}',
         'class': 'form-control',
@@ -34,7 +34,7 @@ class UsernamePasswordOtpForm(Form):
         min_length=8,
         label=_('Password'),
     )
-    password.widget.attrs.update({
+    password.widget.attrs.update({  # pylint: disable=no-member
         'class': 'form-control',
     })
 
@@ -48,7 +48,7 @@ class UsernamePasswordOtpForm(Form):
         ],
         widget=NumberInput(),
     )
-    otp.widget.attrs.update({
+    otp.widget.attrs.update({  # pylint: disable=no-member
         'aria-describedby': 'otpHelp',
         'pattern': '[0-9]{6,6}',
         'class': 'form-control',

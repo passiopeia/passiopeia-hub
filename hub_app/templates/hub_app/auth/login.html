@@ -5,7 +5,7 @@
 {% block title %}{% trans 'Login' %} | {{ block.super }}{% endblock %}
 
 {% block auth %}
-    <form method="post" action="{% url 'ha:auth:login' %}">
+    <form method="post" action="{% url 'ha:auth:login' %}" data-ui-relevance="main-login">
         {% csrf_token %}
         {% if form.non_field_errors %}
             <div class="alert alert-danger" role="alert">
