@@ -11,6 +11,7 @@ from django.views import View
 from django.views.generic import TemplateView
 
 from hub_app.forms.auth import UsernamePasswordOtpForm
+from hub_app.navlib.next_url import get_next
 
 
 class LogoutView(View):
@@ -56,7 +57,8 @@ class LoginView(View):
         Send the form to the client
         """
         return render(request, self.template_name, {
-            'form': form
+            'form': form,
+            'next_url': get_next(request),
         }, content_type=self.content_type)
 
     def get(self, request: HttpRequest) -> HttpResponse:
@@ -86,7 +88,10 @@ class LoginView(View):
         messages.add_message(request, messages.SUCCESS, _('Hey %(user)s, welcome to Passiopeia Hub!') % {
             'user': user.first_name
         })
-        return redirect(reverse_lazy('ha:home'))
+        next_url = get_next(request)
+        if next_url is None:
+            next_url = reverse_lazy('ha:home')
+        return redirect(next_url, permanent=False)
 
 
 class ForgotCredentialsView(TemplateView):

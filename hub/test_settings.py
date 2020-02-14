@@ -4,3 +4,7 @@ Specific settings for test run
 from .settings import *  # pylint: disable=unused-wildcard-import,wildcard-import;  # noqa: F401,F403
 
 HEADLESS_TEST_MODE = False
+
+LANGUAGE_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False

@@ -9,6 +9,9 @@
 {% block auth %}
     <form method="post" action="{% url 'ha:auth:login' %}" data-ui-relevance="main-login">
         {% csrf_token %}
+        {% if next_url %}
+            <input type="hidden" name="next" value="{{ next_url }}" data-ui-relevance="next-url-tag">
+        {% endif %}
         {% if form.non_field_errors %}
             <div class="alert alert-danger" role="alert">
                 {% for e in form.non_field_errors %}
