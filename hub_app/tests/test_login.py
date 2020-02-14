@@ -69,7 +69,7 @@ class LoginBaseTest(TestCase):
         ))
         response = self.client.get('/hub/auth/login')
         self.assertEqual(302, response.status_code)
-        self.assertEquals('/hub/auth/login', response.url)
+        self.assertEqual('/hub/auth/login', response.url)
 
     def test_login_failed(self):
         """
