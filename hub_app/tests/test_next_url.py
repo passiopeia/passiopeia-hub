@@ -120,35 +120,35 @@ class NextUrlInLoginFormTest(TestCase):
         """
         Test with existing "next"
         """
-        r = self.client.get('/hub/auth/login', data={
+        response = self.client.get('/hub/auth/login', data={
             'next': self.next_url
         }, follow=True)
-        self.assertEqual(200, r.status_code)
-        self._check_next_url_in_source(r.content)
-        r = self.client.post('/hub/auth/login', data={
+        self.assertEqual(200, response.status_code)
+        self._check_next_url_in_source(response.content)
+        response = self.client.post('/hub/auth/login', data={
             'username': 'something',
             'password': 'passsssw0rd!',
             'otp': '123456',
             'next': self.next_url
         }, follow=True)
-        self.assertEqual(200, r.status_code)
-        self._check_next_url_in_source(r.content)
-        r = self.client.post('/hub/auth/login', data={
+        self.assertEqual(200, response.status_code)
+        self._check_next_url_in_source(response.content)
+        response = self.client.post('/hub/auth/login', data={
             'username': self.username,
             'password': self.password,
             'otp': get_otp(self.secret),
             'next': self.next_url
         }, follow=False)
-        self.assertEqual(302, r.status_code)
-        self.assertEqual(self.next_url, r.url)
+        self.assertEqual(302, response.status_code)
+        self.assertEqual(self.next_url, response.url)
 
     def test_without_next(self):
         """
         Test without the "next"
         """
-        r = self.client.get('/hub/auth/login', follow=True)
-        self.assertEqual(200, r.status_code)
-        soup = BeautifulSoup(r.content.decode('utf-8'), 'html.parser').find('form', attrs={
+        response = self.client.get('/hub/auth/login', follow=True)
+        self.assertEqual(200, response.status_code)
+        soup = BeautifulSoup(response.content.decode('utf-8'), 'html.parser').find('form', attrs={
             'data-ui-relevance': 'main-login'
         }).find_next('input', attrs={
             'type': 'hidden',

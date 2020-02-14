@@ -37,11 +37,9 @@ def get_next(request: HttpRequest) -> Optional[str]:
     :rtype: Optional[str]
     :returns: The next URL or "None", if invalid or not set
     """
-    result = None
-    for rq in [request.POST, request.GET]:
-        next_vars = rq.getlist('next')
-        if isinstance(next_vars, list):
-            result = _get_next(next_vars)
-            if result is not None:
-                break
+    for request_type in [request.POST, request.GET]:
+        next_vars = request_type.getlist('next')
+        result = _get_next(next_vars)
+        if result is not None:
+            break
     return result

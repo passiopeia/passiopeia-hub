@@ -19,7 +19,7 @@ class LoginBaseTest(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.user = HubUser.objects.create_user(
+        cls.user = HubUser.objects.create_superuser(
             username=cls.username,
             password=cls.password,
             first_name='Test-Franz',

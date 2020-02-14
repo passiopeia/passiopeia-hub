@@ -13,7 +13,7 @@ class CredentialRecoverySmokeTest(TestCase):
     """
 
     username = 'test_cred_rec_user'
-    password = 'S0m3EasyPa55w0rd!!'
+    password = 'S0m3EasyPa55w0rd!!'  # nosec
     secret = b'NaOnlyASecret-Enough-4aTestRunButNotForProd'
 
     @classmethod
@@ -32,8 +32,8 @@ class CredentialRecoverySmokeTest(TestCase):
         """
         Check how it worked
         """
-        r = self.client.get('/hub/auth/forgot-credentials', follow=True)
-        self.assertEqual(200, r.status_code)
+        response = self.client.get('/hub/auth/forgot-credentials', follow=True)
+        self.assertEqual(200, response.status_code)
 
     def test_smoke_not_logged_in(self):
         """
