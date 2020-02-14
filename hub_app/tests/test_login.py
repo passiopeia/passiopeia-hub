@@ -78,9 +78,9 @@ class LoginBaseTest(TestCase):
              'Username or password wrong, or one time password invalid.'),  # OTP ok
             (self.username, self.password, 'WRONG5',
              'Username or password wrong, or one time password invalid.'),  # OTP invalid
-            (self.username, self.password, get_otp(self.otp_secret, -2),
+            (self.username, self.password, get_otp(self.otp_secret, -3),
              'Username or password wrong, or one time password invalid.'),  # OTP too old
-            (self.username, self.password, get_otp(self.otp_secret, +2),
+            (self.username, self.password, get_otp(self.otp_secret, +3),
              'Username or password wrong, or one time password invalid.'),  # OTP too young
             (self.username, self.password, get_otp(self.otp_secret + b'1'),
              'Username or password wrong, or one time password invalid.'),  # OTP not matching to secret
