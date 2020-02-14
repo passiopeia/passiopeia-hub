@@ -14,6 +14,9 @@ import os
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.contrib import messages
+from django.urls import reverse_lazy
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -52,6 +55,15 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-secondary',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 
 ROOT_URLCONF = 'hub.urls'
 
@@ -152,16 +164,53 @@ CSP_WORKER_SRC = CSP_DEFAULT_SRC
 # Language Cookie settings
 LANGUAGE_COOKIE_NAME = 'passiopeia_hub_language'
 LANGUAGE_COOKIE_AGE = None
+LANGUAGE_COOKIE_HTTPONLY = True
+LANGUAGE_COOKIE_SECURE = True
+LANGUAGE_COOKIE_SAMESITE = 'Strict'
 
 
 # CSRF Cookie settings
 CSRF_COOKIE_NAME = 'passiopeia_hub_csrf'
 CSRF_COOKIE_AGE = None
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SAMESITE = 'Strict'
 
 
 # Session Cookie Settings
 SESSION_COOKIE_NAME = 'passiopeia_hub_session'
+SESSION_COOKIE_AGE = 24 * 60 * 60
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SAMESITE = 'Strict'
 
 
 # Settings for the test subsystem
 HEADLESS_TEST_MODE = True
+
+
+# Locale Settings
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
+
+
+# Upload Handling
+FILE_UPLOAD_HANDLERS = [
+    'django.core.files.uploadhandler.MemoryFileUploadHandler',
+    'django.core.files.uploadhandler.TemporaryFileUploadHandler',
+]
+
+MAX_UPLOAD_SIZE = 5242880
+
+
+# Additional Security
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
+
+
+# Login Settings
+LOGIN_URL = reverse_lazy('ha:auth:login')
+LOGIN_REDIRECT_URL = reverse_lazy('ha:home')
+LOGOUT_REDIRECT_URL = reverse_lazy('ha:home')

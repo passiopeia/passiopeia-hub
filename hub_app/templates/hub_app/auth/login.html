@@ -1,0 +1,70 @@
+{% extends 'hub_app/auth/_auth.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Login' %} | {{ block.super }}{% endblock %}
+
+{% block auth-title %}{% trans 'Login' %}{% endblock %}
+
+{% block auth %}
+    <form method="post" action="{% url 'ha:auth:login' %}" data-ui-relevance="main-login">
+        {% csrf_token %}
+        {% if next_url %}
+            <input type="hidden" name="next" value="{{ next_url }}" data-ui-relevance="next-url-tag">
+        {% endif %}
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for e in form.non_field_errors %}
+                    {{ e }}
+                    {% if not forloop.last %}<br>{% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if form.username.errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for e in form.username.errors %}
+                    {{ e }}
+                    {% if not forloop.last %}<br>{% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="form-group">
+            <label for="{{ form.username.id_for_label }}">{{ form.username.label }}{{ form.label_suffix }}</label>
+            {{ form.username }}
+            <small id="usernameHelp" class="form-text text-muted">{% trans 'Your username is most likely not your e-mail address.' %}</small>
+        </div>
+        {% if form.password.errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for e in form.password.errors %}
+                    {{ e }}
+                    {% if not forloop.last %}<br>{% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="form-group">
+            <label for="{{ form.password.id_for_label }}">{{ form.password.label }}{{ form.label_suffix }}</label>
+            {{ form.password }}
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                {% if form.otp.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for e in form.otp.errors %}
+                            {{ e }}
+                            {% if not forloop.last %}<br>{% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                    <label for="{{ form.otp.id_for_label }}">{{ form.otp.label }}{{ form.label_suffix }}</label>
+                    {{ form.otp }}
+                    <small id="otpHelp" class="form-text text-muted">{% trans 'Use your OTP device to create an one time password.' %}</small>
+                </div>
+            </div>
+            <div class="col-lg-6 pt-3 text-lg-right">
+                <a class="card-link mt-4 d-inline-block" href="{% url 'ha:auth:forgot-credentials' %}">{% trans 'Forgot Credentials?' %}</a>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">{% trans 'Login' %}</button>
+    </form>
+{% endblock %}

@@ -2,7 +2,8 @@
 
 {% block body %}
     {% include 'hub_app/navigation/main-navbar.html' %}
-    <div class="container-fluid">
+    <div class="container-fluid mt-3">
+        {% include 'hub_app/base/messages.html' %}
         {% block app %}{% endblock %}
     </div>
 {% endblock %}
