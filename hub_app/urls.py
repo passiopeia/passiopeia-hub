@@ -8,7 +8,7 @@ from django.views.decorators.cache import never_cache
 from hub_app.views.admin import RegenerateOtpSecretView, QrCodeByUser, OtpAssistantView
 from hub_app.views.auth import LogoutView, LoginView, ForgotCredentialsView
 from hub_app.views.home import HomeView
-
+from hub_app.views.registration import RegistrationFirstStepView
 
 AUTH_URLS = ([
     path('logout', never_cache(LogoutView.as_view()), name='logout'),
@@ -35,8 +35,15 @@ ADMIN_URLS = ([
     ),
 ], 'admin', 'hub_app:admin')
 
+
+REGISTRATION_URLS = ([
+    path('step-1', never_cache(RegistrationFirstStepView.as_view()), name='step.1'),
+], 'reg', 'hub_app:reg')
+
+
 urlpatterns = [  # pylint: disable=invalid-name
     path('admin/', ADMIN_URLS),
     path('auth/', AUTH_URLS),
+    path('register/', REGISTRATION_URLS),
     url(r'^$', HomeView.as_view(), name='home'),
 ]
