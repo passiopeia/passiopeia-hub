@@ -61,10 +61,10 @@
                     <small id="otpHelp" class="form-text text-muted">{% trans 'Use your OTP device to create an one time password.' %}</small>
                 </div>
             </div>
-            <div class="col-lg-6 pt-3 text-lg-right">
-                <a class="card-link mt-4 d-inline-block" href="{% url 'ha:auth:forgot-credentials' %}">{% trans 'Forgot Credentials?' %}</a>
+            <div class="col-lg-6 pt-0 pt-lg-3 text-lg-right">
+                <a class="card-link mt-1 mt-lg-4 d-inline-block" href="{% url 'ha:auth:forgot-credentials' %}">{% trans 'Forgot Credentials?' %}</a>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary btn-block btn-lg">{% trans 'Login' %}</button>
+        <button type="submit" class="btn btn-primary btn-block btn-lg mt-4">{% trans 'Login' %}</button>
     </form>
 {% endblock %}

@@ -175,6 +175,7 @@ CSRF_COOKIE_AGE = None
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SAMESITE = 'Strict'
+CSRF_USE_SESSIONS = True
 
 
 # Session Cookie Settings
@@ -183,6 +184,7 @@ SESSION_COOKIE_AGE = 24 * 60 * 60
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_SAMESITE = 'Strict'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 
 # Settings for the test subsystem
@@ -212,5 +214,8 @@ X_FRAME_OPTIONS = 'DENY'
 
 # Login Settings
 LOGIN_URL = reverse_lazy('ha:auth:login')
+LOGOUT_URL = reverse_lazy('ha:auth:logout')
 LOGIN_REDIRECT_URL = reverse_lazy('ha:home')
 LOGOUT_REDIRECT_URL = reverse_lazy('ha:home')
+REGISTER_URL = '#'
+MY_ACCOUNT_URL = '#'

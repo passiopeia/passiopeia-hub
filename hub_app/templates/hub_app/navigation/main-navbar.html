@@ -1,11 +1,25 @@
 {% load static %}
 {% load i18n %}
 {% load hub_app_lang %}
+{% load hub_app_login %}
 
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark navbar-expand-lg bg-dark">
     <a class="navbar-brand" href="{% url 'ha:home' %}">
         <img src="{% static 'hub_app/theme/logo-30x30.png' %}" width="30" height="30" class="d-inline-block align-top" alt="Passiopeia Hub">
         {% trans 'Passiopeia Hub' %}
     </a>
-    {% language_selector %}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbarToggler" aria-controls="mainNavbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNavbarToggler">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="#">{% trans 'How does it work?' %}</a>
+            </li>
+        </ul>
+        <div class="form-inline mt-2 mt-lg-0">
+            {% login_menu %}
+            {% language_selector %}
+        </div>
+    </div>
 </nav>

@@ -60,8 +60,8 @@ class LanguageSelectorTagTest(TestCase):
         factory = RequestFactory()
         test_rqc = RequestContext(factory.get('/'))
         with self.subTest(msg='Basic Context Setup'):
-            self.assertIsInstance(do_language_selector(test_rqc).get('rqc'), RequestContext)
-            self.assertEqual(test_rqc, do_language_selector(test_rqc).get('rqc'))
+            self.assertIsInstance(do_language_selector(test_rqc).get('next_url'), str)
+            self.assertEqual('/', do_language_selector(test_rqc).get('next_url'))
             self.assertIsInstance(do_language_selector(test_rqc).get('instance'), str)
         found = []
         for i in range(100):
