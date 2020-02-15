@@ -15,10 +15,7 @@ def do_login_menu(context: RequestContext) -> dict:
     """
     Just fills the context for the template
     """
-    request = getattr(context, 'request', None)
-    user = None
-    if request is not None:
-        user = getattr(request, 'user', None)
+    user = getattr(context.request, 'user', None)
     return {
         'user': user,
         'instance': str(uuid4()),
