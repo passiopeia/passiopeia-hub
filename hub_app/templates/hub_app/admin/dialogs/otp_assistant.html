@@ -12,29 +12,29 @@
                 <div class="col-md-8 pr-2">
                     <div class="row">
                         <div class="col-sm-4"><strong>{% trans 'User' %}:</strong></div>
-                        <div class="col-sm-8">{{ username }}</div>
+                        <div class="col-sm-8" data-user-field="username">{{ username }}</div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><strong>{% trans 'Type' %}:</strong></div>
-                        <div class="col-sm-8">TOTP</div>
+                        <div class="col-sm-8" data-user-field="type">TOTP</div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><strong>{% trans 'Digits' %}:</strong></div>
-                        <div class="col-sm-8">6</div>
+                        <div class="col-sm-8" data-user-field="digits">6</div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><strong>{% trans 'Algorithm' %}:</strong></div>
-                        <div class="col-sm-8">SHA1</div>
+                        <div class="col-sm-8" data-user-field="algorithm">SHA1</div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><strong>{% trans 'Interval' %}:</strong></div>
-                        <div class="col-sm-8">30 seconds</div>
+                        <div class="col-sm-8" data-user-field="interval">30 seconds</div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><strong>{% trans 'OTP Secret' %}:</strong></div>
-                        <div class="col-sm-8"><code>
+                        <div class="col-sm-8" data-user-field="secret"><code>
                             {% if has_secret %}{{ otp_secret }}{% else %}-{% endif %}</code>{% if has_secret %} ({% trans 'Base32' %}){% endif %}
-                            <p class="mt-1"><a data-confirm="{% trans 'Do you really want to regenerate the OTP secret for this user?' %}" class="btn btn-outline-danger" href="{% url 'ha:admin:actions.regenerate-otp-secret' user_id=user_id %}?next={{ request.get_full_path | urlencode }}">{% trans 'Regenerate Secret' %}</a></p>
+                            <p class="mt-1"><a data-ui-relevance="renew-action" data-confirm="{% trans 'Do you really want to regenerate the OTP secret for this user?' %}" class="btn btn-outline-danger" href="{% url 'ha:admin:actions.regenerate-otp-secret' user_id=user_id %}?next={{ request.get_full_path | urlencode }}">{% trans 'Regenerate Secret' %}</a></p>
                         </div>
                     </div>
                 </div>

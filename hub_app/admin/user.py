@@ -39,10 +39,10 @@ class ReadOnlySecretField(forms.Field):
         kwargs.setdefault('required', False)
         super().__init__(*args, **kwargs)
 
-    def bound_data(self, data, initial):
+    def bound_data(self, data, initial):  # pragma: no cover  # Django Internal
         return initial
 
-    def has_changed(self, initial, data):
+    def has_changed(self, initial, data):  # pragma: no cover  # Django Internal
         return False
 
 

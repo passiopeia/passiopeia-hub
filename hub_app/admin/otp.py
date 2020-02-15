@@ -42,7 +42,7 @@ class BurnedOtpAdmin(admin.ModelAdmin):
         }),
     )
 
-    def get_readonly_fields(self, request, obj=None):
+    def get_readonly_fields(self, request, obj=None):  # pragma: no cover  # No end-user use-case for that
         if obj:
             return self.readonly_fields + ('user', 'token', 'burned_timestamp',)
         return self.readonly_fields
