@@ -18,13 +18,13 @@ class ReadOnlySecretWidget(forms.Widget):
 
     def get_context(self, name, value, attrs):
         context = super().get_context(name, value, attrs)
-        fd = {
+        field_description = {
             'value_label': _('OTP Secret'),
             'otp_assistant': _('OTP Assistant'),
             'selector': uuid4(),
             'value': _('Use Assistant'),
         }
-        context['fd'] = fd
+        context['fd'] = field_description
         return context
 
 

@@ -101,9 +101,8 @@ class RegenerateOtpSecretView(PermissionRequiredMixin, View):
         user_obj.set_totp_secret(create_random_totp_secret())
         user_obj.save()
         next_page = get_next(request)
-        if next_page:
+        if next_page is not None:
             return redirect(next_page, permanent=False)
-        else:
-            return JsonResponse({
-                'status': True
-            })
+        return JsonResponse({
+            'status': True
+        })
