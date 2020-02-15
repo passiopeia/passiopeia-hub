@@ -214,5 +214,8 @@ X_FRAME_OPTIONS = 'DENY'
 
 # Login Settings
 LOGIN_URL = reverse_lazy('ha:auth:login')
+LOGOUT_URL = reverse_lazy('ha:auth:logout')
 LOGIN_REDIRECT_URL = reverse_lazy('ha:home')
 LOGOUT_REDIRECT_URL = reverse_lazy('ha:home')
+REGISTER_URL = '#'
+MY_ACCOUNT_URL = '#'
