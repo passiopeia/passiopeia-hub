@@ -28,6 +28,6 @@ def do_language_selector(context: RequestContext) -> dict:
     Just fills the context for the template
     """
     return {
-        'rqc': context,
+        'next_url': context.request.get_full_path(),
         'instance': str(uuid4())
     }
