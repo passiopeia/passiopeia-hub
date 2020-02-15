@@ -2,6 +2,7 @@
 Test a roundtrip though the user admin
 """
 from base64 import b32decode
+from time import sleep
 
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.test import tag, TestCase
@@ -138,6 +139,7 @@ class UserAdminRoundtripTest(StaticLiveServerTestCase):
             self._check_current_secret(webdriver, True)
             UserAdminRoundtripTest._hit_renew_button(webdriver)
             UserAdminRoundtripTest._renew_otp_secret(webdriver)
+            sleep(5)  # Dumb stabilizing
             self._check_current_secret(webdriver, False)
 
 
