@@ -10,7 +10,7 @@ register = template.Library()  # pylint: disable=invalid-name
 
 
 @register.inclusion_tag('hub_app/inclusion/login-menu.html', name='login_menu', takes_context=True)
-def do_language_selector(context: RequestContext) -> dict:
+def do_login_menu(context: RequestContext) -> dict:
     """
     Just fills the context for the template
     """
