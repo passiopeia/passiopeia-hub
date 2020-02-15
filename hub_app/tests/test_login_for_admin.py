@@ -72,7 +72,7 @@ class RedirectToHubLoginTest(StaticLiveServerTestCase):
             form.find_element_by_css_selector('button[type="submit"]').click()
             # Are we there?
             self.assertEqual(
-                '{}/admin/auth/group/'.format(
+                '{}/admin/'.format(
                     self.live_server_url
                  ),
                 firefox.current_url
