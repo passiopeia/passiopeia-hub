@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+{% load static %}
+{% load i18n %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% trans 'Passiopeia Hub Administration' %}{% endblock %}</title>
+    {% include 'hub_app/base/frameworks/bootstrap/head.html' %}
+</head>
+<body class="bg-dark">
+    <div class="container-fluid">
+        {% block dialog %}{% endblock %}
+    </div>
+    {% include 'hub_app/base/frameworks/bootstrap/late-body.html' %}
+    <script type="application/javascript" src="{% static 'hub_app/admin/dialogs/confirm.js' %}"></script>
+</body>
+</html>
