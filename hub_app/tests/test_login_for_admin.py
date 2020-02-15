@@ -56,7 +56,7 @@ class RedirectToHubLoginTest(StaticLiveServerTestCase):
             self.assertEqual(
                 '{}/hub/auth/login?next=/admin/login/%3Fnext%3D/admin/auth/group/'.format(
                     self.live_server_url
-                 ),
+                ),
                 firefox.current_url
             )
             form = firefox.find_element_by_xpath('//form[@data-ui-relevance="main-login"]')
@@ -74,6 +74,6 @@ class RedirectToHubLoginTest(StaticLiveServerTestCase):
             self.assertEqual(
                 '{}/admin/'.format(
                     self.live_server_url
-                 ),
+                ),
                 firefox.current_url
             )
