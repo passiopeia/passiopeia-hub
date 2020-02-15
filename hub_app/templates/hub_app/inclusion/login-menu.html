@@ -3,7 +3,7 @@
 <div class="dropdown" data-ui-relevance="login-menu">
     <button class="mr-0 mr-lg-2 btn btn-sm {% if user.is_authenticated %}btn-secondary{% else %}btn-primary{% endif %} dropdown-toggle" type="button" id="accountDropdownButton_{{ instance }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         {% if user.is_authenticated %}
-            <i class="fa fa-user mr-2">{{ user.username }}</i>
+            <i class="fa fa-user mr-2"></i> {{ user.username }}
         {% else %}
             <i class="fa fa-sign-in-alt mr-2"></i> {% trans 'Sign Up or Sign In!' %}
         {% endif %}
