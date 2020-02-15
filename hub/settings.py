@@ -219,3 +219,15 @@ LOGIN_REDIRECT_URL = reverse_lazy('ha:home')
 LOGOUT_REDIRECT_URL = reverse_lazy('ha:home')
 REGISTER_URL = '#'
 MY_ACCOUNT_URL = '#'
+
+
+# E-Mail Settings
+EMAIL_SUBJECT_PREFIX = '[Passiopeia Hub] '
+EMAIL_USE_LOCALTIME = False
+# Other E-Mail Settings: https://docs.djangoproject.com/en/3.0/ref/settings/#email-host
+
+
+# Notifications
+ADMINS = (
+    ('Test Admin', 'test-admin@passiopeia.github.io'),
+)
