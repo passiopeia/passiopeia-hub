@@ -3,14 +3,12 @@ Clean up pending registrations from database
 
 You should use a cron job to trigger this regularly.
 """
-import datetime
-
 from django.core.management import BaseCommand
 from django.utils.timezone import now
 
 from django.utils.translation import gettext_lazy as _
 
-from hub_app.models import BurnedOtp, HubUser
+from hub_app.models import HubUser
 
 
 class Command(BaseCommand):
