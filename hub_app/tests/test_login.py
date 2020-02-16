@@ -80,15 +80,15 @@ class LoginBaseTest(TestCase):
             ('', '', '',
              'This field is required.'),  # Empty Strings
             ('user1', 'password1', 'WRONG1',
-             'Username or password wrong, or one time password invalid.'),  # Everything wrong
+             'Only numbers allowed.'),  # Everything wrong
             (self.username, 'password2', 'WRONG2',
-             'Username or password wrong, or one time password invalid.'),  # Username OK
+             'Only numbers allowed.'),  # Username OK
             ('user3', self.password, 'WRONG3',
-             'Username or password wrong, or one time password invalid.'),  # Password OK
+             'Only numbers allowed.'),  # Password OK
             ('user4', 'password4', get_otp(self.otp_secret),
              'Username or password wrong, or one time password invalid.'),  # OTP ok
             (self.username, self.password, 'WRONG5',
-             'Username or password wrong, or one time password invalid.'),  # OTP invalid
+             'Only numbers allowed.'),  # OTP invalid
             (self.username, self.password, get_otp(self.otp_secret, -3),
              'Username or password wrong, or one time password invalid.'),  # OTP too old
             (self.username, self.password, get_otp(self.otp_secret, +3),
