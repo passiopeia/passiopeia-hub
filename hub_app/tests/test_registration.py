@@ -276,7 +276,7 @@ class RegistrationRoundTripTest(StaticLiveServerTestCase):
         self.assertEqual('Ready to go!', success_message.text.strip())
         # backend
         self.assertEqual(0, PendingRegistration.objects.all().count())
-        user = authenticate(
+        user = authenticate(  # nosec
             username='test_user',
             password='R3llyAG00DP4$&w0Rd_!',
             one_time_pw=self.__get_valid_otp()
