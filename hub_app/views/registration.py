@@ -79,7 +79,7 @@ class RegistrationFirstStepView(UserPassesTestMixin, View):
                 registration = PendingRegistration.objects.create(
                     user=new_user
                 )  # type: PendingRegistration
-            except DatabaseError:
+            except DatabaseError:  # pragma: no cover  # Safeguard for database errors, won't happen in normal tests
                 transaction.savepoint_rollback(tx_id)
                 form.add_error(
                     None,
@@ -91,7 +91,7 @@ class RegistrationFirstStepView(UserPassesTestMixin, View):
             signer = Signer(salt=reg_uuid)
             signed_reg_code = signer.sign(reg_code)
             protocol = 'http'
-            if request.is_secure():
+            if request.is_secure():  # pragma: no cover  # Test requests are always not secure
                 protocol += 's'
             url = '{}://{}{}?reg={}&key={}'.format(
                 protocol,
@@ -111,7 +111,7 @@ class RegistrationFirstStepView(UserPassesTestMixin, View):
                     })
                 )
                 registration_mail.send(fail_silently=False)
-            except (OSError, ValueError):
+            except (OSError, ValueError):  # pragma: no cover  # Safeguard for mail sending errors and template errors
                 transaction.savepoint_rollback(tx_id)
                 form.add_error(
                     None,
@@ -149,7 +149,7 @@ class RegistrationSecondStepView(UserPassesTestMixin, View):
                 'username': request.session['registration_step2_username'],
                 'user_id': request.session['registration_step2_user_id'],
             }, content_type=self.content_type)
-        except KeyError:
+        except (KeyError, ValueError):  # pragma: no cover  # Safeguard when accessing session data
             return render(request, self.bad_link_template_name, {}, content_type=self.content_type)
 
     def get(self, request):
@@ -202,9 +202,11 @@ class RegistrationSecondStepView(UserPassesTestMixin, View):
             return render(request, self.bad_link_template_name, {}, content_type=self.content_type)
         user = None
         try:
-            user = HubUser.objects.get(id=request.session['registration_step2_user_id'])
+            user = HubUser.objects.filter(
+                is_active=True, totp_secret__isnull=False
+            ).get(id=request.session['registration_step2_user_id'])
             validate_password(password=form.cleaned_data['password1'], user=user)
-        except HubUser.DoesNotExist:
+        except HubUser.DoesNotExist:  # pragma: no cover  # Simple safeguard for a User deletion in-between
             return render(request, self.bad_link_template_name, {}, content_type=self.content_type)
         except ValidationError as error:
             additional_errors = True
@@ -225,16 +227,16 @@ class RegistrationSecondStepView(UserPassesTestMixin, View):
                 pending = PendingRegistration.objects.filter(
                     valid_until__gte=now(), user__is_active=True, user__totp_secret__isnull=False, user=user
                 ).select_related('user').get(uuid=form.cleaned_data['reg'])  # type: PendingRegistration
-            except PendingRegistration.DoesNotExist:
+            except PendingRegistration.DoesNotExist:  # pragma: no cover  # Safeguard for deletion in-between
                 transaction.savepoint_rollback(tx_id)
                 return render(request, self.bad_link_template_name, {}, content_type=self.content_type)
             signer = Signer(salt=str(form.cleaned_data['reg']))
             try:
                 key = signer.unsign(form.cleaned_data['key'])
-            except (BadSignature, ValueError):
+            except (BadSignature, ValueError):  # pragma: no cover  # Just a signature safeguard
                 transaction.savepoint_rollback(tx_id)
                 return render(request, self.bad_link_template_name, {}, content_type=self.content_type)
-            if key != pending.key:
+            if key != pending.key:  # pragma: no cover  # Double-safeguard, unreachable without compromised secret key
                 transaction.savepoint_rollback(tx_id)
                 return render(request, self.bad_link_template_name, {}, content_type=self.content_type)
             pending.delete()

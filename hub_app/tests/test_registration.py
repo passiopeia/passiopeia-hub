@@ -2,12 +2,14 @@
 Test the Credential Recovery Process
 """
 import re
+from uuid import uuid4
 
 from django.conf import settings
 from django.contrib.auth import authenticate
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.core import mail
 from django.core.mail import EmailMessage
+from django.core.signing import Signer
 from django.test import TestCase, tag
 from django.urls import reverse
 from selenium.webdriver.firefox.webdriver import WebDriver
@@ -80,7 +82,7 @@ class RegistrationRoundTripTest(StaticLiveServerTestCase):
         super(RegistrationRoundTripTest, cls).tearDownClass()
 
     def setUp(self) -> None:
-        HubUser.objects.create_user(username='already_there')  # type: HubUser
+        HubUser.objects.create_user(username='already_there')
 
     def _begin_registration(self):
         """
@@ -226,6 +228,14 @@ class RegistrationRoundTripTest(StaticLiveServerTestCase):
                                RegistrationRoundTripTest.__get_valid_otp())
         self.assertTrue(str(self.webdriver.current_url).endswith('/register/step-2'))
 
+    def _fill_form_step2_too_username_like_passwords(self):
+        """
+        With too easy passwords
+        """
+        self.__fill_step2_form('test_user1', 'test_user1',
+                               RegistrationRoundTripTest.__get_valid_otp())
+        self.assertTrue(str(self.webdriver.current_url).endswith('/register/step-2'))
+
     def _fill_form_step2_all_numeric_passwords(self):
         """
         With all numeric passwords
@@ -293,6 +303,8 @@ class RegistrationRoundTripTest(StaticLiveServerTestCase):
         self._fill_form_step2_different_passwords()
         self._fill_form_step2_too_short_passwords()
         self._fill_form_step2_too_easy_passwords()
+        self._fill_form_step2_too_easy_passwords()
+        self._fill_form_step2_too_username_like_passwords()
         self._fill_form_step2_all_numeric_passwords()
         self._fill_form_step2_bad_otp()
         self._fill_form_step2_wrong_otp()
@@ -301,6 +313,9 @@ class RegistrationRoundTripTest(StaticLiveServerTestCase):
         self._check_link_now_invalid(next_url)
 
     def test_happy_path(self):
+        """
+        Test the happy path registration, without any errors
+        """
         self._begin_registration()
         self._fill_form_step1_with_valid_data()
         next_url = self._check_mail()
@@ -308,3 +323,72 @@ class RegistrationRoundTripTest(StaticLiveServerTestCase):
         self._fill_form_step2_with_valid_data()
         self._check_success()
         self._check_link_now_invalid(next_url)
+
+
+class RegistrationUnfriendlyRequestsTest(TestCase):
+    """
+    Torture the registration view
+    """
+
+    @classmethod
+    def setUpTestData(cls):
+        cls.user = HubUser.objects.create_user(username='only_for_reg_test')  # type: HubUser
+        cls.pend_reg = PendingRegistration.objects.create(user=cls.user)  # type: PendingRegistration
+
+    def test_step2_bad_get_parameters(self):
+        """
+        Test with bad links of all kind
+        """
+        good_uuid = str(uuid4())
+        nice_key = '1_1234567890_1_1234567890_1_1234567890_1_1234567890_1_1234567890_1' \
+                   'a_BCDEFGHIJK_a_BCDEFGHIJK_a_BCDEFGHIJK_a_BCDEFGHIJK_a_BCDEFGHIJK_a' \
+                   'x_abcdefghij_x_abcdefghij_x_abcdefghij_x_abcdefghij_x_abcdefghij_x' \
+                   '0_0000000000_0_0000000000_0_0000000000_0_0000000000_0_0000000000_0' \
+                   '-_----------_-_----------_-_----------_-_----------_-_----------_-'
+        signed_key = Signer(salt=good_uuid).sign(nice_key)
+        signed_key_matching = Signer(salt=str(self.pend_reg.uuid)).sign(nice_key)
+        test_items = (
+            # reg, key
+            (None, None),
+            (None, 'OhMyKeyThere'),
+            (str(uuid4()), None),
+            (str(uuid4()), 'OhMyKeyThere'),
+            (str(uuid4()), nice_key),
+            (good_uuid, signed_key),
+            (None, signed_key),
+            (str(uuid4()), signed_key),
+            (str(self.pend_reg.uuid), signed_key),
+            (str(self.pend_reg.uuid), signed_key_matching),
+        )
+        for reg, key in test_items:
+            with self.subTest(msg='Testing reg={} and key={}'.format(reg, key)):
+                url = '/hub/register/step-2'
+                parameters = {}
+                if reg is not None:
+                    parameters['reg'] = reg
+                if key is not None:
+                    parameters['key'] = key
+                response = self.client.get(url, data=parameters)
+                self.assertTrue('<h2>Ooh ooh...</h2>' in response.content.decode('utf-8'))
+
+    def test_with_defective_session(self):
+        """
+        Test with defective session data
+        """
+        reg = str(self.pend_reg.uuid)
+        key = Signer(salt=reg).sign(self.pend_reg.key)
+        test_items = (
+            # pw, otp, reg, key
+            ('reallyC0olPa$$_w0RD!', get_otp(self.user.get_totp_secret()), reg, key),
+            ('reallyC0olPa$$_w0RD!', get_otp(self.user.get_totp_secret()), reg, key + 'x'),
+            ('reallyC0olPa$$_w0RD!', get_otp(self.user.get_totp_secret()), str(uuid4()), key),
+        )
+        for password, otp, reg, key in test_items:
+            with self.subTest(msg='Testing with password={}, otp={}, reg={}, key={}'.format(password, otp, reg, key)):
+                response = self.client.post('/hub/register/step-2', data={
+                    'reg': reg,
+                    'key': key,
+                    'password1': password, 'password2': password,
+                    'otp': otp
+                })
+                self.assertTrue('<h2>Ooh ooh...</h2>' in response.content.decode('utf-8'))
