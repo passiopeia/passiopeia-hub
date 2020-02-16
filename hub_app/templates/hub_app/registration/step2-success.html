@@ -3,5 +3,7 @@
 {% load i18n %}
 
 {% block reg-body %}
-    <h2>{% trans 'Ready to go!' %}</h2>
+    <h2>{% trans 'Ready to go!' %} <i class="fa fa-flag-checkered"></i></h2>
+    <p>{% trans 'Your account has been activated.' %}</p>
+    <p><a class="btn btn-primary btn-lg" href="{% url 'ha:auth:login' %}">{% trans 'Take me to the login!' %}</a></p>
 {% endblock %}
