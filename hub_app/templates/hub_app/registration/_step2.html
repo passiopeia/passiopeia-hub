@@ -1,0 +1,5 @@
+{% extends 'hub_app/registration/_registration.html' %}
+
+{% load i18n %}
+
+{% block reg-step %}| {% blocktrans with step='2/2' %}Step {{ step }}{% endblocktrans %}{% endblock %}

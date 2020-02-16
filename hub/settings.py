@@ -15,6 +15,8 @@ import os
 from django.contrib import messages
 from django.urls import reverse_lazy
 
+from django.utils.translation import gettext_lazy as _
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -222,6 +224,8 @@ MY_ACCOUNT_URL = '#'
 
 
 # E-Mail Settings
+EMAIL_REGISTRATION_FROM = 'registration.no-reply@passiopeia.guthub.io'
+EMAIL_REGISTRATION_SUBJECT = _('[Passiopeia Hub] Registration: Please confirm your registration')
 EMAIL_SUBJECT_PREFIX = '[Passiopeia Hub] '
 EMAIL_USE_LOCALTIME = False
 # Other E-Mail Settings: https://docs.djangoproject.com/en/3.0/ref/settings/#email-host

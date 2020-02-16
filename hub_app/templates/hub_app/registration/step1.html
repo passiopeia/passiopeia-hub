@@ -1,0 +1,83 @@
+{% extends 'hub_app/registration/_registration.html' %}
+
+{% load i18n %}
+
+{% block reg-step %}| {% blocktrans with step='1/2' %}Step {{ step }}{% endblocktrans %}{% endblock %}
+
+{% block reg-body %}
+    <h2>{% trans 'Thanks for your interest in Passiopeia Hub!' %}</h2>
+    <p>{% trans 'Our easy registration process requires' %}:</p>
+    <ul>
+        <li>{% trans 'A valid E-Mail address' %}</li>
+        <li>{% trans 'A TOTP app that can handle QR Codes for configuration' %}</li>
+    </ul>
+    <form method="post" action="{% url 'ha:reg:step.1' %}" data-ui-relevance="main-reg-1">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for e in form.non_field_errors %}
+                    {{ e }}
+                    {% if not forloop.last %}<br>{% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if form.username.errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for e in form.username.errors %}
+                    {{ e }}
+                    {% if not forloop.last %}<br>{% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="form-group">
+            <label for="{{ form.username.id_for_label }}">{{ form.username.label }}{{ form.label_suffix }} <sup><span class="badge badge-info">{% trans 'required' %}</span></sup></label>
+            {{ form.username }}
+            <small id="usernameHelp" class="form-text text-muted">{% trans 'Your username may contain letters and digests, as well as .@-_ and must be between 3 and 150 chars long.' %}</small>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                {% if form.first_name.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for e in form.first_name.errors %}
+                            {{ e }}
+                            {% if not forloop.last %}<br>{% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                    <label for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}{{ form.label_suffix }} <sup><span class="badge badge-info">{% trans 'required' %}</span></sup></label>
+                    {{ form.first_name }}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                {% if form.last_name.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for e in form.last_name.errors %}
+                            {{ e }}
+                            {% if not forloop.last %}<br>{% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                    <label for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}{{ form.label_suffix }}</label>
+                    {{ form.last_name }}
+                </div>
+            </div>
+        </div>
+        {% if form.email.errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for e in form.email.errors %}
+                    {{ e }}
+                    {% if not forloop.last %}<br>{% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="form-group">
+            <label for="{{ form.email.id_for_label }}">{{ form.email.label }}{{ form.label_suffix }} <sup><span class="badge badge-info">{% trans 'required' %}</span></sup></label>
+            {{ form.email }}
+            <small id="emailHelp" class="form-text text-muted">{% trans 'Your E-Mail Address is required for registration and credential recovery. It is not used for spam, ads or newsletters.' %}</small>
+        </div>
+        <p>{% trans "We'll send you an e-mail that tells you how to get to the second step." %}</p>
+        <button class="btn btn-primary btn-lg btn-block mt-2"><i class="fa fa-paper-plane mr-2"></i> {% trans 'Send the instructions for step 2!' %}</button>
+    </form>
+{% endblock %}

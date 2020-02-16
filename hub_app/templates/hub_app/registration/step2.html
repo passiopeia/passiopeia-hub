@@ -1,0 +1,77 @@
+{% extends 'hub_app/registration/_step2.html' %}
+
+{% load i18n %}
+{% load hub_app_otp %}
+
+{% block reg-body %}
+    <form method="post" action="{% url 'ha:reg:step.2' %}" data-ui-relevance="main-reg-2">
+        <p>{% trans 'Welcome back! You are almost there.' %}</p>
+        {% csrf_token %}
+        {{ form.reg }}
+        {{ form.key }}
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for e in form.non_field_errors %}
+                    {{ e }}
+                    {% if not forloop.last %}<br>{% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <h2>1. {% trans 'Choose your password' %}</h2>
+        {% if form.password1.errors %}
+            <div class="alert alert-danger" role="alert">
+                <p><strong>{% trans 'Password' %}:</strong></p>
+                {% for e in form.password1.errors %}
+                    {{ e }}
+                    {% if not forloop.last %}<br>{% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if form.password2.errors %}
+            <div class="alert alert-danger" role="alert">
+                <p><strong>{% trans 'Password Repetition' %}:</strong></p>
+                {% for e in form.password2.errors %}
+                    {{ e }}
+                    {% if not forloop.last %}<br>{% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}{{ form.label_suffix }}</label>
+                    {{ form.password1 }}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}{{ form.label_suffix }}</label>
+                    {{ form.password2 }}
+                </div>
+            </div>
+        </div>
+        <h2>2. {% trans 'Scan this code' %}</h2>
+        <p>{% trans 'Configure your OTP app with this QR-Code.' %}</p>
+        <div class="row">
+            <div class="col-lg-6">
+                {% inline_otp_qr_code username totp_secret %}
+            </div>
+            <div class="col-lg-6">
+                <p>{% trans 'Please let your app create one time password.' %}</p>
+                {% if form.otp.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {% for e in form.otp.errors %}
+                            {{ e }}
+                            {% if not forloop.last %}<br>{% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                    <label for="{{ form.otp.id_for_label }}">{{ form.otp.label }}{{ form.label_suffix }}</label>
+                    {{ form.otp }}
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block mt-4"><i class="fa fa-flag-checkered mr-2"></i> {% trans 'Finish Registration' %}</button>
+    </form>
+{% endblock %}

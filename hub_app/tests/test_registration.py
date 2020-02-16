@@ -29,12 +29,12 @@ class RegistrationSmokeTest(TestCase):
     def setUp(self) -> None:
         self.client.logout()
 
-    def _check_result(self):
+    def _check_result(self, status_code=200):
         """
         Check how it worked
         """
         response = self.client.get(reverse('ha:reg:step.1'), follow=True)
-        self.assertEqual(200, response.status_code)
+        self.assertEqual(status_code, response.status_code)
 
     def test_not_logged_in(self):
         """
@@ -51,4 +51,4 @@ class RegistrationSmokeTest(TestCase):
             password=self.test_password,
             one_time_pw=get_otp(self.test_secret)
         )
-        self._check_result()
+        self._check_result(403)

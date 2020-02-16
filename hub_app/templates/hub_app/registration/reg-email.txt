@@ -1,0 +1,15 @@
+{% load i18n %}{% autoescape off %}{% blocktrans with link=reg_url name=first_name %}
+Hi {{ name }}!
+
+Thank you for registering with Passiopeia Hub. You've made the first very important step.
+
+Please get your OTP app ready and open this link:
+  {{ link }}
+
+You will receive your One Time Password secret and set your password.
+
+If you do not finish the registration, your data is deleted automatically after 3 days.
+
+Best wishes,
+    The Passiopeia Hub Team
+{% endblocktrans %}{% endautoescape %}
