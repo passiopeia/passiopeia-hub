@@ -239,6 +239,7 @@ class RegistrationSecondStepView(UserPassesTestMixin, View):
                 return render(request, self.bad_link_template_name, {}, content_type=self.content_type)
             pending.delete()
             user.set_password(form.cleaned_data['password1'])
+            user.save()
             transaction.savepoint_commit(tx_id)
         logout(request)
         return render(request, self.success_template_name, {}, content_type=self.content_type)

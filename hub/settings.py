@@ -224,7 +224,7 @@ MY_ACCOUNT_URL = '#'
 
 
 # E-Mail Settings
-EMAIL_REGISTRATION_FROM = 'registration.no-reply@passiopeia.guthub.io'
+EMAIL_REGISTRATION_FROM = 'registration.no-reply@passiopeia.github.io'
 EMAIL_REGISTRATION_SUBJECT = _('[Passiopeia Hub] Registration: Please confirm your registration')
 EMAIL_SUBJECT_PREFIX = '[Passiopeia Hub] '
 EMAIL_USE_LOCALTIME = False
