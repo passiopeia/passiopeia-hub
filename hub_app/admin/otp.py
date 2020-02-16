@@ -34,12 +34,7 @@ class BurnedOtpAdmin(admin.ModelAdmin):
                 'user',
             ),
         }),
-        (_('Token Data'), {
-            'fields': (
-                'token',
-                'burned_timestamp',
-            ),
-        }),
+        (_('Token Data'), {'fields': ('token', 'burned_timestamp',)}),
     )
 
     def get_readonly_fields(self, request, obj=None):  # pragma: no cover  # No end-user use-case for that

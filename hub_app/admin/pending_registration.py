@@ -24,30 +24,16 @@ class PendingRegistrationAdmin(admin.ModelAdmin):
     )
 
     fieldsets = (
-        (_('Identification'), {
+        (_('Base Data'), {
             'fields': (
-                'uuid',
+                'uuid', 'user',
+                'created', 'valid_until',
             ),
         }),
-        (_('User'), {
-            'fields': (
-                'user',
-            ),
-        }),
-        (_('Validity'), {
-            'fields': (
-                'created',
-                'valid_until',
-            ),
-        }),
-        (_('Key'), {
-            'fields': (
-                'key',
-            ),
-        }),
+        (_('Key'), {'fields': ('key',)}),
     )
 
     def get_readonly_fields(self, request, obj=None):  # pragma: no cover  # No end-user use-case for that
         if obj:
-            return self.readonly_fields + ('user', 'created',)
+            return self.readonly_fields + ('user', 'created', 'key',)
         return self.readonly_fields
