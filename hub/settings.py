@@ -12,11 +12,13 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 from django.contrib import messages
 from django.urls import reverse_lazy
 
+from django.utils.translation import gettext_lazy as _
+
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -217,5 +219,19 @@ LOGIN_URL = reverse_lazy('ha:auth:login')
 LOGOUT_URL = reverse_lazy('ha:auth:logout')
 LOGIN_REDIRECT_URL = reverse_lazy('ha:home')
 LOGOUT_REDIRECT_URL = reverse_lazy('ha:home')
-REGISTER_URL = '#'
+REGISTER_URL = reverse_lazy('ha:reg:step.1')
 MY_ACCOUNT_URL = '#'
+
+
+# E-Mail Settings
+EMAIL_REGISTRATION_FROM = 'registration.no-reply@passiopeia.github.io'
+EMAIL_REGISTRATION_SUBJECT = _('[Passiopeia Hub] Registration: Please confirm your registration')
+EMAIL_SUBJECT_PREFIX = '[Passiopeia Hub] '
+EMAIL_USE_LOCALTIME = False
+# Other E-Mail Settings: https://docs.djangoproject.com/en/3.0/ref/settings/#email-host
+
+
+# Notifications
+ADMINS = (
+    ('Test Admin', 'test-admin@passiopeia.github.io'),
+)

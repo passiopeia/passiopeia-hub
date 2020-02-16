@@ -5,6 +5,9 @@
 
 .idea/
 
+# Test Mails
+_e-mail/
+
 # CMake
 cmake-build-*/
 

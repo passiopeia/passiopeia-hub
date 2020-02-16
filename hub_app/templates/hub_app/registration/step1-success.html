@@ -1,0 +1,11 @@
+{% extends 'hub_app/registration/_registration.html' %}
+
+{% load i18n %}
+
+{% block reg-step %}| {% blocktrans with step='1/2' %}Step {{ step }}{% endblocktrans %}{% endblock %}
+
+{% block reg-body %}
+    <h2>{% trans "E-Mail is on it's way!" %} <i class="fa fa-check"></i></h2>
+    <p>{% trans "We've sent an E-Mail that contains instructions for the next step. Please check your inbox." %}</p>
+    <p>{% trans "The stuff im that E-Mail is valid for three days. After that, your registration is deleted automatically." %}</p>
+{% endblock %}

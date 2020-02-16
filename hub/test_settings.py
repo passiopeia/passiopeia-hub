@@ -8,3 +8,8 @@ HEADLESS_TEST_MODE = False
 LANGUAGE_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = False
+
+
+# Mail delivery to folder
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, '_e-mail')  # noqa: F405

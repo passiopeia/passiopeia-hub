@@ -6,12 +6,13 @@ from django.forms import Form, CharField, NumberInput, PasswordInput
 
 from django.utils.translation import gettext_lazy as _
 
+from hub_app.authlib.totp.validators import OtpValidator
+
 
 class UsernamePasswordOtpForm(Form):
     """
     Standard Username / Password Form
     """
-
     username = CharField(
         max_length=150,
         min_length=3,
@@ -44,7 +45,7 @@ class UsernamePasswordOtpForm(Form):
         required=True,
         label=_('One Time Password'),
         validators=[
-            # OtpTokenValidator(),
+            OtpValidator(),
         ],
         widget=NumberInput(),
     )

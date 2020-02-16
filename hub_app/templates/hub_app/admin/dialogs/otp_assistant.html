@@ -1,0 +1,51 @@
+{% extends 'hub_app/admin/dialogs/-base.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'OTP Assistant' %} | {{ block.super }}{% endblock %}
+
+{% block dialog %}
+    <div class="card ml-4 mr-4 mt-4 mb-4 bg-light">
+        <div class="card-header">{% trans 'OTP Assistant' %}</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8 pr-2">
+                    <div class="row">
+                        <div class="col-sm-4"><strong>{% trans 'User' %}:</strong></div>
+                        <div class="col-sm-8" data-user-field="username">{{ username }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><strong>{% trans 'Type' %}:</strong></div>
+                        <div class="col-sm-8" data-user-field="type">TOTP</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><strong>{% trans 'Digits' %}:</strong></div>
+                        <div class="col-sm-8" data-user-field="digits">6</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><strong>{% trans 'Algorithm' %}:</strong></div>
+                        <div class="col-sm-8" data-user-field="algorithm">SHA1</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><strong>{% trans 'Interval' %}:</strong></div>
+                        <div class="col-sm-8" data-user-field="interval">30 seconds</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><strong>{% trans 'OTP Secret' %}:</strong></div>
+                        <div class="col-sm-8" data-user-field="secret"><code>
+                            {% if has_secret %}{{ otp_secret }}{% else %}-{% endif %}</code>{% if has_secret %} ({% trans 'Base32' %}){% endif %}
+                            <p class="mt-1"><a data-ui-relevance="renew-action" data-confirm="{% trans 'Do you really want to regenerate the OTP secret for this user?' %}" class="btn btn-outline-danger" href="{% url 'ha:admin:actions.regenerate-otp-secret' user_id=user_id %}?next={{ request.get_full_path | urlencode }}">{% trans 'Regenerate Secret' %}</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pl-2">
+                    {% if has_secret %}
+                        <img alt="{% trans 'QR Code that shows the current secret' %}" src="{% url 'ha:admin:views.qr' user_id=user_id file_type='svg' %}" width="100%" />
+                    {% else %}
+                        <div class="alert alert-danger"><i class="mdi mdi-alert" aria-hidden="true"></i> {% trans 'No secret defined' %}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

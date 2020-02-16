@@ -9,6 +9,11 @@ from django.contrib.sessions.models import Session
 
 from django.utils.translation import gettext_lazy as _
 
+from hub_app.admin.otp import BurnedOtpAdmin
+from hub_app.admin.pending_registration import PendingRegistrationAdmin
+from hub_app.admin.user import HubUserAdmin
+from hub_app.models import HubUser, BurnedOtp, PendingRegistration
+
 
 class HubAdmin(AdminSite):
     """
@@ -19,6 +24,11 @@ class HubAdmin(AdminSite):
 
 
 admin_site = HubAdmin(name='hub_admin')  # pylint: disable=invalid-name
+
+# Own Models
+admin_site.register(HubUser, HubUserAdmin)
+admin_site.register(BurnedOtp, BurnedOtpAdmin)
+admin_site.register(PendingRegistration, PendingRegistrationAdmin)
 
 # Django internals
 admin_site.register(Group)
