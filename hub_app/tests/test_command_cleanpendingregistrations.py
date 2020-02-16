@@ -33,10 +33,18 @@ class DeleteOnFullDatabaseTest(TestCase):
         Test on populated database
         """
         self.assertEqual(300, HubUser.objects.all().count())
+        self.assertEqual(200, PendingRegistration.objects.all().count())
+        self.assertEqual(100, PendingRegistration.objects.filter(
+            user__username__startswith='expired_pending_'
+        ).all().count())
         with StringIO() as out:
             call_command(cleanpendingregistrations.Command(), stdout=out)
             self.assertRegex(out.getvalue().strip(), r'(Done).{0,10}$')
         self.assertEqual(200, HubUser.objects.all().count())
+        self.assertEqual(100, PendingRegistration.objects.all().count())
+        self.assertEqual(0, PendingRegistration.objects.filter(
+            user__username__startswith='expired_pending_'
+        ).all().count())
 
 
 class DeleteOnEmptyDatabaseTest(TestCase):
