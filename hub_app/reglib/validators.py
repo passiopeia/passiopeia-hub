@@ -14,7 +14,7 @@ def validate_unique_username(value):
     if value is None or not isinstance(value, str):
         raise ValidationError(_('This username is currently not available'))
     username = str(value).strip().lower()
-    if len(username) == 0:
+    if len(username) <= 3:
         raise ValidationError(_('This username is currently not available'))
     if HubUser.objects.filter(username__iexact=username).exists():
         raise ValidationError(_('"%(value)s" is currently not available'), params={'value': value})
