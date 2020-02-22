@@ -22,12 +22,10 @@ install:
   - pip install -r requirements.txt
   - pip install -r test-requirements.txt
   - pip install coveralls
-  - chmod +x ./cc-test-reporter
 
 before_script:
   - (cd hub_app/static/hub_app/managed && yarn install)
   - ./manage.py collectstatic --no-input
-  - ./cc-test-reporter before-build
 
 script:
   - coverage run --rcfile=.coveragerc.ini manage.py test --settings=hub.ci_settings
