@@ -26,6 +26,7 @@ install:
 before_script:
   - (cd hub_app/static/hub_app/managed && yarn install)
   - ./manage.py collectstatic --no-input
+  - ./manage.py compilemessages -l de
 
 script:
   - coverage run --rcfile=.coveragerc.ini manage.py test --settings=hub.ci_settings
