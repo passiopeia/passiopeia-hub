@@ -1,0 +1,11 @@
+{% extends 'hub_app/auth/forgot-credentials/_step3.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Reveal Username' %} | {{ block.super }}{% endblock %}
+
+{% block fc %}
+    <p>{% trans "Your username:" %}</p>
+    <p><strong><code>{{ username }}</code></strong></p>
+    <p><a class="btn btn-lg btn-primary mt-3" href="{% url 'ha:auth:login' %}">{% trans 'Go To Login' %}</a></p>
+{% endblock %}

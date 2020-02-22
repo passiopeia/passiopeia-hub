@@ -9,7 +9,6 @@ from django.shortcuts import redirect, render
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import TemplateView
 
 from hub_app.forms.auth import UsernamePasswordOtpForm
 from hub_app.navlib.next_url import get_next
@@ -93,19 +92,3 @@ class LoginView(View):
         if next_url is None:
             next_url = settings.LOGIN_REDIRECT_URL
         return redirect(next_url, permanent=False)
-
-
-class ForgotCredentialsView(TemplateView):
-    """
-    The Password Reset procedure
-    """
-
-    content_type = 'text/html'
-    template_name = 'hub_app/auth/forgot-credentials.html'
-    http_method_names = ['get']
-
-    def dispatch(self, request: HttpRequest, *args, **kwargs):
-        if request.user.is_authenticated:
-            logout(request)
-            return redirect(reverse_lazy('ha:auth:forgot-credentials'), permanent=False)
-        return super(ForgotCredentialsView, self).dispatch(request, *args, **kwargs)

@@ -1,0 +1,14 @@
+{% extends 'hub_app/auth/forgot-credentials/_step3.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Reveal Username' %} | {{ block.super }}{% endblock %}
+
+{% block fc %}
+    <form method="post" action="{% url 'ha:auth:fc:step.3.username' recovery=recovery %}">
+        {% csrf_token %}
+        {{ form.auth }}
+        <p><strong>{% trans "Click the following button to display your username." %}</strong></p>
+        <button type="submit" class="btn btn-lg btn-primary mt-3">{% trans 'Reveal Username' %}</button>
+    </form>
+{% endblock %}

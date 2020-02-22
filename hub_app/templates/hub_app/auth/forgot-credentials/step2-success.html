@@ -1,0 +1,17 @@
+{% extends 'hub_app/auth/_auth.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Forgot Credentials?' %} | {{ block.super }}{% endblock %}
+
+{% block auth-title %}{% trans 'Forgot Credentials?' %}{% endblock %}
+
+{% block auth %}
+    <h2>{% trans 'Thank you.' %}</h2>
+    <p>{% trans "If the data you provided is correct, you'll receive an E-Mail with instructions on how to recover your lost credentials." %}</p>
+    <p><strong>{% trans 'But hurry, the information in that E-Mail is only valid for one hour from now!' %}</strong></p>
+    <p>
+        {% trans 'If you did not received an E-Mail, we were not able to identify a valid user account with the data you provided.' %}
+        <em class="text-muted">{% trans 'For security reasons, we cannot tell you here if your data was valid or not.' %}</em>
+    </p>
+{% endblock %}

@@ -62,11 +62,11 @@
                 </div>
             </div>
             <div class="col-lg-6 pt-0 pt-lg-3 text-lg-right">
-                <a class="card-link mt-1 mt-lg-4 d-inline-block" href="{% url 'ha:auth:forgot-credentials' %}">{% trans 'Forgot Credentials?' %}</a>
+                <a class="card-link mt-1 mt-lg-4 d-inline-block" href="{% url 'ha:auth:fc:step.1' %}">{% trans 'Forgot Credentials?' %}</a>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary btn-block btn-lg mt-4">{% trans 'Login' %}</button>
+        <button type="submit" class="btn btn-primary btn-block btn-lg mt-4"><i class="fa fa-sign-in-alt mr-2"></i> {% trans 'Login' %}</button>
     </form>
     <hr>
-    <a class="btn btn-secondary btn-lg mt-4" href="{% url 'ha:reg:step.1' %}">{% trans 'No account yet? Sign up now!' %}</a>
+    <a class="btn btn-secondary btn-sm mt-4" href="{% url 'ha:reg:step.1' %}"><i class="fa fa-user-plus mr-2"></i> {% trans 'No account yet? Sign up now!' %}</a>
 {% endblock %}

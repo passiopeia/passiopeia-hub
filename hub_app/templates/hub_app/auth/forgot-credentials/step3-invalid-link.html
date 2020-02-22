@@ -1,0 +1,10 @@
+{% extends 'hub_app/auth/forgot-credentials/_step3.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Invalid Link' %} | {{ block.super }}{% endblock %}
+
+{% block fc %}
+    <h2>{% trans 'Sorry, this link seems to be invalid' %}</h2>
+    <p>{% trans "Please double-check that you've copied the complete URL to your browser." %}</p>
+{% endblock %}

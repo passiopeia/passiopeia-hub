@@ -1,0 +1,96 @@
+{% extends 'hub_app/auth/_auth.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Forgot Credentials?' %} | {{ block.super }}{% endblock %}
+
+{% block auth-title %}{% trans 'Forgot Credentials?' %}{% endblock %}
+
+{% block auth %}
+    <form method="post" action="{% url 'ha:auth:fc:step.2' lost %}" data-ui-relevance="forgotten-credentials-step2">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for e in form.non_field_errors %}
+                    {{ e }}
+                    {% if not forloop.last %}<br>{% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <h2>1. {% trans 'Your E-Mail address, please' %}</h2>
+        <p>{% trans "We'll try to find your account with your E-Mail address. This will only work if your E-Mail address is unique in our database." %}</p>
+        {% if form.email.errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for e in form.email.errors %}
+                    {{ e }}
+                    {% if not forloop.last %}<br>{% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="form-group">
+            <label for="{{ form.email.id_for_label }}">{{ form.email.label }}{{ form.label_suffix }} <sup><span class="badge badge-info">{% trans 'required' %}</span></sup></label>
+            {{ form.email }}
+        </div>
+        <h2>2. {% trans "Your remaining credentials" %}</h2>
+        {% if form.username %}
+            {% if form.username.errors %}
+                <div class="alert alert-danger" role="alert">
+                    <p><strong>{{ form.username.label }}:</strong></p>
+                    {% for e in form.username.errors %}
+                        {{ e }}
+                        {% if not forloop.last %}<br>{% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endif %}
+        {% if form.password %}
+            {% if form.password.errors %}
+                <div class="alert alert-danger" role="alert">
+                    <p><strong>{{ form.password.label }}:</strong></p>
+                    {% for e in form.password.errors %}
+                        {{ e }}
+                        {% if not forloop.last %}<br>{% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endif %}
+        {% if form.otp %}
+            {% if form.otp.errors %}
+                <div class="alert alert-danger" role="alert">
+                    <p><strong>{{ form.otp.label }}:</strong></p>
+                    {% for e in form.otp.errors %}
+                        {{ e }}
+                        {% if not forloop.last %}<br>{% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endif %}
+        <div class="row">
+            {% if form.username %}
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="{{ form.username.id_for_label }}">{{ form.username.label }}{{ form.label_suffix }} <sup><span class="badge badge-info">{% trans 'required' %}</span></sup></label>
+                        {{ form.username }}
+                    </div>
+                </div>
+            {% endif %}
+            {% if form.password %}
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="{{ form.password.id_for_label }}">{{ form.password.label }}{{ form.label_suffix }} <sup><span class="badge badge-info">{% trans 'required' %}</span></sup></label>
+                        {{ form.password }}
+                    </div>
+                </div>
+            {% endif %}
+            {% if form.otp %}
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="{{ form.otp.id_for_label }}">{{ form.otp.label }}{{ form.label_suffix }} <sup><span class="badge badge-info">{% trans 'required' %}</span></sup></label>
+                        {{ form.otp }}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-lg btn-primary mt-3">{% trans 'Request E-Mail with instructions' %}</button>
+    </form>
+{% endblock %}

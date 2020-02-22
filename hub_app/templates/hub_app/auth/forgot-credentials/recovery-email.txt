@@ -1,0 +1,11 @@
+{% load i18n %}{% autoescape off %}{% blocktrans with link=recovery_url name=first_name %}
+Hi {{ name }}!
+
+Thank you for requesting help with your lost credentials.
+
+Please visit this link:
+  {{ link }}
+
+Best wishes,
+    The Passiopeia Hub Team
+{% endblocktrans %}{% endautoescape %}

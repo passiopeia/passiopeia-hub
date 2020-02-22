@@ -226,6 +226,9 @@ MY_ACCOUNT_URL = '#'
 # E-Mail Settings
 EMAIL_REGISTRATION_FROM = 'registration.no-reply@passiopeia.github.io'
 EMAIL_REGISTRATION_SUBJECT = _('[Passiopeia Hub] Registration: Please confirm your registration')
+EMAIL_RECOVERY_FROM = 'recovery.no-reply@passiopeia.github.io'
+EMAIL_RECOVERY_SUBJECT = _('[Passiopeia Hub] Credential Recovery: Please finish your recovery step')
+
 EMAIL_SUBJECT_PREFIX = '[Passiopeia Hub] '
 EMAIL_USE_LOCALTIME = False
 # Other E-Mail Settings: https://docs.djangoproject.com/en/3.0/ref/settings/#email-host
