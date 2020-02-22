@@ -22,7 +22,6 @@ install:
   - pip install -r requirements.txt
   - pip install -r test-requirements.txt
   - pip install coveralls
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
 
 before_script:
@@ -40,7 +39,6 @@ script:
 after_script:
   - coverage xml --rcfile=.coveragerc.ini
   - coveralls --rcfile=.coveragerc.ini
-  - if [[ "$TRAVIS_PYTHON_VERSION" == "3.8" ]]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
 
 cache:
   pip: true
