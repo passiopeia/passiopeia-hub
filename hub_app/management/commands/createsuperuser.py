@@ -114,7 +114,7 @@ class Command(BaseCommand):
                     transaction.savepoint_commit(tx_id)
                 except ValueError as ex:
                     transaction.savepoint_rollback(tx_id)
-                    raise CommandError(_('Unable to create user "%(username)s: %(message)s"') % {
+                    raise CommandError(_('Unable to create user "%(username)s": %(message)s') % {
                         'username': username,
                         'message': str(ex)
                     })

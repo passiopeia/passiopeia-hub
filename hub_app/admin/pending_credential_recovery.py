@@ -1,18 +1,19 @@
 """
-Admin for Pending Registrations
+Admin for Pending Credential Recoveries
 """
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
 
-class PendingRegistrationAdmin(admin.ModelAdmin):
+class PendingCredentialRecoveryAdmin(admin.ModelAdmin):
     """
-    Pending Registration Admin
+    Pending Credential Recovery Admin
     """
 
     list_display = (
         'uuid',
         'user',
+        'recovery_type',
         'created',
         'valid_until',
     )
@@ -27,6 +28,7 @@ class PendingRegistrationAdmin(admin.ModelAdmin):
         (_('Base Data'), {
             'fields': (
                 'uuid', 'user',
+                'recovery_type',
                 'created', 'valid_until',
             ),
         }),
@@ -35,5 +37,5 @@ class PendingRegistrationAdmin(admin.ModelAdmin):
 
     def get_readonly_fields(self, request, obj=None):  # pragma: no cover  # No end-user use-case for that
         if obj:
-            return self.readonly_fields + ('user', 'created', 'key',)
+            return self.readonly_fields + ('user', 'created', 'key', 'recovery_type')
         return self.readonly_fields
