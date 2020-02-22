@@ -1,0 +1,851 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-22 15:39+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: hub/settings.py:228
+msgid "[Passiopeia Hub] Registration: Please confirm your registration"
+msgstr ""
+
+#: hub/settings.py:230
+msgid "[Passiopeia Hub] Credential Recovery: Please finish your recovery step"
+msgstr ""
+
+#: hub_app/admin/__init__.py:23
+#: hub_app/templates/hub_app/admin/dialogs/-base.html:9
+msgid "Passiopeia Hub Administration"
+msgstr ""
+
+#: hub_app/admin/__init__.py:24
+msgid "Passiopeia Hub Admin"
+msgstr ""
+
+#: hub_app/admin/otp.py:27
+msgid "Identification"
+msgstr ""
+
+#: hub_app/admin/otp.py:32 hub_app/models/forgot_credentials.py:26
+#: hub_app/models/registration.py:28 hub_app/models/users.py:75
+#: hub_app/templates/hub_app/admin/dialogs/otp_assistant.html:14
+msgid "User"
+msgstr ""
+
+#: hub_app/admin/otp.py:37
+msgid "Token Data"
+msgstr ""
+
+#: hub_app/admin/pending_credential_recovery.py:28
+#: hub_app/admin/pending_registration.py:27
+msgid "Base Data"
+msgstr ""
+
+#: hub_app/admin/pending_credential_recovery.py:35
+#: hub_app/admin/pending_registration.py:33
+msgid "Key"
+msgstr ""
+
+#: hub_app/admin/user.py:22
+#: hub_app/templates/hub_app/admin/dialogs/otp_assistant.html:34
+msgid "OTP Secret"
+msgstr ""
+
+#: hub_app/admin/user.py:23
+#: hub_app/templates/hub_app/admin/dialogs/otp_assistant.html:5
+#: hub_app/templates/hub_app/admin/dialogs/otp_assistant.html:9
+msgid "OTP Assistant"
+msgstr ""
+
+#: hub_app/admin/user.py:25
+msgid "Use Assistant"
+msgstr ""
+
+#: hub_app/admin/user.py:55
+msgid ""
+"OTP Secrets are managed through the OTP Assistant. Click the link above to "
+"use it."
+msgstr ""
+
+#: hub_app/admin/user.py:56
+msgid "One Time Password Secret"
+msgstr ""
+
+#: hub_app/admin/user.py:75
+msgid "Login Configuration"
+msgstr ""
+
+#: hub_app/admin/user.py:83 hub_app/forms/auth.py:46
+#: hub_app/forms/forgot_credentials.py:57
+msgid "One Time Password"
+msgstr ""
+
+#: hub_app/apps.py:14
+msgid "* Passiopeia Hub"
+msgstr ""
+
+#: hub_app/authlib/forgot_credentials.py:13
+msgid "Forgot my Username"
+msgstr ""
+
+#: hub_app/authlib/forgot_credentials.py:14
+msgid "Forgot my Password"
+msgstr ""
+
+#: hub_app/authlib/forgot_credentials.py:15
+msgid "Lost my OTP Secret"
+msgstr ""
+
+#: hub_app/authlib/totp/validators.py:14
+msgid "Only numbers allowed."
+msgstr ""
+
+#: hub_app/forms/auth.py:20 hub_app/forms/forgot_credentials.py:34
+#: hub_app/forms/registration.py:22
+#: hub_app/management/commands/createsuperuser.py:159
+msgid "Username"
+msgstr ""
+
+#: hub_app/forms/auth.py:36 hub_app/forms/forgot_credentials.py:45
+#: hub_app/forms/registration.py:59
+#: hub_app/management/commands/createsuperuser.py:161
+#: hub_app/templates/hub_app/registration/step2.html:23
+msgid "Password"
+msgstr ""
+
+#: hub_app/forms/forgot_credentials.py:22
+msgid "You must select the item you have lost"
+msgstr ""
+
+#: hub_app/forms/forgot_credentials.py:23
+#, python-format
+msgid "%(value)s is not a valid choice"
+msgstr ""
+
+#: hub_app/forms/forgot_credentials.py:69 hub_app/forms/registration.py:28
+msgid "E-Mail Address"
+msgstr ""
+
+#: hub_app/forms/forgot_credentials.py:107 hub_app/forms/registration.py:66
+msgid "Repeat Password"
+msgstr ""
+
+#: hub_app/forms/registration.py:34
+msgid "First Name"
+msgstr ""
+
+#: hub_app/forms/registration.py:39
+msgid "Last Name"
+msgstr ""
+
+#: hub_app/forms/registration.py:71
+msgid "One Time Password from your app"
+msgstr ""
+
+#: hub_app/management/commands/cleanburnedotp.py:21
+msgid "Delete burned OTPs older than 2 hours"
+msgstr ""
+
+#: hub_app/management/commands/cleanburnedotp.py:30
+#, python-format
+msgid "Deleting %(count)s burned OTPs."
+msgstr ""
+
+#: hub_app/management/commands/cleanburnedotp.py:33
+#: hub_app/management/commands/cleanpendingrecoveries.py:27
+#: hub_app/management/commands/cleanpendingregistrations.py:30
+msgid "Done"
+msgstr ""
+
+#: hub_app/management/commands/cleanpendingrecoveries.py:19
+msgid "Delete pending credential recoveries older than 1 hour"
+msgstr ""
+
+#: hub_app/management/commands/cleanpendingrecoveries.py:24
+#, python-format
+msgid "Deleting %(count)s pending credential recoveries."
+msgstr ""
+
+#: hub_app/management/commands/cleanpendingregistrations.py:19
+msgid "Delete pending registrations older than 3 days"
+msgstr ""
+
+#: hub_app/management/commands/cleanpendingregistrations.py:27
+#, python-format
+msgid "Deleting %(count)s user accounts with expired registrations."
+msgstr ""
+
+#: hub_app/management/commands/createsuperuser.py:43
+msgid "Create a superuser for the hub_app"
+msgstr ""
+
+#: hub_app/management/commands/createsuperuser.py:52
+msgid "Username for the new superuser; must be unique"
+msgstr ""
+
+#: hub_app/management/commands/createsuperuser.py:57
+msgid "Password for the new superuser"
+msgstr ""
+
+#: hub_app/management/commands/createsuperuser.py:62
+msgid "BASE32 encoded shared secret for TOTP"
+msgstr ""
+
+#: hub_app/management/commands/createsuperuser.py:82
+#: hub_app/management/commands/createsuperuser.py:85
+#, python-format
+msgid "\"%(field)s\" is required"
+msgstr ""
+
+#: hub_app/management/commands/createsuperuser.py:100
+#, python-format
+msgid "The user \"%(username)s\" already exists."
+msgstr ""
+
+#: hub_app/management/commands/createsuperuser.py:111
+#, python-format
+msgid "Superuser \"%(username)s\" created successfully"
+msgstr ""
+
+#: hub_app/management/commands/createsuperuser.py:117
+#, python-format
+msgid "Unable to create user \"%(username)s\": %(message)s"
+msgstr ""
+
+#: hub_app/management/commands/createsuperuser.py:135
+#, python-format
+msgid "Username \"%(username)s\" is invalid: %(message)s"
+msgstr ""
+
+#: hub_app/management/commands/createsuperuser.py:142
+msgid "The password is invalid"
+msgstr ""
+
+#: hub_app/management/commands/createsuperuser.py:148
+#, python-format
+msgid "Invalid TOTP Secret: %(message)s"
+msgstr ""
+
+#: hub_app/management/commands/createsuperuser.py:163
+msgid "Secret (BASE32 format)"
+msgstr ""
+
+#: hub_app/models/forgot_credentials.py:20
+msgid "Pending Credential Recovery"
+msgstr ""
+
+#: hub_app/models/forgot_credentials.py:21
+msgid "Pending Credential Recoveries"
+msgstr ""
+
+#: hub_app/models/forgot_credentials.py:25 hub_app/models/registration.py:27
+#: hub_app/models/users.py:74
+msgid "UUID"
+msgstr ""
+
+#: hub_app/models/forgot_credentials.py:28 hub_app/models/registration.py:29
+msgid "Created"
+msgstr ""
+
+#: hub_app/models/forgot_credentials.py:29 hub_app/models/registration.py:30
+msgid "Valid Until"
+msgstr ""
+
+#: hub_app/models/forgot_credentials.py:30
+msgid "Credential Recovery Key"
+msgstr ""
+
+#: hub_app/models/registration.py:22
+msgid "Pending Registration"
+msgstr ""
+
+#: hub_app/models/registration.py:23
+msgid "Pending Registrations"
+msgstr ""
+
+#: hub_app/models/registration.py:31
+msgid "Registration Key"
+msgstr ""
+
+#: hub_app/models/users.py:23
+msgid "TOTP Secret"
+msgstr ""
+
+#: hub_app/models/users.py:26
+msgid "Encrypted TOTP Secret"
+msgstr ""
+
+#: hub_app/models/users.py:38
+msgid "Secret must be at least 32 bytes long"
+msgstr ""
+
+#: hub_app/models/users.py:40
+msgid "Secret must not be larger than 96 bytes"
+msgstr ""
+
+#: hub_app/models/users.py:66
+msgid "Burned One Time Password"
+msgstr ""
+
+#: hub_app/models/users.py:67
+msgid "Burned One Time Passwords"
+msgstr ""
+
+#: hub_app/models/users.py:76
+msgid "OTP Token"
+msgstr ""
+
+#: hub_app/models/users.py:77
+msgid "Burned Date/Time"
+msgstr ""
+
+#: hub_app/reglib/validators.py:15 hub_app/reglib/validators.py:18
+msgid "This username is currently not available"
+msgstr ""
+
+#: hub_app/reglib/validators.py:20
+#, python-format
+msgid "\"%(value)s\" is currently not available"
+msgstr ""
+
+#: hub_app/templates/hub_app/admin/dialogs/otp_assistant.html:18
+msgid "Type"
+msgstr ""
+
+#: hub_app/templates/hub_app/admin/dialogs/otp_assistant.html:22
+msgid "Digits"
+msgstr ""
+
+#: hub_app/templates/hub_app/admin/dialogs/otp_assistant.html:26
+msgid "Algorithm"
+msgstr ""
+
+#: hub_app/templates/hub_app/admin/dialogs/otp_assistant.html:30
+msgid "Interval"
+msgstr ""
+
+#: hub_app/templates/hub_app/admin/dialogs/otp_assistant.html:36
+msgid "Base32"
+msgstr ""
+
+#: hub_app/templates/hub_app/admin/dialogs/otp_assistant.html:37
+msgid "Do you really want to regenerate the OTP secret for this user?"
+msgstr ""
+
+#: hub_app/templates/hub_app/admin/dialogs/otp_assistant.html:37
+msgid "Regenerate Secret"
+msgstr ""
+
+#: hub_app/templates/hub_app/admin/dialogs/otp_assistant.html:43
+msgid "QR Code that shows the current secret"
+msgstr ""
+
+#: hub_app/templates/hub_app/admin/dialogs/otp_assistant.html:45
+msgid "No secret defined"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/_auth.html:5
+#: hub_app/templates/hub_app/auth/_auth.html:9
+msgid "User Authentication"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/_step3.html:5
+#: hub_app/templates/hub_app/auth/forgot-credentials/_step3.html:7
+#: hub_app/templates/hub_app/auth/forgot-credentials/step1.html:5
+#: hub_app/templates/hub_app/auth/forgot-credentials/step1.html:7
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2-multiple-objects.html:5
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2-multiple-objects.html:7
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2-success.html:5
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2-success.html:7
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2.html:5
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2.html:7
+#: hub_app/templates/hub_app/auth/login.html:65
+msgid "Forgot Credentials?"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/recovery-email.txt:1
+#, python-format
+msgid ""
+"\n"
+"Hi %(name)s!\n"
+"\n"
+"Thank you for requesting help with your lost credentials.\n"
+"\n"
+"Please visit this link:\n"
+"  %(link)s\n"
+"\n"
+"Best wishes,\n"
+"    The Passiopeia Hub Team\n"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step1.html:10
+msgid "Forgot your credentials?"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step1.html:10
+msgid "Don't worry, we are here to help!"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step1.html:21
+msgid "What's lost?"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step1.html:38
+msgid "Okay, tell me what to do"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2-multiple-objects.html:10
+msgid "Oh no..."
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2-multiple-objects.html:11
+msgid ""
+"We were not able to surley identify your user account, because more than one "
+"account in our database are associated with your E-Mail address."
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2-multiple-objects.html:12
+msgid ""
+"We are fine with you having multiple accounts, but this tool can't do it's "
+"job."
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2-multiple-objects.html:13
+msgid "Please contact our friendly support for additional help."
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2-success.html:10
+msgid "Thank you."
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2-success.html:11
+msgid ""
+"If the data you provided is correct, you'll receive an E-Mail with "
+"instructions on how to recover your lost credentials."
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2-success.html:12
+msgid ""
+"But hurry, the information in that E-Mail is only valid for one hour from "
+"now!"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2-success.html:14
+msgid ""
+"If you did not received an E-Mail, we were not able to identify a valid user "
+"account with the data you provided."
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2-success.html:15
+msgid ""
+"For security reasons, we cannot tell you here if your data was valid or not."
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2.html:20
+msgid "Your E-Mail address, please"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2.html:21
+msgid ""
+"We'll try to find your account with your E-Mail address. This will only work "
+"if your E-Mail address is unique in our database."
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2.html:31
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2.html:72
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2.html:80
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2.html:88
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-request-password.html:41
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-request-password.html:47
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-show-new-secret.html:36
+#: hub_app/templates/hub_app/registration/step1.html:33
+#: hub_app/templates/hub_app/registration/step1.html:48
+#: hub_app/templates/hub_app/registration/step1.html:76
+msgid "required"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2.html:34
+msgid "Your remaining credentials"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step2.html:94
+msgid "Request E-Mail with instructions"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-invalid-link.html:5
+msgid "Invalid Link"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-invalid-link.html:8
+msgid "Sorry, this link seems to be invalid"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-invalid-link.html:9
+msgid ""
+"Please double-check that you've copied the complete URL to your browser."
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-request-password.html:5
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-request-password.html:52
+msgid "Set new Password"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-request-password.html:8
+msgid "Set your new password now"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-reveal-otp-secret.html:5
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-show-new-secret.html:6
+msgid "Set new OTP Secret"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-reveal-otp-secret.html:11
+msgid "We're ready to create a new OTP secret for you."
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-reveal-otp-secret.html:12
+msgid "Be prepared to scan the new secret."
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-reveal-otp-secret.html:13
+msgid "Reveal new OTP secret"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-reveal-username.html:5
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-reveal-username.html:12
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-show-username.html:5
+msgid "Reveal Username"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-reveal-username.html:11
+msgid "Click the following button to display your username."
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-show-new-secret.html:25
+msgid ""
+"Please scan the code and enter a newly generated one time password as "
+"confirmation."
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-show-new-secret.html:26
+msgid "Only when you've finished this step, the new secret will be activated."
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-show-new-secret.html:41
+msgid "Confirm new OTP secret"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-show-username.html:8
+msgid "Your username:"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/forgot-credentials/step3-show-username.html:10
+msgid "Go To Login"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/login.html:5
+#: hub_app/templates/hub_app/auth/login.html:7
+#: hub_app/templates/hub_app/auth/login.html:68
+msgid "Login"
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/login.html:34
+msgid "Your username is most likely not your e-mail address."
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/login.html:61
+msgid "Use your OTP device to create an one time password."
+msgstr ""
+
+#: hub_app/templates/hub_app/auth/login.html:71
+msgid "No account yet? Sign up now!"
+msgstr ""
+
+#: hub_app/templates/hub_app/base/html5-boilerplate.html:9
+#: hub_app/templates/hub_app/navigation/main-navbar.html:9
+msgid "Passiopeia Hub"
+msgstr ""
+
+#: hub_app/templates/hub_app/base/messages.html:7
+msgid "Close"
+msgstr ""
+
+#: hub_app/templates/hub_app/inclusion/inline-qr-code.html:3
+msgid "Please scan this code with your OTP app"
+msgstr ""
+
+#: hub_app/templates/hub_app/inclusion/language-selector.html:12
+msgid "Language"
+msgstr ""
+
+#: hub_app/templates/hub_app/inclusion/login-menu.html:8
+msgid "Sign Up or Sign In!"
+msgstr ""
+
+#: hub_app/templates/hub_app/inclusion/login-menu.html:13
+#, python-format
+msgid "Hi, %(user_fn)s!"
+msgstr ""
+
+#: hub_app/templates/hub_app/inclusion/login-menu.html:14
+msgid "Your Account"
+msgstr ""
+
+#: hub_app/templates/hub_app/inclusion/login-menu.html:16
+msgid "Logout"
+msgstr ""
+
+#: hub_app/templates/hub_app/inclusion/login-menu.html:18
+msgid "Sign up!"
+msgstr ""
+
+#: hub_app/templates/hub_app/inclusion/login-menu.html:19
+msgid "Sign in"
+msgstr ""
+
+#: hub_app/templates/hub_app/navigation/main-navbar.html:17
+msgid "How does it work?"
+msgstr ""
+
+#: hub_app/templates/hub_app/pages/landing-page/welcome.html:5
+msgid "Welcome!"
+msgstr ""
+
+#: hub_app/templates/hub_app/pages/landing-page/welcome.html:10
+msgid "Simple Credential Management & Synchronization"
+msgstr ""
+
+#: hub_app/templates/hub_app/pages/landing-page/welcome.html:11
+msgid ""
+"Synchronize across devices and browsers. Fully encrypted. Only you have the "
+"keys."
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/_registration.html:5
+#: hub_app/templates/hub_app/registration/_registration.html:9
+msgid "Registration"
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/_step2.html:5
+#: hub_app/templates/hub_app/registration/step1-success.html:5
+#: hub_app/templates/hub_app/registration/step1.html:5
+#, python-format
+msgid "Step %(step)s"
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/reg-email.txt:1
+#, python-format
+msgid ""
+"\n"
+"Hi %(name)s!\n"
+"\n"
+"Thank you for registering with Passiopeia Hub. You've made the first very "
+"important step.\n"
+"\n"
+"Please get your OTP app ready and open this link:\n"
+"  %(link)s\n"
+"\n"
+"You will receive your One Time Password secret and set your password.\n"
+"\n"
+"If you do not finish the registration, your data is deleted automatically "
+"after 3 days.\n"
+"\n"
+"Best wishes,\n"
+"    The Passiopeia Hub Team\n"
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step1-success.html:8
+msgid "E-Mail is on it's way!"
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step1-success.html:9
+msgid ""
+"We've sent an E-Mail that contains instructions for the next step. Please "
+"check your inbox."
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step1-success.html:10
+msgid ""
+"The stuff im that E-Mail is valid for three days. After that, your "
+"registration is deleted automatically."
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step1.html:8
+msgid "Thanks for your interest in Passiopeia Hub!"
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step1.html:9
+msgid "Our easy registration process requires"
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step1.html:11
+msgid "A valid E-Mail address"
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step1.html:12
+msgid "A TOTP app that can handle QR Codes for configuration"
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step1.html:35
+msgid ""
+"Your username may contain letters and digests, as well as .@-_ and must be "
+"between 3 and 150 chars long."
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step1.html:78
+msgid ""
+"Your E-Mail Address is required for registration and credential recovery. It "
+"is not used for spam, ads or newsletters."
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step1.html:80
+msgid "We'll send you an e-mail that tells you how to move on."
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step1.html:81
+msgid "Send the instructions for step 2!"
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step2-bad-url.html:6
+msgid "Ooh ooh..."
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step2-bad-url.html:7
+msgid "It seems that the link you provided is invalid or already expired."
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step2-bad-url.html:8
+msgid ""
+"Please make sure that you copy the complete link (it's very long) from your "
+"E-Mail to the address bar of your browser."
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step2-success.html:6
+msgid "Ready to go!"
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step2-success.html:7
+msgid "Your account has been activated."
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step2-success.html:8
+msgid "Take me to the login!"
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step2.html:8
+msgid "Welcome back! You are almost there."
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step2.html:20
+msgid "Choose your password"
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step2.html:32
+msgid "Password Repetition"
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step2.html:53
+msgid "Scan this code"
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step2.html:54
+msgid "Configure your OTP app with this QR-Code."
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step2.html:60
+msgid "Please let your app create one time password."
+msgstr ""
+
+#: hub_app/templates/hub_app/registration/step2.html:75
+msgid "Finish Registration"
+msgstr ""
+
+#: hub_app/views/auth.py:27
+msgid "Logout successful."
+msgstr ""
+
+#: hub_app/views/auth.py:85
+msgid "Username or password wrong, or one time password invalid."
+msgstr ""
+
+#: hub_app/views/auth.py:88
+#, python-format
+msgid "Hey %(user)s, welcome to Passiopeia Hub!"
+msgstr ""
+
+#: hub_app/views/forgot_credentials.py:332
+msgid "The two passwords don't match"
+msgstr ""
+
+#: hub_app/views/forgot_credentials.py:338
+msgid "The Authentication Signature is invalid."
+msgstr ""
+
+#: hub_app/views/forgot_credentials.py:339
+#: hub_app/views/forgot_credentials.py:347
+#: hub_app/views/forgot_credentials.py:372
+#, python-format
+msgid "Please contact our support team. Error Code: %(code)s"
+msgstr ""
+
+#: hub_app/views/forgot_credentials.py:346
+msgid "The request for Credential Recovery is invalid."
+msgstr ""
+
+#: hub_app/views/forgot_credentials.py:362
+msgid "Your password has been updated. You can login now."
+msgstr ""
+
+#: hub_app/views/forgot_credentials.py:371
+msgid "Unable to verify your request."
+msgstr ""
+
+#: hub_app/views/forgot_credentials.py:472
+msgid "This one time password is not valid."
+msgstr ""
+
+#: hub_app/views/forgot_credentials.py:481
+msgid "Your new OTP secret has been set. You can login now."
+msgstr ""
+
+#: hub_app/views/registration.py:86
+msgid ""
+"Something went wrong and the registration step could not be finished. Please "
+"try again later."
+msgstr ""
+
+#: hub_app/views/registration.py:118
+msgid ""
+"We've been unable to send you an E-Mail at the moment. Please try again "
+"later."
+msgstr ""
+
+#: hub_app/views/registration.py:196
+msgid "The passwords do not match"
+msgstr ""
+
+#: hub_app/views/registration.py:215
+msgid ""
+"Your one time password may be expired, be sure to provide a current one."
+msgstr ""
+
+#: hub_app/views/registration.py:220
+msgid "Your one time password has expired"
+msgstr ""
+
+#: hub_app/views/registration.py:221
+msgid "Please re-enter your password"
+msgstr ""
