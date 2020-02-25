@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load hub_app_lang %}
 {% load hub_app_login %}
+{% load hub_app_admin %}
 
 <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
     <a class="navbar-brand" href="{% url 'ha:home' %}">
@@ -18,6 +19,7 @@
             </li>
         </ul>
         <div class="form-inline mt-2 mt-lg-0">
+            {% admin_switch %}
             {% login_menu %}
             {% language_selector %}
         </div>

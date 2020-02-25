@@ -1,0 +1,7 @@
+{% load i18n %}
+
+{% if render %}
+    <a class="btn btn-danger btn-sm mr-lg-2" href="{{ admin_link }}" id="admin_switch_{{ instance }}" data-ui-relevance="admin-switch">
+        <span class="sr-only">{% trans 'Go to Admin' %}</span><i aria-hidden="true" class="fa fa-cog"></i>
+    </a>
+{% endif %}

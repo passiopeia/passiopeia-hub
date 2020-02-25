@@ -11,6 +11,10 @@ from hub_app.views.forgot_credentials import ForgotCredentialsFirstStepView, For
     ForgotCredentialsThirdStepView, ForgotCredentialsRevealUsername, ForgotCredentialsSetNewPasswordView, \
     ForgotCredentialsRevealNewOtpSecret, ForgotCredentialsConfirmNewOtpSecret
 from hub_app.views.home import HomeView
+from hub_app.views.my_account import MyAccountOverviewView, MyAccountCredentialsOverviewView, \
+    MyAccountDatabasesOverviewView, MyAccountPersonalOverviewView, MyAccountCredentialsPasswordView, \
+    MyAccountCredentialsOtpSecretView, MyAccountPersonalNameView, MyAccountPersonalEMailView, \
+    MyAccountPersonalEMailVerifyView
 from hub_app.views.registration import RegistrationFirstStepView, RegistrationSecondStepView
 
 
@@ -63,9 +67,23 @@ REGISTRATION_URLS = ([
 ], 'reg', 'hub_app:reg')
 
 
+MY_ACCOUNT_URLS = ([
+    path('credentials/password', MyAccountCredentialsPasswordView.as_view(), name='credentials.password'),
+    path('credentials/otp-secret', MyAccountCredentialsOtpSecretView.as_view(), name='credentials.otp-secret'),
+    path('credentials', MyAccountCredentialsOverviewView.as_view(), name='credentials'),
+    path('databases', MyAccountDatabasesOverviewView.as_view(), name='databases'),
+    path('personal/name', MyAccountPersonalNameView.as_view(), name='personal.name'),
+    path('personal/email', MyAccountPersonalEMailView.as_view(), name='personal.email'),
+    path('personal/email/<uuid:change>', MyAccountPersonalEMailVerifyView.as_view(), name='personal.email.verify'),
+    path('personal', MyAccountPersonalOverviewView.as_view(), name='personal'),
+    path('', MyAccountOverviewView.as_view(), name='overview'),
+], 'acc', 'hub_app:acc')
+
+
 urlpatterns = [  # pylint: disable=invalid-name
     path('admin/', ADMIN_URLS),
     path('auth/', AUTH_URLS),
     path('register/', REGISTRATION_URLS),
+    path('my-account/', MY_ACCOUNT_URLS),
     url(r'^$', HomeView.as_view(), name='home'),
 ]

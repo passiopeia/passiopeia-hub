@@ -11,9 +11,10 @@ from django.utils.translation import gettext_lazy as _
 
 from hub_app.admin.otp import BurnedOtpAdmin
 from hub_app.admin.pending_credential_recovery import PendingCredentialRecoveryAdmin
+from hub_app.admin.pending_email_changes import PendingEMailChangeAdmin
 from hub_app.admin.pending_registration import PendingRegistrationAdmin
 from hub_app.admin.user import HubUserAdmin
-from hub_app.models import HubUser, BurnedOtp, PendingRegistration, PendingCredentialRecovery
+from hub_app.models import HubUser, BurnedOtp, PendingRegistration, PendingCredentialRecovery, PendingEMailChange
 
 
 class HubAdmin(AdminSite):
@@ -31,6 +32,7 @@ admin_site.register(HubUser, HubUserAdmin)
 admin_site.register(BurnedOtp, BurnedOtpAdmin)
 admin_site.register(PendingRegistration, PendingRegistrationAdmin)
 admin_site.register(PendingCredentialRecovery, PendingCredentialRecoveryAdmin)
+admin_site.register(PendingEMailChange, PendingEMailChangeAdmin)
 
 # Django internals
 admin_site.register(Group)

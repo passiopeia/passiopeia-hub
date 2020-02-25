@@ -1,0 +1,13 @@
+{% extends 'hub_app/my-account/_personal.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Overview' %} | {{ block.super }}{% endblock %}
+
+{% block personal-tabs %}
+    {% include 'hub_app/my-account/_personal-nav.html' with active='overview' %}
+{% endblock %}
+
+{% block personal %}
+    <p>{% trans 'Changing your E-Mail Address requires you to verify the new E-Mail Address.' %}</p>
+{% endblock %}

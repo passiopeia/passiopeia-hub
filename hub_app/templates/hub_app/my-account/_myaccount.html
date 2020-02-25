@@ -1,0 +1,20 @@
+{% extends 'hub_app/base/default-page.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'My Account' %} | {{ block.super }}{% endblock %}
+
+{% block app %}
+    <div class="container-fluid bg-light text-dark p-2 p-lg-5">
+        <div class="container">
+            {% block breadcrums %}
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active" aria-current="page">{% trans 'Your Account' %}</li>
+                    </ol>
+                </nav>
+            {% endblock %}
+            {% block acc-body %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}

@@ -137,7 +137,7 @@ class BasicRecoveryTest(TestCase):
         soup = BeautifulSoup(response.content.decode('utf-8'), 'html.parser').find('div', attrs={
             'class': 'card-body bg-light text-dark'
         }).find_next('h2')
-        self.assertEqual('Oh no...', soup.text.strip())
+        self.assertEqual('Oh no…', soup.text.strip())
 
     def _check_success(self, response: HttpResponse, first_name: str, email: str):
         """

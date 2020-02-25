@@ -1,0 +1,52 @@
+{% extends 'hub_app/my-account/_personal.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Confirm' %} | {% trans 'E-Mail' %} | {{ block.super }}{% endblock %}
+
+{% block personal-tabs %}
+    {% include 'hub_app/my-account/_personal-nav.html' with active='email' %}
+{% endblock %}
+
+{% block personal %}
+    <div class="card w-75 m-3 ml-auto mr-auto">
+        <h4 class="card-header">{% trans 'Change your E-Mail-Address' %}</h4>
+        <div class="card-body">
+            {% if success %}
+                <div class="alert alert-success" role="alert">
+                    <strong>{% trans 'Thank you.' %}</strong>
+                    {% trans 'Your E-Mail Address has been verified.' %}
+                </div>
+            {% elif link_error %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>{% trans 'This link seems to be invalid.' %}</strong>
+                    {% trans 'Please double-check the link you opened.' %}
+                </div>
+            {% else %}
+                <form method="post" action="{% url 'ha:acc:personal.email.verify' uuid %}" data-ui-relevance="email-change-verify-form">
+                    {% csrf_token %}
+                    {{ form.change_key }}
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for e in form.non_field_errors %}
+                                {{ e }}
+                                {% if not forloop.last %}<br>{% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% if form.change_key.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for e in form.change_key.errors %}
+                                {{ e }}
+                                {% if not forloop.last %}<br>{% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <p>{% trans 'Please click the following button to confirm your new E-Mail Address:' %}</p>
+                    <p><strong><code>{{ new_email }}</code></strong></p>
+                    <button type="submit" class="btn btn-lg btn-primary mt-3">{% trans 'Confirm new E-Mail Address' %}</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

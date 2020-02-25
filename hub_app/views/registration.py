@@ -72,6 +72,7 @@ class RegistrationFirstStepView(UserPassesTestMixin, View):
                     username=form.cleaned_data['username'].strip().lower(),
                     email=email,
                     first_name=first_name,
+                    last_name=form.cleaned_data['last_name'].strip(),
                     is_active=True
                 )  # type: HubUser
                 new_user.set_unusable_password()

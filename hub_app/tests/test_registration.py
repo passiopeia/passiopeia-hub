@@ -369,7 +369,7 @@ class RegistrationUnfriendlyRequestsTest(TestCase):
                 if key is not None:
                     parameters['key'] = key
                 response = self.client.get(url, data=parameters)
-                self.assertTrue('<h2>Ooh ooh...</h2>' in response.content.decode('utf-8'))
+                self.assertTrue('<h2>Ooh ooh…</h2>' in response.content.decode('utf-8'))
 
     def test_with_defective_session(self):
         """
@@ -391,4 +391,4 @@ class RegistrationUnfriendlyRequestsTest(TestCase):
                     'password1': password, 'password2': password,
                     'otp': otp
                 })
-                self.assertTrue('<h2>Ooh ooh...</h2>' in response.content.decode('utf-8'))
+                self.assertTrue('<h2>Ooh ooh…</h2>' in response.content.decode('utf-8'))

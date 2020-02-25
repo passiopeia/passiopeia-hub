@@ -1,0 +1,12 @@
+{% load i18n %}{% autoescape off %}{% blocktrans with link=change_url name=first_name %}
+Hi {{ name }}!
+
+Please verify your new E-Mail Address.
+
+Please visit this link:
+  {{ link }}
+You might need to login in order to verify your address.
+
+Best wishes,
+    The Passiopeia Hub Team
+{% endblocktrans %}{% endautoescape %}

@@ -1,0 +1,55 @@
+{% extends 'hub_app/my-account/_personal.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'E-Mail' %} | {{ block.super }}{% endblock %}
+
+{% block personal-tabs %}
+    {% include 'hub_app/my-account/_personal-nav.html' with active='email' %}
+{% endblock %}
+
+{% block personal %}
+    <form method="post" action="{% url 'ha:acc:personal.email' %}" data-ui-relevance="email-change-form">
+        {% csrf_token %}
+        <div class="card w-75 m-3 ml-auto mr-auto">
+            <h4 class="card-header">{% trans 'Change your E-Mail Address' %}</h4>
+            <div class="card-body">
+                {% if success %}
+                    <div class="alert alert-success" role="alert">
+                        {% trans 'We have send you an E-Mail with a confirmation link.' %}
+                    </div>
+                {% else %}
+                    {% if not_allowed %}
+                        <div class="alert alert-warning" role="alert">
+                            {% trans 'There is already a pending change for your E-Mail Address in our database.' %}
+                        </div>
+                        <p>{% trans 'Please finish that change or wait until the change request will be automatically removed after about 24 hours.' %}</p>
+                    {% else %}
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {% for e in form.non_field_errors %}
+                                    {{ e }}
+                                    {% if not forloop.last %}<br>{% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {% if form.new_email.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {% for e in form.new_email.errors %}
+                                    {{ e }}
+                                    {% if not forloop.last %}<br>{% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <label for="{{ form.new_email.id_for_label }}">{{ form.new_email.label }}{{ form.label_suffix }} <sup><span class="badge badge-info">{% trans 'required' %}</span></sup></label>
+                            {{ form.new_email }}
+                        </div>
+                        <p>{% trans "We will send you an E-Mail to confirm the new address." %}</p>
+                        <button class="btn btn-lg btn-primary mt-3" type="submit">{% trans 'Set new E-Mail Address' %}</button>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </form>
+{% endblock %}

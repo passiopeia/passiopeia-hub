@@ -1,0 +1,26 @@
+{% extends 'hub_app/my-account/_myaccount.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Personal Information' %} | {{ block.super }}{% endblock %}
+
+{% block breadcrums %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'ha:acc:overview' %}">{% trans 'Your Account' %}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{% trans 'Your Personal Information' %}</li>
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block acc-body %}
+    <h2>{% trans 'Personal Information' %}</h2>
+    <ul class="nav nav-tabs mt-4">
+        {% block personal-tabs %}
+            {% include 'hub_app/my-account/_personal-nav.html' %}
+        {% endblock %}
+    </ul>
+    <div class="container bg-white p-4 border-left border-right border-bottom">
+        {% block personal %}{% endblock %}
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'hub_app/my-account/_myaccount.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Overview' %} | {{ block.super }}{% endblock %}
+
+{% block acc-body %}
+    <h1>{% blocktrans with first_name=user.first_name %}Welcome, {{ first_name }}!{% endblocktrans %} <small class="text-muted">{% trans 'This is your Account.' %}</small></h1>
+    <div class="card-deck mt-2 mt-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="m-0 p-0"><i class="fa fa-database mr-2"></i> {% trans 'Your Credential Databases' %}</h5>
+            </div>
+            <div class="card-body">{% trans 'Manage your Credential Databases, and your synchronization options.' %}</div>
+            <div class="card-footer">
+                <a class="btn btn-block btn-secondary" href="{% url 'ha:acc:databases' %}">{% trans 'Databases' %}</a>
+            </div>
+        </div>
+    </div>
+    <div class="card-deck mt-2 mt-lg-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="m-0 p-0"><i class="fa fa-user mr-2"></i> {% trans 'Personal Information' %}</h5>
+            </div>
+            <div class="card-body">{% trans 'Manage your personal information.' %}</div>
+            <div class="card-footer">
+                <a class="btn btn-block btn-secondary" href="{% url 'ha:acc:personal' %}">{% trans 'Personal' %}</a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h5 class="m-0 p-0"><i class="fa fa-lock mr-2"></i> {% trans 'Hub Credentials' %}</h5>
+            </div>
+            <div class="card-body">{% trans 'Manage your credentials to log into Passiopeia Hub.' %}</div>
+            <div class="card-footer">
+                <a class="btn btn-block btn-secondary" href="{% url 'ha:acc:credentials' %}">{% trans 'Credentials' %}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -6,33 +6,37 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-22 15:39+0000\n"
-"PO-Revision-Date: 2020-02-22 22:27+0100\n"
+"POT-Creation-Date: 2020-02-25 14:52+0000\n"
+"PO-Revision-Date: 2020-02-25 16:09+0100\n"
+"Last-Translator: Juergen Edelbluth\n"
+"Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Last-Translator: Juergen Edelbluth\n"
-"Language-Team: \n"
 "X-Generator: Poedit 2.3\n"
 
-#: hub/settings.py:228
+#: hub/settings.py:235
 msgid "[Passiopeia Hub] Registration: Please confirm your registration"
 msgstr "[Passiopeia Hub] Registrierung: Bitte bestätige Deine Registrierung"
 
-#: hub/settings.py:230
+#: hub/settings.py:237
 msgid "[Passiopeia Hub] Credential Recovery: Please finish your recovery step"
 msgstr ""
 "[Passiopeia Hub] Zugangsdaten wiederherstellen: Bitte schließe die "
 "Wiederherstellung ab"
 
-#: hub_app/admin/__init__.py:23
+#: hub/settings.py:239
+msgid "[Passiopeia Hub] Please verify your new E-Mail Address"
+msgstr "[Passiopeia Hub] Bitte bestätige Deine neue E-Mail-Adresse"
+
+#: hub_app/admin/__init__.py:24
 #: hub_app/templates/hub_app/admin/dialogs/-base.html:9
 msgid "Passiopeia Hub Administration"
 msgstr "Passiopeia Hub Administration"
 
-#: hub_app/admin/__init__.py:24
+#: hub_app/admin/__init__.py:25
 msgid "Passiopeia Hub Admin"
 msgstr "Passiopeia Hub Admin"
 
@@ -41,7 +45,8 @@ msgid "Identification"
 msgstr "Identifikation"
 
 #: hub_app/admin/otp.py:32 hub_app/models/forgot_credentials.py:26
-#: hub_app/models/registration.py:28 hub_app/models/users.py:75
+#: hub_app/models/my_account.py:26 hub_app/models/registration.py:28
+#: hub_app/models/users.py:75
 #: hub_app/templates/hub_app/admin/dialogs/otp_assistant.html:14
 msgid "User"
 msgstr "Benutzer"
@@ -51,17 +56,21 @@ msgid "Token Data"
 msgstr "Token-Daten"
 
 #: hub_app/admin/pending_credential_recovery.py:28
-#: hub_app/admin/pending_registration.py:27
+#: hub_app/admin/pending_email_changes.py:28
+#: hub_app/admin/pending_registration.py:20
 msgid "Base Data"
 msgstr "Basis-Daten"
 
 #: hub_app/admin/pending_credential_recovery.py:35
-#: hub_app/admin/pending_registration.py:33
+#: hub_app/admin/pending_email_changes.py:35
+#: hub_app/admin/pending_registration.py:21
 msgid "Key"
 msgstr "Schlüssel"
 
 #: hub_app/admin/user.py:22
 #: hub_app/templates/hub_app/admin/dialogs/otp_assistant.html:34
+#: hub_app/templates/hub_app/my-account/_credentials-nav.html:10
+#: hub_app/templates/hub_app/my-account/credentials-otp-secret.html:7
 msgid "OTP Secret"
 msgstr "OTP Secret"
 
@@ -125,6 +134,8 @@ msgstr "Benutzername"
 #: hub_app/forms/auth.py:36 hub_app/forms/forgot_credentials.py:45
 #: hub_app/forms/registration.py:59
 #: hub_app/management/commands/createsuperuser.py:161
+#: hub_app/templates/hub_app/my-account/_credentials-nav.html:7
+#: hub_app/templates/hub_app/my-account/credentials-password.html:5
 #: hub_app/templates/hub_app/registration/step2.html:23
 msgid "Password"
 msgstr "Passwort"
@@ -139,6 +150,7 @@ msgid "%(value)s is not a valid choice"
 msgstr "%(value)s ist keine gültige Auswahl"
 
 #: hub_app/forms/forgot_credentials.py:69 hub_app/forms/registration.py:28
+#: hub_app/templates/hub_app/my-account/_personal-nav.html:10
 msgid "E-Mail Address"
 msgstr "E-Mail-Adresse"
 
@@ -146,13 +158,33 @@ msgstr "E-Mail-Adresse"
 msgid "Repeat Password"
 msgstr "Passwort wiederholen"
 
-#: hub_app/forms/registration.py:34
+#: hub_app/forms/my_account.py:16
+msgid "Current Password"
+msgstr "Aktuelles Passwort"
+
+#: hub_app/forms/my_account.py:22
+msgid "New Password"
+msgstr "Neues Passwort"
+
+#: hub_app/forms/my_account.py:28
+msgid "Repeat New Password"
+msgstr "Neues Passwort wiederholen"
+
+#: hub_app/forms/my_account.py:39
+msgid "One Time Password for Confirmation"
+msgstr "Einmal-Passwort zur Bestätigung"
+
+#: hub_app/forms/my_account.py:52 hub_app/forms/registration.py:39
+msgid "Last Name"
+msgstr "Nachname"
+
+#: hub_app/forms/my_account.py:57 hub_app/forms/registration.py:34
 msgid "First Name"
 msgstr "Vorname"
 
-#: hub_app/forms/registration.py:39
-msgid "Last Name"
-msgstr "Nachname"
+#: hub_app/forms/my_account.py:68
+msgid "New E-Mail Address"
+msgstr "Neue E-Mail-Adresse"
 
 #: hub_app/forms/registration.py:71
 msgid "One Time Password from your app"
@@ -168,10 +200,20 @@ msgid "Deleting %(count)s burned OTPs."
 msgstr "Lösche %(count)s verbrannte OTPs."
 
 #: hub_app/management/commands/cleanburnedotp.py:33
+#: hub_app/management/commands/cleanpendingemailchanges.py:27
 #: hub_app/management/commands/cleanpendingrecoveries.py:27
 #: hub_app/management/commands/cleanpendingregistrations.py:30
 msgid "Done"
 msgstr "Erledigt"
+
+#: hub_app/management/commands/cleanpendingemailchanges.py:19
+msgid "Delete e-mail changes recoveries older than 1 day"
+msgstr "Laufende E-Mail-Adressenänderungen löschen, die älter als 1 Tag sind"
+
+#: hub_app/management/commands/cleanpendingemailchanges.py:24
+#, python-format
+msgid "Deleting %(count)s pending e-mail changes."
+msgstr "Lösche %(count)s laufendeE-Mail-Adressenänderungen."
 
 #: hub_app/management/commands/cleanpendingrecoveries.py:19
 msgid "Delete pending credential recoveries older than 1 hour"
@@ -257,22 +299,36 @@ msgstr "Laufende Zugangsdaten-Wiederherstellung"
 msgid "Pending Credential Recoveries"
 msgstr "Laufende Zugangsdaten-Wiederherstellungen"
 
-#: hub_app/models/forgot_credentials.py:25 hub_app/models/registration.py:27
-#: hub_app/models/users.py:74
+#: hub_app/models/forgot_credentials.py:25 hub_app/models/my_account.py:25
+#: hub_app/models/registration.py:27 hub_app/models/users.py:74
 msgid "UUID"
 msgstr "UUID"
 
-#: hub_app/models/forgot_credentials.py:28 hub_app/models/registration.py:29
+#: hub_app/models/forgot_credentials.py:28 hub_app/models/my_account.py:28
+#: hub_app/models/registration.py:29
 msgid "Created"
 msgstr "Erstellt"
 
-#: hub_app/models/forgot_credentials.py:29 hub_app/models/registration.py:30
+#: hub_app/models/forgot_credentials.py:29 hub_app/models/my_account.py:29
+#: hub_app/models/registration.py:30
 msgid "Valid Until"
 msgstr "Gültig bis"
 
 #: hub_app/models/forgot_credentials.py:30
 msgid "Credential Recovery Key"
 msgstr "Zugangsdaten-Wiederherstellungs-Schlüssel"
+
+#: hub_app/models/my_account.py:20
+msgid "Pending E-Mail Change"
+msgstr "Laufende E-Mail-Adressenänderung"
+
+#: hub_app/models/my_account.py:21
+msgid "Pending E-Mail Changes"
+msgstr "Laufende E-Mail-Adressenänderungen"
+
+#: hub_app/models/my_account.py:30
+msgid "E_Mail Change Key"
+msgstr "E-Mail Änderungsschlüssel"
 
 #: hub_app/models/registration.py:22
 msgid "Pending Registration"
@@ -425,7 +481,7 @@ msgid "Okay, tell me what to do"
 msgstr "Gut, sag’ mir, was zu tun ist"
 
 #: hub_app/templates/hub_app/auth/forgot-credentials/step2-multiple-objects.html:10
-msgid "Oh no..."
+msgid "Oh no…"
 msgstr "Oh nein…"
 
 #: hub_app/templates/hub_app/auth/forgot-credentials/step2-multiple-objects.html:11
@@ -451,6 +507,7 @@ msgstr ""
 "Bitte kontaktiere unseren freundlichen Support für weitere Unterstützung."
 
 #: hub_app/templates/hub_app/auth/forgot-credentials/step2-success.html:10
+#: hub_app/templates/hub_app/my-account/personal-email-confirm.html:17
 msgid "Thank you."
 msgstr "Vielen Dank."
 
@@ -505,6 +562,8 @@ msgstr ""
 #: hub_app/templates/hub_app/auth/forgot-credentials/step3-request-password.html:41
 #: hub_app/templates/hub_app/auth/forgot-credentials/step3-request-password.html:47
 #: hub_app/templates/hub_app/auth/forgot-credentials/step3-show-new-secret.html:36
+#: hub_app/templates/hub_app/my-account/personal-email.html:45
+#: hub_app/templates/hub_app/my-account/personal-name.html:49
 #: hub_app/templates/hub_app/registration/step1.html:33
 #: hub_app/templates/hub_app/registration/step1.html:48
 #: hub_app/templates/hub_app/registration/step1.html:76
@@ -536,6 +595,7 @@ msgstr ""
 
 #: hub_app/templates/hub_app/auth/forgot-credentials/step3-request-password.html:5
 #: hub_app/templates/hub_app/auth/forgot-credentials/step3-request-password.html:52
+#: hub_app/templates/hub_app/my-account/credentials-password.html:63
 msgid "Set new Password"
 msgstr "Setze ein neues Passwort"
 
@@ -545,6 +605,7 @@ msgstr "Setze jetzt Dein neues Passwort"
 
 #: hub_app/templates/hub_app/auth/forgot-credentials/step3-reveal-otp-secret.html:5
 #: hub_app/templates/hub_app/auth/forgot-credentials/step3-show-new-secret.html:6
+#: hub_app/templates/hub_app/my-account/credentials-otp-secret.html:15
 msgid "Set new OTP Secret"
 msgstr "Setze ein neues OTP Secret"
 
@@ -584,6 +645,7 @@ msgstr ""
 "Erst wenn dieser Schritt abgeschlossen ist, wird das neue Secret aktiviert."
 
 #: hub_app/templates/hub_app/auth/forgot-credentials/step3-show-new-secret.html:41
+#: hub_app/templates/hub_app/my-account/credentials-otp-secret.html:51
 msgid "Confirm new OTP secret"
 msgstr "Bestätige das neue OTP-Secret"
 
@@ -614,13 +676,17 @@ msgid "No account yet? Sign up now!"
 msgstr "Kein Konto? Jetzt registrieren!"
 
 #: hub_app/templates/hub_app/base/html5-boilerplate.html:9
-#: hub_app/templates/hub_app/navigation/main-navbar.html:9
+#: hub_app/templates/hub_app/navigation/main-navbar.html:10
 msgid "Passiopeia Hub"
 msgstr "Passiopeia Hub"
 
 #: hub_app/templates/hub_app/base/messages.html:7
 msgid "Close"
 msgstr "Schließen"
+
+#: hub_app/templates/hub_app/inclusion/admin-switch.html:5
+msgid "Go to Admin"
+msgstr "Gehe zum Admin-Bereich"
 
 #: hub_app/templates/hub_app/inclusion/inline-qr-code.html:3
 msgid "Please scan this code with your OTP app"
@@ -640,6 +706,9 @@ msgid "Hi, %(user_fn)s!"
 msgstr "Hallo, %(user_fn)s!"
 
 #: hub_app/templates/hub_app/inclusion/login-menu.html:14
+#: hub_app/templates/hub_app/my-account/_credentials.html:10
+#: hub_app/templates/hub_app/my-account/_myaccount.html:13
+#: hub_app/templates/hub_app/my-account/_personal.html:10
 msgid "Your Account"
 msgstr "Dein Konto"
 
@@ -655,7 +724,231 @@ msgstr "Registrieren!"
 msgid "Sign in"
 msgstr "Anmelden"
 
-#: hub_app/templates/hub_app/navigation/main-navbar.html:17
+#: hub_app/templates/hub_app/my-account/_credentials-nav.html:4
+#: hub_app/templates/hub_app/my-account/_personal-nav.html:4
+msgid "Help & Instructions"
+msgstr "Hilfe & Anleitung"
+
+#: hub_app/templates/hub_app/my-account/_credentials.html:5
+#: hub_app/templates/hub_app/my-account/_credentials.html:11
+#: hub_app/templates/hub_app/my-account/_credentials.html:17
+msgid "Your Credentials"
+msgstr "Deine Zugangsdaten"
+
+#: hub_app/templates/hub_app/my-account/_myaccount.html:5
+msgid "My Account"
+msgstr "Mein Konto"
+
+#: hub_app/templates/hub_app/my-account/_personal-nav.html:7
+#: hub_app/templates/hub_app/my-account/personal-name.html:5
+msgid "Name"
+msgstr "Name"
+
+#: hub_app/templates/hub_app/my-account/_personal.html:5
+#: hub_app/templates/hub_app/my-account/_personal.html:17
+#: hub_app/templates/hub_app/my-account/overview.html:23
+msgid "Personal Information"
+msgstr "Persönliche Daten"
+
+#: hub_app/templates/hub_app/my-account/_personal.html:11
+msgid "Your Personal Information"
+msgstr "Deine persönlichen Daten"
+
+#: hub_app/templates/hub_app/my-account/change-email.txt:1
+#, python-format
+msgid ""
+"\n"
+"Hi %(name)s!\n"
+"\n"
+"Please verify your new E-Mail Address.\n"
+"\n"
+"Please visit this link:\n"
+"  %(link)s\n"
+"You might need to login in order to verify your address.\n"
+"\n"
+"Best wishes,\n"
+"    The Passiopeia Hub Team\n"
+msgstr ""
+"\n"
+"Hallo %(name)s!\n"
+"\n"
+"Bitte bestätige Deine neue E-Mail-Adresse.\n"
+"\n"
+"Bitte besuche diesen Link:\n"
+"  %(link)s\n"
+"Möglicherweise musst Du Dich zur Bestätigung der Adresse anmelden.\n"
+" \n"
+"\n"
+"Viele Grüße,\n"
+"    Das Passiopeia Hub Team\n"
+
+#: hub_app/templates/hub_app/my-account/credentials-otp-secret.html:21
+msgid "Your new OTP secret has been set"
+msgstr "Dein neues OTP-Secret wurde aktiviert"
+
+#: hub_app/templates/hub_app/my-account/credentials-otp-secret.html:46
+msgid "After scanning the code, please enter a new one time password."
+msgstr ""
+"Nachdem Du den Code gescannt hast, gib bitte ein neues Einmal-Passwort ein."
+
+#: hub_app/templates/hub_app/my-account/credentials-otp-secret.html:55
+msgid "Please click the following button to create a new OTP secret"
+msgstr "Klicke den folgenden Button, um ein neues OTP-Secret zu erzeugen"
+
+#: hub_app/templates/hub_app/my-account/credentials-otp-secret.html:56
+msgid "Create new OTP secret"
+msgstr "Erstelle ein neues OTP Secret"
+
+#: hub_app/templates/hub_app/my-account/credentials-overview.html:5
+#: hub_app/templates/hub_app/my-account/overview.html:5
+#: hub_app/templates/hub_app/my-account/personal-overview.html:5
+msgid "Overview"
+msgstr "Übersicht"
+
+#: hub_app/templates/hub_app/my-account/credentials-overview.html:12
+msgid "Changing your Password will log you out immediately."
+msgstr "Die Änderung Deines Passworts wird Dich sofort ausloggen."
+
+#: hub_app/templates/hub_app/my-account/credentials-password.html:15
+msgid "Change your password"
+msgstr "Ändere Dein Passwort"
+
+#: hub_app/templates/hub_app/my-account/credentials-password.html:62
+msgid "Setting a new password will log you out of all sessions."
+msgstr ""
+"Das Setzen eines neuen Passworts wird Dich aus allen Sitzungen abmelden."
+
+#: hub_app/templates/hub_app/my-account/databases.html:5
+#: hub_app/templates/hub_app/my-account/overview.html:12
+msgid "Your Credential Databases"
+msgstr "Ihre Zugangsdaten-Datenbanken"
+
+#: hub_app/templates/hub_app/my-account/overview.html:8
+#, python-format
+msgid "Welcome, %(first_name)s!"
+msgstr "Willkommen, %(first_name)s!"
+
+#: hub_app/templates/hub_app/my-account/overview.html:8
+msgid "This is your Account."
+msgstr "Das ist Dein Konto."
+
+#: hub_app/templates/hub_app/my-account/overview.html:14
+msgid "Manage your Credential Databases, and your synchronization options."
+msgstr ""
+"Verwalte Deine Zugangsdaten-Datenbanken und die Optionen zur "
+"Synchronisierung."
+
+#: hub_app/templates/hub_app/my-account/overview.html:16
+msgid "Databases"
+msgstr "Datenbanken"
+
+#: hub_app/templates/hub_app/my-account/overview.html:25
+msgid "Manage your personal information."
+msgstr "Verwalte Deine persönlichen Daten."
+
+#: hub_app/templates/hub_app/my-account/overview.html:27
+msgid "Personal"
+msgstr "Persönlich"
+
+#: hub_app/templates/hub_app/my-account/overview.html:32
+msgid "Hub Credentials"
+msgstr "Hub-Zugangsdaten"
+
+#: hub_app/templates/hub_app/my-account/overview.html:34
+msgid "Manage your credentials to log into Passiopeia Hub."
+msgstr ""
+"Verwalte Deine Zugangsdaten, mit denen Du Dich am Passiopeia Hub anmeldest."
+
+#: hub_app/templates/hub_app/my-account/overview.html:36
+msgid "Credentials"
+msgstr "Zugangsdaten"
+
+#: hub_app/templates/hub_app/my-account/personal-email-confirm.html:5
+msgid "Confirm"
+msgstr "Bestätige"
+
+#: hub_app/templates/hub_app/my-account/personal-email-confirm.html:5
+#: hub_app/templates/hub_app/my-account/personal-email.html:5
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: hub_app/templates/hub_app/my-account/personal-email-confirm.html:13
+msgid "Change your E-Mail-Address"
+msgstr "Ändere Deine E-Mail-Adresse"
+
+#: hub_app/templates/hub_app/my-account/personal-email-confirm.html:18
+msgid "Your E-Mail Address has been verified."
+msgstr "Deine E-Mail-Adresse wurde bestätigt."
+
+#: hub_app/templates/hub_app/my-account/personal-email-confirm.html:22
+msgid "This link seems to be invalid."
+msgstr "Dieser Link sieht ungültig aus."
+
+#: hub_app/templates/hub_app/my-account/personal-email-confirm.html:23
+msgid "Please double-check the link you opened."
+msgstr "Bitte prüfe noch einmal den Link, den Du geöffnet hast."
+
+#: hub_app/templates/hub_app/my-account/personal-email-confirm.html:45
+msgid "Please click the following button to confirm your new E-Mail Address:"
+msgstr ""
+"Klicke den folgenden Button, um Deine neue E-Mail-Adresse zu bestätigen:"
+
+#: hub_app/templates/hub_app/my-account/personal-email-confirm.html:47
+msgid "Confirm new E-Mail Address"
+msgstr "Neue E-Mail-Adresse bestätigen"
+
+#: hub_app/templates/hub_app/my-account/personal-email.html:15
+msgid "Change your E-Mail Address"
+msgstr "Ändere Deine E-Mail-Adresse"
+
+#: hub_app/templates/hub_app/my-account/personal-email.html:19
+msgid "We have send you an E-Mail with a confirmation link."
+msgstr "Wir haben Dir eine E-Mail mit einem Bestätigungslink geschickt."
+
+#: hub_app/templates/hub_app/my-account/personal-email.html:24
+msgid ""
+"There is already a pending change for your E-Mail Address in our database."
+msgstr ""
+"Es existiert bereits eine laufende Änderung für Deine E-Mail-Adresse in "
+"unserer Datenbank."
+
+#: hub_app/templates/hub_app/my-account/personal-email.html:26
+msgid ""
+"Please finish that change or wait until the change request will be "
+"automatically removed after about 24 hours."
+msgstr ""
+"Bitte stelle diese Änderung erst fertig, oder warte, bis diese automatisch "
+"nach etwa 24 Stunden entfernt wird."
+
+#: hub_app/templates/hub_app/my-account/personal-email.html:48
+msgid "We will send you an E-Mail to confirm the new address."
+msgstr ""
+"Wir werden Dir eine E-Mail zur Bestätigung Deiner neuen Adresse schicken."
+
+#: hub_app/templates/hub_app/my-account/personal-email.html:49
+msgid "Set new E-Mail Address"
+msgstr "Neue E-Mail-Adresse speichern"
+
+#: hub_app/templates/hub_app/my-account/personal-name.html:15
+msgid "Change your Information"
+msgstr "Ändere Deine Daten"
+
+#: hub_app/templates/hub_app/my-account/personal-name.html:19
+msgid "Your Data was saved successfully."
+msgstr "Deine Daten wurden erfolgreich gespeichert."
+
+#: hub_app/templates/hub_app/my-account/personal-name.html:60
+msgid "Update Information"
+msgstr "Daten aktualisieren"
+
+#: hub_app/templates/hub_app/my-account/personal-overview.html:12
+msgid ""
+"Changing your E-Mail Address requires you to verify the new E-Mail Address."
+msgstr ""
+"Eine Änderung Deiner E-Mail-Adresse erfordert, dass Du die neue E-Mail-"
+"Adresse bestätigst."
+
+#: hub_app/templates/hub_app/navigation/main-navbar.html:18
 msgid "How does it work?"
 msgstr "Wie funktioniert’s?"
 
@@ -787,7 +1080,7 @@ msgid "Send the instructions for step 2!"
 msgstr "Schick die Anweisungen für Schritt 2!"
 
 #: hub_app/templates/hub_app/registration/step2-bad-url.html:6
-msgid "Ooh ooh..."
+msgid "Ooh ooh…"
 msgstr "Ooh ooh…"
 
 #: hub_app/templates/hub_app/registration/step2-bad-url.html:7
@@ -893,7 +1186,78 @@ msgstr "Das Einmal-Passwort ist nicht gültig."
 msgid "Your new OTP secret has been set. You can login now."
 msgstr "Dein neues OTP-Secret wurde aktiviert. Du kannst Dich nun anmelden."
 
-#: hub_app/views/registration.py:86
+#: hub_app/views/my_account.py:88 hub_app/views/registration.py:197
+msgid "The passwords do not match"
+msgstr "Die Passwörter stimmen nicht überein"
+
+#: hub_app/views/my_account.py:98
+msgid "This is not your current password"
+msgstr "Das ist nicht Dein aktuelles Passwort"
+
+#: hub_app/views/my_account.py:104
+#, python-format
+msgid "Unable to save the password: %(error)s"
+msgstr "Das neue Passwort kann nicht gespeichert werden: %(error)s"
+
+#: hub_app/views/my_account.py:107
+msgid "New Password set successfully. You can re-login now."
+msgstr "Dein Passwort wurde aktualisiert. Du kannst Dich nun anmelden."
+
+#: hub_app/views/my_account.py:175
+msgid "No Secret set. Please create a new secret first."
+msgstr "Es ist kein Secret gesetzt. Bitte erstelle zuerst ein neues Secret."
+
+#: hub_app/views/my_account.py:179
+msgid "One-time password invalid"
+msgstr "Das Einmal-Passwort ist nicht gültig"
+
+#: hub_app/views/my_account.py:187
+msgid ""
+"We are currently unable to update your OTP Secret. Please try again later."
+msgstr ""
+"Wir können aktuell Dein OTP-Secret nicht aktualisieren. Bitte versuche es "
+"später erneut."
+
+#: hub_app/views/my_account.py:255
+msgid ""
+"We are currently unable to save your information. Please try again later."
+msgstr ""
+"Wir können aktuell Deine Daten nicht aktualisieren. Bitte versuche es später "
+"erneut."
+
+#: hub_app/views/my_account.py:347
+msgid ""
+"We're experiencing problems creating your change request. Please try again "
+"later."
+msgstr ""
+"Wir haben gerade Probleme bei der Erstellung Deiner Änderung. Bitte versuche "
+"es später erneut."
+
+#: hub_app/views/my_account.py:408
+msgid ""
+"There is no E-Mail change waiting to be completed. Maybe it's already "
+"expired."
+msgstr ""
+"Leider gibt es keine E-Mail-Adressenänderung, die Du abschließen kannst. "
+"Vielleicht ist sie auch schon abgelaufen."
+
+#: hub_app/views/my_account.py:414
+msgid "Your Change Key's signature gone invalid."
+msgstr "Die Signatur Deines Änderungsschlüssels ist plötzlich ungültig."
+
+#: hub_app/views/my_account.py:417
+msgid "Your Change Key does not match our records."
+msgstr "Dein Änderungsschlüssel passt nicht zu unseren Aufzeichnungen."
+
+#: hub_app/views/my_account.py:429
+msgid ""
+"Currently we are not able to setup your new E-Mail address. Please try again "
+"later."
+msgstr ""
+"Wir können aktuell Deine E-Mail-Adresse nicht einrichten. Bitte versuche es "
+"später erneut."
+
+#: hub_app/views/registration.py:87
 msgid ""
 "Something went wrong and the registration step could not be finished. Please "
 "try again later."
@@ -901,7 +1265,7 @@ msgstr ""
 "Etwas ist schiefgelaufen und Dein Registrierungsschritt konnte nicht "
 "fertiggestellt werden. Bitte versuche es später erneut."
 
-#: hub_app/views/registration.py:118
+#: hub_app/views/registration.py:119
 msgid ""
 "We've been unable to send you an E-Mail at the moment. Please try again "
 "later."
@@ -909,21 +1273,17 @@ msgstr ""
 "Wir können aktuell keine E-Mails an Dich versenden. Bitte versuche es später "
 "erneut."
 
-#: hub_app/views/registration.py:196
-msgid "The passwords do not match"
-msgstr "Die Passwörter stimmen nicht überein"
-
-#: hub_app/views/registration.py:215
+#: hub_app/views/registration.py:216
 msgid ""
 "Your one time password may be expired, be sure to provide a current one."
 msgstr ""
 "Dein Einmal-Passwort könnte bereits abgelaufen sein, bitte gib ein aktuelles "
 "an."
 
-#: hub_app/views/registration.py:220
+#: hub_app/views/registration.py:221
 msgid "Your one time password has expired"
 msgstr "Dein Einmal-Passwort ist angelaufen"
 
-#: hub_app/views/registration.py:221
+#: hub_app/views/registration.py:222
 msgid "Please re-enter your password"
 msgstr "Bitte gib Dein Passwort erneut ein"

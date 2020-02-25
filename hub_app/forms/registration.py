@@ -31,12 +31,12 @@ class RegistrationStep1Form(Form):
         'aria-describedby': 'emailHelp'
     })
 
-    first_name = CharField(max_length=30, min_length=1, required=True, empty_value=None, label=_('First Name'))
+    first_name = CharField(max_length=30, min_length=1, required=True, empty_value='', label=_('First Name'))
     first_name.widget.attrs.update({  # pylint: disable=no-member
         'class': 'form-control',
     })
 
-    last_name = CharField(max_length=150, required=False, empty_value=None, label=_('Last Name'))
+    last_name = CharField(max_length=150, required=False, empty_value='', label=_('Last Name'))
     last_name.widget.attrs.update({  # pylint: disable=no-member
         'class': 'form-control',
     })

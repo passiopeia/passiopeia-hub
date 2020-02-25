@@ -1,0 +1,11 @@
+{% load i18n %}
+
+<li class="nav-item">
+    <a class="nav-link{% if active == 'overview' %} active{% endif %}" href="{% if active == 'overview' %}#{% else %}{% url 'ha:acc:personal' %}{% endif %}"><i class="fa fa-question-circle mr-2"></i> {% trans 'Help & Instructions' %}</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link{% if active == 'name' %} active{% endif %}" href="{% if active == 'name' %}#{% else %}{% url 'ha:acc:personal.name' %}{% endif %}"><i class="fa fa-address-card mr-2"></i> {% trans 'Name' %}</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link{% if active == 'email' %} active{% endif %}" href="{% if active == 'email' %}#{% else %}{% url 'ha:acc:personal.email' %}{% endif %}"><i class="fa fa-envelope mr-2"></i> {% trans 'E-Mail Address' %}</a>
+</li>

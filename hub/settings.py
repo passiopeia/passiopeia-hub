@@ -118,6 +118,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# Password Hashers
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+]
+
+
 # User Model and Auth Backend
 AUTH_USER_MODEL = 'hub_app.HubUser'
 AUTHENTICATION_BACKENDS = (
@@ -178,6 +184,7 @@ CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SAMESITE = 'Strict'
 CSRF_USE_SESSIONS = True
+CSRF_HEADER_NAME = 'HTTP_X_PH_CSRF_TOKEN'
 
 
 # Session Cookie Settings
@@ -220,7 +227,7 @@ LOGOUT_URL = reverse_lazy('ha:auth:logout')
 LOGIN_REDIRECT_URL = reverse_lazy('ha:home')
 LOGOUT_REDIRECT_URL = reverse_lazy('ha:home')
 REGISTER_URL = reverse_lazy('ha:reg:step.1')
-MY_ACCOUNT_URL = '#'
+MY_ACCOUNT_URL = reverse_lazy('ha:acc:overview')
 
 
 # E-Mail Settings
@@ -228,6 +235,9 @@ EMAIL_REGISTRATION_FROM = 'registration.no-reply@passiopeia.github.io'
 EMAIL_REGISTRATION_SUBJECT = _('[Passiopeia Hub] Registration: Please confirm your registration')
 EMAIL_RECOVERY_FROM = 'recovery.no-reply@passiopeia.github.io'
 EMAIL_RECOVERY_SUBJECT = _('[Passiopeia Hub] Credential Recovery: Please finish your recovery step')
+EMAIL_VERIFICATION_FROM = 'verification.no-reply@passiopeia.github.io'
+EMAIL_VERIFICATION_SUBJECT = _('[Passiopeia Hub] Please verify your new E-Mail Address')
+
 
 EMAIL_SUBJECT_PREFIX = '[Passiopeia Hub] '
 EMAIL_USE_LOCALTIME = False
