@@ -45,9 +45,9 @@ bytes.
 9. Compile the messages (for German translation): `./manage.py compilemessages -l de`
 10. Create the test database: `./manage.py migrate`
 11. Create a Superuser: `./manage.py createsuperuser` and enter the required data. If you don't know what to enter for
-the OTP secret, see [Examples for an OTP secret](#example-for-an-otp-secret).
+the OTP secret, see [Example for an OTP secret](#example-for-an-otp-secret).
 12. Run the tests (optional): `./manage.py test --settings=hub.test_settings`
-13. Start the development server: `./manage.py runserver`
+13. Start the development server: `./manage.py runserver --settings=hub.test_settings`
 14. Open your browser at: [http://localhost:8000/](http://localhost:8000/)
 
 ## Example for an OTP secret
