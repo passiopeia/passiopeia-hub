@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-25 14:52+0000\n"
-"PO-Revision-Date: 2020-02-25 16:09+0100\n"
+"POT-Creation-Date: 2020-02-27 21:11+0000\n"
+"PO-Revision-Date: 2020-02-27 22:17+0100\n"
 "Last-Translator: Juergen Edelbluth\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -56,13 +56,13 @@ msgid "Token Data"
 msgstr "Token-Daten"
 
 #: hub_app/admin/pending_credential_recovery.py:28
-#: hub_app/admin/pending_email_changes.py:28
+#: hub_app/admin/pending_email_changes.py:20
 #: hub_app/admin/pending_registration.py:20
 msgid "Base Data"
 msgstr "Basis-Daten"
 
 #: hub_app/admin/pending_credential_recovery.py:35
-#: hub_app/admin/pending_email_changes.py:35
+#: hub_app/admin/pending_email_changes.py:21
 #: hub_app/admin/pending_registration.py:21
 msgid "Key"
 msgstr "Schlüssel"
@@ -189,6 +189,10 @@ msgstr "Neue E-Mail-Adresse"
 #: hub_app/forms/registration.py:71
 msgid "One Time Password from your app"
 msgstr "Einmal-Passwort aus Deiner App"
+
+#: hub_app/forms/support.py:16
+msgid "One Time Password from your app to test"
+msgstr "Einmal-Passwort aus Deiner App zur Prüfung"
 
 #: hub_app/management/commands/cleanburnedotp.py:21
 msgid "Delete burned OTPs older than 2 hours"
@@ -660,6 +664,7 @@ msgstr "Weiter zum Login"
 #: hub_app/templates/hub_app/auth/login.html:5
 #: hub_app/templates/hub_app/auth/login.html:7
 #: hub_app/templates/hub_app/auth/login.html:68
+#: hub_app/templates/hub_app/navigation/footer-navbar.html:11
 msgid "Login"
 msgstr "Login"
 
@@ -676,6 +681,7 @@ msgid "No account yet? Sign up now!"
 msgstr "Kein Konto? Jetzt registrieren!"
 
 #: hub_app/templates/hub_app/base/html5-boilerplate.html:9
+#: hub_app/templates/hub_app/navigation/footer-navbar.html:8
 #: hub_app/templates/hub_app/navigation/main-navbar.html:10
 msgid "Passiopeia Hub"
 msgstr "Passiopeia Hub"
@@ -948,6 +954,22 @@ msgstr ""
 "Eine Änderung Deiner E-Mail-Adresse erfordert, dass Du die neue E-Mail-"
 "Adresse bestätigst."
 
+#: hub_app/templates/hub_app/navigation/footer-navbar.html:10
+msgid "Start Page"
+msgstr "Startseite"
+
+#: hub_app/templates/hub_app/navigation/footer-navbar.html:12
+msgid "Register"
+msgstr "Registrieren"
+
+#: hub_app/templates/hub_app/navigation/footer-navbar.html:18
+msgid "Support"
+msgstr "Unterstützung"
+
+#: hub_app/templates/hub_app/navigation/footer-navbar.html:20
+msgid "Test your OTP app"
+msgstr "Teste Deine OTP-App"
+
 #: hub_app/templates/hub_app/navigation/main-navbar.html:18
 msgid "How does it work?"
 msgstr "Wie funktioniert’s?"
@@ -967,6 +989,57 @@ msgid ""
 msgstr ""
 "Synchronisiert zwischen Geräten und Browsern. Voll verschlüsselt. Nur Du "
 "hast die Schlüssel."
+
+#: hub_app/templates/hub_app/pages/support/test-your-app.html:7
+#: hub_app/templates/hub_app/pages/support/test-your-app.html:12
+msgid "Test your OTP App"
+msgstr "Teste Deine OTP-App"
+
+#: hub_app/templates/hub_app/pages/support/test-your-app.html:13
+msgid ""
+"Having troubles with one-time passwords? This page allows you to check if "
+"your app works as expected."
+msgstr ""
+"Hast Du Probleme mit den Einmal-Passwörtern? Diese Seite ermöglicht Dir zu "
+"testen, ob Deine App wie erwartet arbeitet."
+
+#: hub_app/templates/hub_app/pages/support/test-your-app.html:16
+msgid "Test Secret"
+msgstr "Test-Secret"
+
+#: hub_app/templates/hub_app/pages/support/test-your-app.html:41
+msgid "Test the one-time password"
+msgstr "Einmal-Passwort überprüfen"
+
+#: hub_app/templates/hub_app/pages/support/test-your-app.html:46
+msgid "The OTP you entered is considered to be valid."
+msgstr "Das eingegebene OTP ist in Ordnung."
+
+#: hub_app/templates/hub_app/pages/support/test-your-app.html:50
+msgid "The OTP you entered is considered to be invalid."
+msgstr "Das eingegebene OTP ist ungültig."
+
+#: hub_app/templates/hub_app/pages/support/test-your-app.html:55
+msgid ""
+"The OTP you entered is not even in the list of the past 10 and the future 10 "
+"OTPs."
+msgstr ""
+"Das von Dir eingegebene Einmal-Passwort findet sich nicht einmal in den 10 "
+"vergangenen oder 10 zukünftigen Einmal-Passwörtern."
+
+#: hub_app/templates/hub_app/pages/support/test-your-app.html:57
+msgid "Maybe your phone or the Passiopeia Hub Server are not time synced."
+msgstr ""
+"Möglicherweise stimmt die Zeitsynchronisation zwischen Deinem Smartphone und "
+"dem Passiopeia Hub Server nicht."
+
+#: hub_app/templates/hub_app/pages/support/test-your-app.html:69
+msgid "Time on server side"
+msgstr "Zeit auf der Serverseite"
+
+#: hub_app/templates/hub_app/pages/support/test-your-app.html:84
+msgid "Your OTP!"
+msgstr "Dein OTP!"
 
 #: hub_app/templates/hub_app/registration/_registration.html:5
 #: hub_app/templates/hub_app/registration/_registration.html:9
