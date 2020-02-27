@@ -1,0 +1,24 @@
+{% load i18n %}
+
+<hr class="mt-5">
+
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-md-4">
+            <strong class="text-secondary">{% trans 'Passiopeia Hub' %}</strong>
+            <ul class="list-unstyled mt-2">
+                <li><a class="text-light" href="{% url 'ha:home' %}">{% trans 'Start Page' %}</a></li>
+                <li><a class="text-light" href="{% url 'ha:auth:login' %}">{% trans 'Login' %}</a></li>
+                <li><a class="text-light" href="{% url 'ha:reg:step.1' %}">{% trans 'Register' %}</a></li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <strong class="text-secondary">{% trans 'Support' %}</strong>
+            <ul class="list-unstyled mt-2">
+                <li><a class="text-light" href="{% url 'ha:supp:test-your-app' %}">{% trans 'Test your OTP app' %}</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

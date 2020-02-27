@@ -60,6 +60,14 @@ Use this as a secret during super user generation:
 
 `TLSN6XBSSBF5SGXMIH3UO2OYJHVB64CA6YHHKSMPW7AIEEHGAXAQCNPMQ4UBZ74FLOJRBDGOLAHZY3Q76DICPRXNIQPZ6JD5HZ5R2OTIKWDE5AQWB6TQ====`
 
+### Still have OTP problems?
+
+- In most cases, the date/time between your smartphone and the machine where Passiopeia Hub runs is out of sync. While
+smartphones are mostly time-synced by the network, the machine running Passiopeia Hub should use a NTP time source.
+- Maybe your App is not as compatible as expected. If you have Passiopeia Hub up and running on your machine, browse to
+[http://localhost:8000/hub/support/test-your-app](http://localhost:8000/hub/support/test-your-app). This page contains
+a QR code to scan and a test for a valid one-time password.
+
 ## E-Mail Handling
 
 The application sends e-mails, e.g. when registering a new user or using the "Forgotten Credentials" workflow. Django is

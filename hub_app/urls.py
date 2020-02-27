@@ -16,7 +16,7 @@ from hub_app.views.my_account import MyAccountOverviewView, MyAccountCredentials
     MyAccountCredentialsOtpSecretView, MyAccountPersonalNameView, MyAccountPersonalEMailView, \
     MyAccountPersonalEMailVerifyView
 from hub_app.views.registration import RegistrationFirstStepView, RegistrationSecondStepView
-
+from hub_app.views.support import TestYourAppView
 
 FORGOT_CREDENTIALS = ([
     path('step-1', never_cache(ForgotCredentialsFirstStepView.as_view()), name='step.1'),
@@ -80,10 +80,16 @@ MY_ACCOUNT_URLS = ([
 ], 'acc', 'hub_app:acc')
 
 
+SUPPORT_URLS = ([
+    path('test-your-app', TestYourAppView.as_view(), name='test-your-app'),
+], 'supp', 'hub_app:supp')
+
+
 urlpatterns = [  # pylint: disable=invalid-name
     path('admin/', ADMIN_URLS),
     path('auth/', AUTH_URLS),
     path('register/', REGISTRATION_URLS),
     path('my-account/', MY_ACCOUNT_URLS),
+    path('support/', SUPPORT_URLS),
     url(r'^$', HomeView.as_view(), name='home'),
 ]

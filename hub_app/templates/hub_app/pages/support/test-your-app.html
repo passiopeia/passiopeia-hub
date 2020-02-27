@@ -1,0 +1,96 @@
+{% extends 'hub_app/base/default-page.html' %}
+
+{% load i18n %}
+{% load static %}
+{% load l10n %}
+
+{% block title %}{% trans 'Test your OTP App' %} | {{ block.super }}{% endblock %}
+
+{% block app %}
+    <div class="container-fluid bg-light text-dark">
+        <div class="container p-3">
+            <h1>{% trans 'Test your OTP App' %}</h1>
+            <p>{% trans 'Having troubles with one-time passwords? This page allows you to check if your app works as expected.' %}</p>
+            <div class="row">
+                <div class="col-lg-6">
+                    <img src="{% static 'hub_app/test-your-app/test-your-app-secret.png' %}" class="w-100 border" alt="{% trans 'Test Secret' %}">
+                </div>
+                <div class="col-lg-6">
+                    <form method="post" action="{% url 'ha:supp:test-your-app' %}">
+                        {% csrf_token %}
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {% for e in form.non_field_errors %}
+                                    {{ e }}
+                                    {% if not forloop.last %}<br>{% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {% if form.otp_to_be_tested.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {% for e in form.otp_to_be_tested.errors %}
+                                    {{ e }}
+                                    {% if not forloop.last %}<br>{% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <label for="{{ form.otp_to_be_tested.id_for_label }}">{{ form.otp_to_be_tested.label }}{{ form.label_suffix }}</label>
+                            {{ form.otp_to_be_tested }}
+                        </div>
+                        <button class="btn btn-primary mt-3 btn-lg">{% trans 'Test the one-time password' %}</button>
+                    </form>
+                    {% if show %}
+                        {% if success %}
+                            <div class="alert alert-success mt-3" role="alert">
+                                {% trans 'The OTP you entered is considered to be valid.' %}
+                            </div>
+                        {% else %}
+                            <div class="alert alert-danger mt-3" role="alert">
+                                {% trans 'The OTP you entered is considered to be invalid.' %}
+                            </div>
+                        {% endif %}
+                        {% if chosen_otp not in list_of_otps %}
+                            <div class="alert alert-warning mt-3" role="alert">
+                                <strong>{% trans 'The OTP you entered is not even in the list of the past 10 and the future 10 OTPs.' %}</strong>
+                                <br><br>
+                                {% trans 'Maybe your phone or the Passiopeia Hub Server are not time synced.' %}
+                            </div>
+                        {% endif %}
+                        <div class="table-responsive mb-5">
+                            <table class="table table-sm table-borderless text-white">
+                                <colgroup>
+                                    <col class="w-25">
+                                    <col class="w-50">
+                                    <col class="w-25">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th colspan="3" class="text-dark">{% trans 'Time on server side' %}: <strong>{{ now|localize }}</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                     {% for t in list_of_otps %}
+                                        <tr>
+                                            {% if forloop.counter0 == 0 %}
+                                                <td rowspan="9" class="bg-danger align-middle text-center"><strong>too old</strong></td>
+                                            {% elif forloop.counter0 == 9 %}
+                                                <td rowspan="3" class="bg-success align-middle text-center"><strong>okay</strong></td>
+                                            {% elif forloop.counter0 == 12 %}
+                                                <td rowspan="9" class="bg-danger align-middle text-center"><strong>too new</strong></td>
+                                            {% endif %}
+                                            <td class="text-center{% if t == chosen_otp %} bg-warning{% endif %}"><code>{{ t }}</code></td>
+                                            {% if t == chosen_otp %}
+                                                <td class="bg-warning"><strong>{% trans 'Your OTP!' %}</strong></td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
