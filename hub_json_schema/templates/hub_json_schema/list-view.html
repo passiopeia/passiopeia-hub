@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Passiopeia Hub JSON Schema</title>
+</head>
+<body>
+    <h1>Available JSON Schemas</h1>
+    <dl>
+        {% for schema_name, schema_versions in schemas.items %}
+            <dt>{{ schema_name }}</dt>
+            {% for schema_version, schema_definition in schema_versions.items %}
+                <dd><a href="{% url 'json:schema' schema_name schema_version %}">v{{ schema_version }}</a></dd>
+            {% endfor %}
+        {% endfor %}
+    </dl>
+</body>
+</html>

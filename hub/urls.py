@@ -23,5 +23,6 @@ urlpatterns = [  # pylint: disable=invalid-name
     path('admin/', admin_site.urls, name='admin'),
     path('client-configuration/i18n/', include('django.conf.urls.i18n')),
     path('hub/', include(('hub_app.urls', 'hub_app'), namespace='ha')),
+    path('schema/', include(('hub_json_schema.urls', 'hub_json_schema'), namespace='json')),
     url('^$', RedirectView.as_view(url=reverse_lazy('ha:home'), permanent=False), name='index'),
 ]

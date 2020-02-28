@@ -32,7 +32,7 @@ script:
   - coverage run --rcfile=.coveragerc.ini manage.py test --settings=hub.ci_settings
   - coverage report --rcfile=.coveragerc.ini
   - flake8 --statistics --config=.flake8.ini .
-  - pylint --rcfile=.pylint.ini hub hub_app
+  - pylint --rcfile=.pylint.ini hub hub_app hub_json_schema
   - bandit -r ./
 
 after_script:
