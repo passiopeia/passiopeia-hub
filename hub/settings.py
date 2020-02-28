@@ -38,6 +38,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'hub_app',
+    'hub_json_schema',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -248,3 +249,7 @@ EMAIL_USE_LOCALTIME = False
 ADMINS = (
     ('Test Admin', 'test-admin@passiopeia.github.io'),
 )
+
+
+# JSON Schema Settings
+JSON_SCHEMA_BASE = 'http://localhost:8000/schema/'
