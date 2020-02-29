@@ -60,6 +60,11 @@ Use this as a secret during super user generation:
 
 `TLSN6XBSSBF5SGXMIH3UO2OYJHVB64CA6YHHKSMPW7AIEEHGAXAQCNPMQ4UBZ74FLOJRBDGOLAHZY3Q76DICPRXNIQPZ6JD5HZ5R2OTIKWDE5AQWB6TQ====`
 
+**A word of warning:** Please make sure that you immediately change your OTP secret after your first login as a super
+user. Use the "My Account" > "Hub Credentials" > "OTP Secret" page for that purpose. If you are still on your local
+machine, you can use this link:
+[http://localhost:8000/hub/my-account/credentials/otp-secret](http://localhost:8000/hub/my-account/credentials/otp-secret). 
+
 ### Still have OTP problems?
 
 - In most cases, the date/time between your smartphone and the machine where Passiopeia Hub runs is out of sync. While
@@ -77,6 +82,15 @@ configuration accordingly.
 
 Good to know: If an e-mail is send during a `TestCase`, e-mails are neither delivered nor saved to a file. Tests can
 access the mails though `mail.outbox`. See the `hub_app/tests/test_registration.py` for an example.
+
+## JSON Schema
+
+The Passiopeia Hub comes with a complete set of JSON Schemas for all requests to the services and responses from the
+services. All Schemas are listed at the endpoint `/schema/` (on your local machine: 
+[http://localhost:8080/schema/](http://localhost:8080/schema/)). Sorry for the stylesheet.
+ 
+We make heavy use of `$ref`, and to make sure that URL resolvers of JSON Schema Validators work, you can set the JSON
+Schema Prefix in your `settings.py`.
 
 ---
 
