@@ -1,0 +1,35 @@
+body {
+    background-color: black;
+    color: lawngreen;
+    font-family: monospace;
+    font-size: 14px;
+    padding: 32px;
+}
+
+h1 {
+    font-size: 14px;
+}
+
+dl {
+    margin: 64px;
+}
+
+a {
+    color: green;
+}
+
+dt {
+    margin-top: 24px;
+    margin-bottom: 8px;
+    padding: 5px;
+    border-bottom: dashed lawngreen 1px;
+    border-top: solid lawngreen 3px;
+}
+
+dt:before {
+    content: '⊞ ';
+}
+
+dd:before {
+    content: '∎ ';
+}

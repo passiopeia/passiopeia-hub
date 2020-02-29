@@ -11,3 +11,5 @@ class JsonSchema:  # pylint: disable=too-few-public-methods
     schema_name = ''
     schema_version = 0
     schema_definition = {}
+
+    example = None

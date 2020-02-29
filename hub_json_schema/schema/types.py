@@ -15,7 +15,9 @@ class UsernameTypeV1(JsonSchema):  # pylint: disable=too-few-public-methods
     schema_version = 1
 
     schema_definition = {
-        "id": '{}{}-v{}'.format(settings.JSON_SCHEMA_BASE, schema_name, schema_version),
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": '{}{}-v{}'.format(settings.JSON_SCHEMA_BASE, schema_name, schema_version),
+        "title": schema_name,
         "definitions": {
             "username": {
                 "type": "string",
@@ -36,7 +38,9 @@ class PasswordTypeV1(JsonSchema):  # pylint: disable=too-few-public-methods
     schema_version = 1
 
     schema_definition = {
-        "id": '{}{}-v{}'.format(settings.JSON_SCHEMA_BASE, schema_name, schema_version),
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": '{}{}-v{}'.format(settings.JSON_SCHEMA_BASE, schema_name, schema_version),
+        "title": schema_name,
         "definitions": {
             "password": {
                 "type": "string",
@@ -56,9 +60,11 @@ class OtpTypeV1(JsonSchema):  # pylint: disable=too-few-public-methods
     schema_version = 1
 
     schema_definition = {
-        "id": '{}{}-v{}'.format(settings.JSON_SCHEMA_BASE, schema_name, schema_version),
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": '{}{}-v{}'.format(settings.JSON_SCHEMA_BASE, schema_name, schema_version),
+        "title": schema_name,
         "definitions": {
-            "username": {
+            "otp": {
                 "type": "string",
                 "minLength": 6,
                 "maxLength": 6,
@@ -77,7 +83,9 @@ class CredentialsTypeV1(JsonSchema):  # pylint: disable=too-few-public-methods
     schema_version = 1
 
     schema_definition = {
-        "id": '{}{}-v{}'.format(settings.JSON_SCHEMA_BASE, schema_name, schema_version),
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": '{}{}-v{}'.format(settings.JSON_SCHEMA_BASE, schema_name, schema_version),
+        "title": schema_name,
         "definitions": {
             "credentials": {
                 "type": "object",
@@ -85,13 +93,13 @@ class CredentialsTypeV1(JsonSchema):  # pylint: disable=too-few-public-methods
                 "additionalProperties": False,
                 "properties": {
                     "username": {
-                        "$ref": '{}#/definitions/username'.format(UsernameTypeV1.schema_definition.get('id'))
+                        "$ref": '{}#/definitions/username'.format(UsernameTypeV1.schema_definition.get('$id'))
                     },
                     "password": {
-                        "$ref": '{}#/definitions/password'.format(PasswordTypeV1.schema_definition.get('id'))
+                        "$ref": '{}#/definitions/password'.format(PasswordTypeV1.schema_definition.get('$id'))
                     },
                     "otp": {
-                        "$ref": '{}#/definitions/otp'.format(OtpTypeV1.schema_definition.get('id'))
+                        "$ref": '{}#/definitions/otp'.format(OtpTypeV1.schema_definition.get('$id'))
                     }
                 }
             }

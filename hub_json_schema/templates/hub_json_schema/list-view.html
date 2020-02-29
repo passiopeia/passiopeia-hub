@@ -1,16 +1,24 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Passiopeia Hub JSON Schema</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'hub_json_schema/json.css' %}">
 </head>
 <body>
     <h1>Available JSON Schemas</h1>
     <dl>
-        {% for schema_name, schema_versions in schemas.items %}
-            <dt>{{ schema_name }}</dt>
-            {% for schema_version, schema_definition in schema_versions.items %}
-                <dd><a href="{% url 'json:schema' schema_name schema_version %}">v{{ schema_version }}</a></dd>
+        {% for schema in schema_list|dictsort:'sortable_name' %}
+            <dt>{{ schema.sortable_name }}</dt>
+            {% for schema_data in schema.schema_versions|dictsort:'sortable_version' %}
+                <dd>
+                    <a data-link-type="schema" href="{% url 'json:schema' schema.sortable_name schema_data.sortable_version %}">v{{ schema_data.sortable_version }}</a>
+                    {% if schema_data.has_example %}
+                        (<a data-link-type="example" href="{% url 'json:example' schema.sortable_name schema_data.sortable_version '.json' %}">example</a>)
+                    {% endif %}
+                </dd>
             {% endfor %}
         {% endfor %}
     </dl>

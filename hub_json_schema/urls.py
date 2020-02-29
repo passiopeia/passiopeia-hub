@@ -7,5 +7,7 @@ from hub_json_schema.views import ListJSONSchemasView, JSONSchemaView
 
 urlpatterns = [  # pylint: disable=invalid-name
     url(r'(?P<schema>[a-z][a-z0-9\-]{0,50}[a-z0-9])-v(?P<version>\d+)$', JSONSchemaView.as_view(), name='schema'),
+    url(r'(?P<schema>[a-z][a-z0-9\-]{0,50}[a-z0-9])-v(?P<version>\d+)(?P<example>\.json)$',
+        JSONSchemaView.as_view(), name='example'),
     url(r'^$', ListJSONSchemasView.as_view(), name='list'),
 ]

@@ -1,7 +1,7 @@
 """
 Registry for JSON Schema
 """
-from hub_json_schema.schema import PUBLISHED
+from hub_json_schema.published_schema import PUBLISHED
 
 
 class Singleton(type):
@@ -34,7 +34,10 @@ class Registry(metaclass=Singleton):  # pylint: disable=too-few-public-methods
                 self.__registry[name] = {}
             if version in self.__registry[name]:  # pragma: no cover  # Only a safeguard during JSON Schema development
                 raise ValueError('Duplicated JSON Schema Version: Name="{}", Version="{}"'.format(name, version))
-            self.__registry[name][version] = schema.schema_definition
+            self.__registry[name][version] = {
+                'def': schema.schema_definition,
+                'example': schema.example,
+            }
 
     @property
     def schemas(self):
