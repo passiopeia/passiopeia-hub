@@ -87,7 +87,7 @@ access the mails though `mail.outbox`. See the `hub_app/tests/test_registration.
 
 The Passiopeia Hub comes with a complete set of JSON Schemas for all requests to the services and responses from the
 services. All Schemas are listed at the endpoint `/schema/` (on your local machine: 
-[http://localhost:8080/schema/](http://localhost:8080/schema/)). Sorry for the stylesheet.
+[http://localhost:8000/schema/](http://localhost:8000/schema/)). Sorry for the stylesheet.
  
 We make heavy use of `$ref`, and to make sure that URL resolvers of JSON Schema Validators work, you can set the JSON
 Schema Prefix in your `settings.py`.
