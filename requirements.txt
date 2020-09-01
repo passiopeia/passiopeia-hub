@@ -1,6 +1,6 @@
 Django>=3.0.3,<4
 django-csp>=3.6,<4
-cryptography>=2.8,<3
+cryptography>=2.8,<4
 qrcode>=6.1,<7
 pillow>=7.0.0,<8
 argon2-cffi>=19.2.0,<21
